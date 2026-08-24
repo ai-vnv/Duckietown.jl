@@ -1,0 +1,1499 @@
+{
+    "environment": {
+        "julia": "1.11.3",
+        "pythoncall": "0.9.25",
+        "os": "Linux"
+    },
+    "cases": [
+        {
+            "lane_C_process_vs_pycall": {
+                "decisions": 120,
+                "len_reference": 120,
+                "len_test": 120,
+                "reason_reference": "in_progress",
+                "reason_test": "in_progress",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 4,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 4.440892098500626e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 7.216449660063518e-16,
+                "max_dreward": 2.3592239273284576e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 8.881784197001252e-16,
+                "max_dreturn": 8.881784197001252e-16
+            },
+            "lane_B_pycall_vs_julia": {
+                "decisions": 120,
+                "len_reference": 120,
+                "len_test": 120,
+                "reason_reference": "in_progress",
+                "reason_test": "in_progress",
+                "divergence_kind": "IDENTICAL",
+                "D_readback": null,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 0,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 0,
+                "max_dreward": 0,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 0
+            },
+            "libm_hypothesis": {
+                "d_CJ_exactly_zero": true,
+                "fields": [
+                    "reward.progress",
+                    "phi",
+                    "reward.heading",
+                    "reward.total",
+                    "angle",
+                    "d"
+                ],
+                "max_abs_dPJ_minus_dPP": 0,
+                "stats": {
+                    "reward.progress": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "phi": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.heading": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.total": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "angle": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "d": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    }
+                },
+                "max_abs_d_CJ": 0
+            },
+            "action_space": "discrete",
+            "name": "discrete_lanefollow",
+            "lengths": {
+                "julia": 120,
+                "pycall": 120,
+                "process": 120
+            },
+            "returns": {
+                "julia": 6.969480950403228,
+                "pycall": 6.969480950403228,
+                "process": 6.969480950403227
+            },
+            "stop": {
+                "process_d_stop_seen": 0,
+                "julia_d_stop_seen": 0,
+                "process_min_d_stop": null,
+                "julia_min_d_stop": null
+            },
+            "config": "q_learning",
+            "n_actions": 120,
+            "event_timing_A": {
+                "offroad": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_zone_entry": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_crossing_started": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "d_stop_visible": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                }
+            },
+            "event_timing_C": {
+                "offroad": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_zone_entry": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_crossing_started": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "d_stop_visible": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                }
+            },
+            "duck": {
+                "julia_active_decisions": 7,
+                "julia_crossings": 1,
+                "process_crossings": 1,
+                "process_active_decisions": 7
+            },
+            "seed": 53,
+            "lane_A_process_vs_julia": {
+                "decisions": 120,
+                "len_reference": 120,
+                "len_test": 120,
+                "reason_reference": "in_progress",
+                "reason_test": "in_progress",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 4,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 4.440892098500626e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 7.216449660063518e-16,
+                "max_dreward": 2.3592239273284576e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 8.881784197001252e-16,
+                "max_dreturn": 8.881784197001252e-16
+            },
+            "terminal": {
+                "julia": "in_progress",
+                "pycall": "in_progress",
+                "process": "in_progress"
+            }
+        },
+        {
+            "lane_C_process_vs_pycall": {
+                "decisions": 41,
+                "len_reference": 41,
+                "len_test": 41,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 40,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 5.551115123125783e-17,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 0,
+                "max_dreward": 0,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 5.551115123125783e-17,
+                "final_dreturn": 0,
+                "max_dreturn": 0
+            },
+            "lane_B_pycall_vs_julia": {
+                "decisions": 41,
+                "len_reference": 41,
+                "len_test": 41,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "IDENTICAL",
+                "D_readback": null,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 0,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 0,
+                "max_dreward": 0,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 0
+            },
+            "libm_hypothesis": {
+                "d_CJ_exactly_zero": true,
+                "fields": [
+                    "reward.progress",
+                    "phi",
+                    "reward.heading",
+                    "reward.total",
+                    "angle",
+                    "d"
+                ],
+                "max_abs_dPJ_minus_dPP": 0,
+                "stats": {
+                    "reward.progress": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "phi": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.heading": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.total": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "angle": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "d": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    }
+                },
+                "max_abs_d_CJ": 0
+            },
+            "action_space": "continuous",
+            "name": "continuous_lanefollow",
+            "lengths": {
+                "julia": 41,
+                "pycall": 41,
+                "process": 41
+            },
+            "returns": {
+                "julia": -197.30533286302722,
+                "pycall": -197.30533286302722,
+                "process": -197.30533286302722
+            },
+            "stop": {
+                "process_d_stop_seen": 14,
+                "julia_d_stop_seen": 14,
+                "process_min_d_stop": 0.09360281492293515,
+                "julia_min_d_stop": 0.09360281492293515
+            },
+            "config": "sac",
+            "n_actions": 41,
+            "event_timing_A": {
+                "offroad": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "stop_zone_entry": {
+                    "test": 28,
+                    "reference": 28,
+                    "difference": 0
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_crossing_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "d_stop_visible": {
+                    "test": 28,
+                    "reference": 28,
+                    "difference": 0
+                }
+            },
+            "event_timing_C": {
+                "offroad": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "stop_zone_entry": {
+                    "test": 28,
+                    "reference": 28,
+                    "difference": 0
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_crossing_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "d_stop_visible": {
+                    "test": 28,
+                    "reference": 28,
+                    "difference": 0
+                }
+            },
+            "duck": {
+                "julia_active_decisions": 0,
+                "julia_crossings": 0,
+                "process_crossings": 0,
+                "process_active_decisions": 0
+            },
+            "seed": 73,
+            "lane_A_process_vs_julia": {
+                "decisions": 41,
+                "len_reference": 41,
+                "len_test": 41,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 40,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 5.551115123125783e-17,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 0,
+                "max_dreward": 0,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 5.551115123125783e-17,
+                "final_dreturn": 0,
+                "max_dreturn": 0
+            },
+            "terminal": {
+                "julia": "offroad",
+                "pycall": "offroad",
+                "process": "offroad"
+            }
+        },
+        {
+            "lane_C_process_vs_pycall": {
+                "decisions": 250,
+                "len_reference": 250,
+                "len_test": 250,
+                "reason_reference": "timeout",
+                "reason_test": "timeout",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 4,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 4.440892098500626e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 4.690692279041286e-15,
+                "max_dreward": 2.3592239273284576e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 2.220446049250313e-16,
+                "final_dreturn": 0,
+                "max_dreturn": 1.7763568394002505e-15
+            },
+            "lane_B_pycall_vs_julia": {
+                "decisions": 250,
+                "len_reference": 250,
+                "len_test": 250,
+                "reason_reference": "timeout",
+                "reason_test": "timeout",
+                "divergence_kind": "IDENTICAL",
+                "D_readback": null,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 0,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 0,
+                "max_dreward": 0,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 0
+            },
+            "libm_hypothesis": {
+                "d_CJ_exactly_zero": true,
+                "fields": [
+                    "reward.progress",
+                    "phi",
+                    "reward.heading",
+                    "reward.total",
+                    "angle",
+                    "d"
+                ],
+                "max_abs_dPJ_minus_dPP": 0,
+                "stats": {
+                    "reward.progress": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "phi": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.heading": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.total": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "angle": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "d": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    }
+                },
+                "max_abs_d_CJ": 0
+            },
+            "action_space": "discrete",
+            "name": "discrete_long",
+            "lengths": {
+                "julia": 250,
+                "pycall": 250,
+                "process": 250
+            },
+            "returns": {
+                "julia": 16.509309998188378,
+                "pycall": 16.509309998188378,
+                "process": 16.509309998188378
+            },
+            "stop": {
+                "process_d_stop_seen": 0,
+                "julia_d_stop_seen": 0,
+                "process_min_d_stop": null,
+                "julia_min_d_stop": null
+            },
+            "config": "q_learning",
+            "n_actions": 250,
+            "event_timing_A": {
+                "offroad": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_zone_entry": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_crossing_started": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": 250,
+                    "reference": 250,
+                    "difference": 0
+                },
+                "hold_steps_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "d_stop_visible": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                }
+            },
+            "event_timing_C": {
+                "offroad": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_zone_entry": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_crossing_started": {
+                    "test": 41,
+                    "reference": 41,
+                    "difference": 0
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": 250,
+                    "reference": 250,
+                    "difference": 0
+                },
+                "hold_steps_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "d_stop_visible": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                }
+            },
+            "duck": {
+                "julia_active_decisions": 7,
+                "julia_crossings": 1,
+                "process_crossings": 1,
+                "process_active_decisions": 7
+            },
+            "seed": 53,
+            "lane_A_process_vs_julia": {
+                "decisions": 250,
+                "len_reference": 250,
+                "len_test": 250,
+                "reason_reference": "timeout",
+                "reason_test": "timeout",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 4,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 4.440892098500626e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 4.690692279041286e-15,
+                "max_dreward": 2.3592239273284576e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 2.220446049250313e-16,
+                "final_dreturn": 0,
+                "max_dreturn": 1.7763568394002505e-15
+            },
+            "terminal": {
+                "julia": "timeout",
+                "pycall": "timeout",
+                "process": "timeout"
+            }
+        },
+        {
+            "lane_C_process_vs_pycall": {
+                "decisions": 65,
+                "len_reference": 65,
+                "len_test": 65,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE2_DYNAMICAL",
+                "D_readback": 10,
+                "D_dynamic": 65,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 1.1102230246251565e-16,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 2.220446049250313e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 1.2212453270876722e-15,
+                "max_dreward": 1.3183898417423734e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 2.7755575615628914e-17,
+                "final_dreturn": 0,
+                "max_dreturn": 2.220446049250313e-16
+            },
+            "lane_B_pycall_vs_julia": {
+                "decisions": 65,
+                "len_reference": 65,
+                "len_test": 65,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "IDENTICAL",
+                "D_readback": null,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 0,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 0,
+                "max_dreward": 0,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 0
+            },
+            "libm_hypothesis": {
+                "d_CJ_exactly_zero": true,
+                "fields": [
+                    "reward.progress",
+                    "phi",
+                    "reward.heading",
+                    "reward.total",
+                    "angle",
+                    "d"
+                ],
+                "max_abs_dPJ_minus_dPP": 0,
+                "stats": {
+                    "reward.progress": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "phi": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.heading": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "reward.total": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "angle": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "d": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    }
+                },
+                "max_abs_d_CJ": 0
+            },
+            "action_space": "continuous",
+            "name": "continuous_stop_compliance",
+            "lengths": {
+                "julia": 65,
+                "pycall": 65,
+                "process": 65
+            },
+            "returns": {
+                "julia": -189.14075807797525,
+                "pycall": -189.14075807797525,
+                "process": -189.14075807797525
+            },
+            "stop": {
+                "process_d_stop_seen": 20,
+                "julia_d_stop_seen": 20,
+                "process_min_d_stop": 0.04114487678718745,
+                "julia_min_d_stop": 0.04114487678718745
+            },
+            "config": "sac",
+            "n_actions": 65,
+            "event_timing_A": {
+                "offroad": {
+                    "test": 65,
+                    "reference": 65,
+                    "difference": 0
+                },
+                "stop_zone_entry": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "duck_crossing_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": 49,
+                    "reference": 49,
+                    "difference": 0
+                },
+                "d_stop_visible": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                }
+            },
+            "event_timing_C": {
+                "offroad": {
+                    "test": 65,
+                    "reference": 65,
+                    "difference": 0
+                },
+                "stop_zone_entry": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "duck_crossing_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": 49,
+                    "reference": 49,
+                    "difference": 0
+                },
+                "d_stop_visible": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                }
+            },
+            "duck": {
+                "julia_active_decisions": 0,
+                "julia_crossings": 0,
+                "process_crossings": 0,
+                "process_active_decisions": 0
+            },
+            "seed": 73,
+            "lane_A_process_vs_julia": {
+                "decisions": 65,
+                "len_reference": 65,
+                "len_test": 65,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE2_DYNAMICAL",
+                "D_readback": 10,
+                "D_dynamic": 65,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 1.1102230246251565e-16,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 2.220446049250313e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 1.2212453270876722e-15,
+                "max_dreward": 1.3183898417423734e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 2.7755575615628914e-17,
+                "final_dreturn": 0,
+                "max_dreturn": 2.220446049250313e-16
+            },
+            "terminal": {
+                "julia": "offroad",
+                "pycall": "offroad",
+                "process": "offroad"
+            }
+        },
+        {
+            "lane_C_process_vs_pycall": {
+                "decisions": 63,
+                "len_reference": 63,
+                "len_test": 63,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 24,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 2.220446049250313e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 4.440892098500626e-16,
+                "max_dreward": 2.220446049250313e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 4.440892098500626e-16
+            },
+            "lane_B_pycall_vs_julia": {
+                "decisions": 63,
+                "len_reference": 63,
+                "len_test": 63,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 41,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 0,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 5.551115123125783e-17,
+                "max_dreward": 1.3877787807814457e-17,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 2.220446049250313e-16
+            },
+            "libm_hypothesis": {
+                "d_CJ_exactly_zero": false,
+                "fields": [
+                    "reward.progress",
+                    "phi",
+                    "reward.heading",
+                    "reward.total",
+                    "angle",
+                    "d"
+                ],
+                "max_abs_dPJ_minus_dPP": 5.551115123125783e-17,
+                "stats": {
+                    "reward.progress": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "phi": {
+                        "max_abs_dPJ_minus_dPP": 5.551115123125783e-17,
+                        "max_abs_d_CJ": 5.551115123125783e-17
+                    },
+                    "reward.heading": {
+                        "max_abs_dPJ_minus_dPP": 1.3877787807814457e-17,
+                        "max_abs_d_CJ": 1.3877787807814457e-17
+                    },
+                    "reward.total": {
+                        "max_abs_dPJ_minus_dPP": 1.3877787807814457e-17,
+                        "max_abs_d_CJ": 1.3877787807814457e-17
+                    },
+                    "angle": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    },
+                    "d": {
+                        "max_abs_dPJ_minus_dPP": 0,
+                        "max_abs_d_CJ": 0
+                    }
+                },
+                "max_abs_d_CJ": 5.551115123125783e-17
+            },
+            "action_space": "continuous",
+            "name": "continuous_stop_pass",
+            "lengths": {
+                "julia": 63,
+                "pycall": 63,
+                "process": 63
+            },
+            "returns": {
+                "julia": -189.35574868639551,
+                "pycall": -189.35574868639551,
+                "process": -189.35574868639551
+            },
+            "stop": {
+                "process_d_stop_seen": 18,
+                "julia_d_stop_seen": 18,
+                "process_min_d_stop": 0.12980655465524632,
+                "julia_min_d_stop": 0.12980655465524632
+            },
+            "config": "sac",
+            "n_actions": 63,
+            "event_timing_A": {
+                "offroad": {
+                    "test": 63,
+                    "reference": 63,
+                    "difference": 0
+                },
+                "stop_zone_entry": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "duck_crossing_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": 49,
+                    "reference": 49,
+                    "difference": 0
+                },
+                "d_stop_visible": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                }
+            },
+            "event_timing_C": {
+                "offroad": {
+                    "test": 63,
+                    "reference": 63,
+                    "difference": 0
+                },
+                "stop_zone_entry": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                },
+                "other_collision": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "duck_activation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "stop_violation": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "sigma_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "collision_duck": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "passed_stop": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "full_stop": {
+                    "test": 51,
+                    "reference": 51,
+                    "difference": 0
+                },
+                "duck_crossing_started": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "goal": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "timeout": {
+                    "test": null,
+                    "reference": null,
+                    "difference": null
+                },
+                "hold_steps_started": {
+                    "test": 49,
+                    "reference": 49,
+                    "difference": 0
+                },
+                "d_stop_visible": {
+                    "test": 46,
+                    "reference": 46,
+                    "difference": 0
+                }
+            },
+            "duck": {
+                "julia_active_decisions": 0,
+                "julia_crossings": 0,
+                "process_crossings": 0,
+                "process_active_decisions": 0
+            },
+            "seed": 73,
+            "lane_A_process_vs_julia": {
+                "decisions": 63,
+                "len_reference": 63,
+                "len_test": 63,
+                "reason_reference": "offroad",
+                "reason_test": "offroad",
+                "divergence_kind": "TYPE1_READBACK_ONLY",
+                "D_readback": 24,
+                "D_dynamic": null,
+                "D_discrete": null,
+                "D_terminal": null,
+                "discrete_first_field": "",
+                "max_dq0": 0,
+                "max_dv0": 0,
+                "max_dx": 0,
+                "max_dz": 0,
+                "max_dangle": 2.220446049250313e-16,
+                "max_dspeed": 0,
+                "max_dd": 0,
+                "max_dphi": 4.440892098500626e-16,
+                "max_dreward": 2.220446049250313e-16,
+                "final_dx": 0,
+                "final_dz": 0,
+                "final_dangle": 0,
+                "final_dreturn": 0,
+                "max_dreturn": 2.220446049250313e-16
+            },
+            "terminal": {
+                "julia": "offroad",
+                "pycall": "offroad",
+                "process": "offroad"
+            }
+        }
+    ]
+}

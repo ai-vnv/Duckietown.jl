@@ -1,0 +1,458 @@
+{
+    "planner_seed": 2026,
+    "config_fingerprint": "b70564994dd7b5d0",
+    "fingerprint": "232d39c06cc1c5c9",
+    "id": "fj95b-dpw",
+    "solver": "MCTS.DPWSolver",
+    "extra": {
+        "enable_action_pw": true,
+        "action_nodes": 35,
+        "k_action": 4,
+        "exploration_constant": 5,
+        "iterations": 35,
+        "distinct_root_actions": 24,
+        "state_nodes": 36,
+        "enable_state_pw": false,
+        "value_semantics": "mean of backed-up returns (MCTS.jl updates q += (return - q)/n, i.e. an incremental sample mean; the first value is seeded by init_Q, not by a rollout)",
+        "depth_limit": 10,
+        "alpha_action": 0.5
+    },
+    "schema": "fj9.5b-search-snapshot-1",
+    "selected_action": {
+        "v": 0.3227831181258145,
+        "kind": "continuous",
+        "omega": -1.1260919903885325
+    },
+    "nodes": [
+        {
+            "depth": 0,
+            "action": null,
+            "id": 1,
+            "parent": 0,
+            "value": null,
+            "visits": 35
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.3490563632871534,
+                "kind": "continuous",
+                "omega": -0.34103082662207007
+            },
+            "id": 2,
+            "parent": 1,
+            "value": -176.42919361574062,
+            "visits": 3
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.21205077591803098,
+                "kind": "continuous",
+                "omega": 0.6472548005576702
+            },
+            "id": 3,
+            "parent": 1,
+            "value": -177.6215154935432,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.38020035481306896,
+                "kind": "continuous",
+                "omega": 0.7857382311936734
+            },
+            "id": 4,
+            "parent": 1,
+            "value": -182.07121366776045,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.17356041695333066,
+                "kind": "continuous",
+                "omega": 0.981979527738098
+            },
+            "id": 5,
+            "parent": 1,
+            "value": -181.2065718964882,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.021681939337652046,
+                "kind": "continuous",
+                "omega": 0.417262165987653
+            },
+            "id": 6,
+            "parent": 1,
+            "value": -179.39771492477317,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.2933141890215841,
+                "kind": "continuous",
+                "omega": -0.41438669889361335
+            },
+            "id": 7,
+            "parent": 1,
+            "value": -175.24248930165567,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.22696150563726336,
+                "kind": "continuous",
+                "omega": 0.016481797129733744
+            },
+            "id": 8,
+            "parent": 1,
+            "value": -179.52954876046297,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.11026027865186873,
+                "kind": "continuous",
+                "omega": 0.29001082300258085
+            },
+            "id": 9,
+            "parent": 1,
+            "value": -178.51474040654784,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.28782966058955506,
+                "kind": "continuous",
+                "omega": -0.6673890828331965
+            },
+            "id": 10,
+            "parent": 1,
+            "value": -176.93608083596342,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.2465745110549969,
+                "kind": "continuous",
+                "omega": 0.5683037079201756
+            },
+            "id": 11,
+            "parent": 1,
+            "value": -178.18517536356313,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.19362508989584057,
+                "kind": "continuous",
+                "omega": -1.4405958437593929
+            },
+            "id": 12,
+            "parent": 1,
+            "value": -181.19150225005413,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.24679132759429415,
+                "kind": "continuous",
+                "omega": 0.6681889251933164
+            },
+            "id": 13,
+            "parent": 1,
+            "value": -177.82129083901552,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.1831892651270528,
+                "kind": "continuous",
+                "omega": -0.6295577563004555
+            },
+            "id": 14,
+            "parent": 1,
+            "value": -176.92662129418454,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.2829623235266039,
+                "kind": "continuous",
+                "omega": -1.398140463560558
+            },
+            "id": 15,
+            "parent": 1,
+            "value": -180.8378329928462,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.2966433012729281,
+                "kind": "continuous",
+                "omega": -0.08185093023258694
+            },
+            "id": 16,
+            "parent": 1,
+            "value": -175.56299780966995,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.3077426097845468,
+                "kind": "continuous",
+                "omega": -1.0179878467593046
+            },
+            "id": 17,
+            "parent": 1,
+            "value": -177.99531160098775,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.08991848604345731,
+                "kind": "continuous",
+                "omega": 1.3458401384042413
+            },
+            "id": 18,
+            "parent": 1,
+            "value": -186.63562208125393,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.3227831181258145,
+                "kind": "continuous",
+                "omega": -1.1260919903885325
+            },
+            "id": 19,
+            "parent": 1,
+            "value": -172.91497648048227,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.315339317197654,
+                "kind": "continuous",
+                "omega": 1.1464035891646933
+            },
+            "id": 20,
+            "parent": 1,
+            "value": -176.90726743084448,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.15852733688987017,
+                "kind": "continuous",
+                "omega": -1.1414307745879482
+            },
+            "id": 21,
+            "parent": 1,
+            "value": -182.1502927739526,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.25589789738375596,
+                "kind": "continuous",
+                "omega": 0.9410530125196015
+            },
+            "id": 22,
+            "parent": 1,
+            "value": -183.25705324272383,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.08100890628682639,
+                "kind": "continuous",
+                "omega": -0.021618110654722855
+            },
+            "id": 23,
+            "parent": 1,
+            "value": -181.0589969625576,
+            "visits": 1
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.04439245116591325,
+                "kind": "continuous",
+                "omega": -0.49794601756063916
+            },
+            "id": 24,
+            "parent": 1,
+            "value": -178.2285223633147,
+            "visits": 2
+        },
+        {
+            "depth": 1,
+            "action": {
+                "v": 0.17137697771206312,
+                "kind": "continuous",
+                "omega": 1.4840469714789148
+            },
+            "id": 25,
+            "parent": 1,
+            "value": -181.9573627824721,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.3796107297856432,
+                "kind": "continuous",
+                "omega": -0.9819472403277907
+            },
+            "id": 26,
+            "parent": 2,
+            "value": -179.26218770269966,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.29241077641766955,
+                "kind": "continuous",
+                "omega": 1.153010568417268
+            },
+            "id": 27,
+            "parent": 2,
+            "value": -184.93952750984607,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.011292202748585521,
+                "kind": "continuous",
+                "omega": -1.4687598155980541
+            },
+            "id": 28,
+            "parent": 7,
+            "value": -175.59029695248813,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.3804948323566132,
+                "kind": "continuous",
+                "omega": 0.9807791341577672
+            },
+            "id": 29,
+            "parent": 9,
+            "value": -183.22974994410063,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.37334575832624856,
+                "kind": "continuous",
+                "omega": -0.4826892309097486
+            },
+            "id": 30,
+            "parent": 10,
+            "value": -181.2110135430008,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.057667266369363736,
+                "kind": "continuous",
+                "omega": 1.224875343150976
+            },
+            "id": 31,
+            "parent": 14,
+            "value": -182.3600585078194,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.14478622401072694,
+                "kind": "continuous",
+                "omega": -0.07877447933681792
+            },
+            "id": 32,
+            "parent": 16,
+            "value": -177.99571622184408,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.0751623979997666,
+                "kind": "continuous",
+                "omega": -0.168061450137871
+            },
+            "id": 33,
+            "parent": 17,
+            "value": -181.8175215811013,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.054915521743593744,
+                "kind": "continuous",
+                "omega": 1.4171764357700858
+            },
+            "id": 34,
+            "parent": 19,
+            "value": -170.3036429738036,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.2643835861661382,
+                "kind": "continuous",
+                "omega": -1.1134638725012866
+            },
+            "id": 35,
+            "parent": 20,
+            "value": -184.12794176697454,
+            "visits": 1
+        },
+        {
+            "depth": 2,
+            "action": {
+                "v": 0.32792336730515653,
+                "kind": "continuous",
+                "omega": 0.6562481623919147
+            },
+            "id": 36,
+            "parent": 24,
+            "value": -181.46833450832884,
+            "visits": 1
+        }
+    ],
+    "root_visits": 35,
+    "state_fingerprint": "65ecc28dcdc8e0c5"
+}

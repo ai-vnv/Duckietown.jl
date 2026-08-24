@@ -1,0 +1,32 @@
+{
+    "continuous_lanefollow": {
+        "julia_active_decisions": 0,
+        "julia_crossings": 0,
+        "process_crossings": 0,
+        "process_active_decisions": 0
+    },
+    "continuous_stop_pass": {
+        "julia_active_decisions": 0,
+        "julia_crossings": 0,
+        "process_crossings": 0,
+        "process_active_decisions": 0
+    },
+    "discrete_long": {
+        "julia_active_decisions": 7,
+        "julia_crossings": 1,
+        "process_crossings": 1,
+        "process_active_decisions": 7
+    },
+    "continuous_stop_compliance": {
+        "julia_active_decisions": 0,
+        "julia_crossings": 0,
+        "process_crossings": 0,
+        "process_active_decisions": 0
+    },
+    "discrete_lanefollow": {
+        "julia_active_decisions": 7,
+        "julia_crossings": 1,
+        "process_crossings": 1,
+        "process_active_decisions": 7
+    }
+}
