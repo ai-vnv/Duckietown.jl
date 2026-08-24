@@ -48,6 +48,18 @@ end
 
 Config with every MDP parameter at its Python source default. Useful for
 provenance tests and for experiments that only override a handful of keys.
+
+!!! warning "This is not the evaluated environment"
+    The Python defaults leave `inject_stop_if_missing` and `require_stop`
+    **false**, so a world built from this config contains **no stop sign at
+    all**, and `p_cross = 0.02` means the duck almost never crosses. The whole
+    stop subsystem — `d_stop`, `sigma_stop`, `full_stop`, `stop_violation` —
+    is inert, and none of the FJ8/FJ9 results can be reproduced from it.
+
+    This function is deliberately left as-is so that it keeps meaning exactly
+    "the Python source defaults". For a world that actually exercises the
+    task, use [`scenario_config`](@ref); to reproduce the reported experiments,
+    load the frozen `training_config.yaml` with [`load_config`](@ref).
 """
 function default_config(algorithm::Symbol)
     algorithm in (:q_learning, :sarsa, :sac, :td3) ||
@@ -61,6 +73,104 @@ function default_config(algorithm::Symbol)
         nothing, ActionConfig(), DuckControllerConfig(), RewardConfig(),
         solver, nothing, TransitionModelConfig(false), TrainingConfig(),
         EvaluationConfig(), Dict{String,Any}(),
+    )
+end
+
+"""
+    SCENARIOS
+
+The named, self-contained worlds [`scenario_config`](@ref) can build. Each is
+a NEW config, never a mutation of [`default_config`](@ref): the project's rule
+throughout has been that a corrected or altered scenario gets its own name, so
+that "the defaults" keep meaning one fixed thing.
+
+| Scenario | World |
+|---|---|
+| `:lane_following` | the Python defaults — no stop sign, duck effectively static |
+| `:stop_and_duck` | one stop sign and a duck that always crosses |
+
+`:stop_and_duck` is the scenario shape the reported experiments use, but it is
+**not** byte-identical to their frozen `training_config.yaml`: those files also
+carry trained-policy hyperparameters and tuned reward weights that differ per
+algorithm. Use it to explore the task; use [`load_config`](@ref) on the frozen
+file to reproduce a reported number.
+"""
+const SCENARIOS = (:lane_following, :stop_and_duck)
+
+"""
+    scenario_config(scenario; algorithm=:q_learning) -> DuckietownConfig
+
+A self-contained config for one of [`SCENARIOS`](@ref), needing no external
+file. This is what to reach for in a notebook.
+
+`:stop_and_duck` turns on the two switches the Python defaults leave off —
+`inject_stop_if_missing` and `require_stop` — and sets `p_cross = 1.0` so the
+duck crosses on every episode rather than 2 % of the time. Without those, the
+stop and duck subsystems never activate and most of the model is unreachable.
+
+```julia
+mdp = DuckietownMDP(scenario_config(:stop_and_duck); action_space=:discrete)
+s   = rand(MersenneTwister(1), initialstate(mdp))
+length(s.stop_signs)   # 1
+```
+"""
+function scenario_config(scenario::Symbol; algorithm::Symbol = :q_learning)
+    scenario in SCENARIOS || throw(ArgumentError(
+        "unknown scenario :$scenario (have $(join(SCENARIOS, ", ")))"))
+    base = default_config(algorithm)
+    scenario === :lane_following && return base
+
+    # The Python defaults leave the spawn unconstrained, which puts the ego at
+    # the lane edge often enough that a straight-line rollout leaves the road
+    # within a handful of decisions — a world that is technically the task and
+    # practically unusable. These are spawn-sanity bounds, not tuned reward
+    # weights: they shape where an episode STARTS, and nothing about how it is
+    # scored.
+    e = base.environment
+    env = EnvironmentConfig(
+        map_name = e.map_name,
+        domain_rand = e.domain_rand,
+        max_steps = e.max_steps,
+        frame_skip = e.frame_skip,
+        render_observations = e.render_observations,
+        accept_start_angle_deg = 10.0,
+        spawn_max_abs_d = 0.08,
+        spawn_max_abs_phi = 0.175,
+        spawn_attempts = 50,
+        spawn_route_direction = e.spawn_route_direction,
+        spawn_route_center = e.spawn_route_center,
+        spawn_min_route_alignment = e.spawn_min_route_alignment,
+        spawn_position_bounds_xz = e.spawn_position_bounds_xz,
+        user_tile_start = e.user_tile_start,
+        goal_tile = e.goal_tile,
+    )
+
+    d = base.duck_controller
+    duck = DuckControllerConfig(
+        p_cross = 1.0,
+        make_dynamic = d.make_dynamic,
+        require_duck = true,
+        inject_if_missing = true,
+        spawn_pos = d.spawn_pos,
+        spawn_rotate = d.spawn_rotate,
+        spawn_height = d.spawn_height,
+        walk_distance = d.walk_distance,
+        trigger_min_ego_distance = 0.35,
+        trigger_max_ego_distance = 0.45,
+        spawn_on_ego_proximity = d.spawn_on_ego_proximity,
+        max_crossings_per_episode = 1,
+        repeat_rearm_distance = d.repeat_rearm_distance,
+        inject_stop_if_missing = true,
+        require_stop = true,
+        stop_spawn_pos = d.stop_spawn_pos,
+        stop_spawn_rotate = d.stop_spawn_rotate,
+        stop_spawn_height = d.stop_spawn_height,
+    )
+    return DuckietownConfig(
+        base.algorithm, base.stage, base.seed, env, base.state,
+        base.continuous_state, base.actions, duck, base.reward, base.solver,
+        base.lane_teacher, base.transition_model, base.training,
+        base.evaluation, base.wandb,
     )
 end
 

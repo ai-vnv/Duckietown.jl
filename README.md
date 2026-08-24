@@ -9,6 +9,38 @@ The reference semantics are pinned by the repository audit
 [`../duckduck/docs/FJ0_repository_audit.md`](../duckduck/docs/FJ0_repository_audit.md), which is the contract every port gate (`FJ2`–`FJ10` below)
 is verified against.
 
+## Quickstart
+
+No Python, no solver library, no external data file — the map is embedded.
+
+```julia
+using Pkg
+Pkg.activate("duckie-nb")          # a project of its own; the compat bounds
+Pkg.add(url="https://github.com/PannnTastic/DuckietownDecisionModels.jl")
+Pkg.add(["POMDPs", "CairoMakie"])  # CairoMakie is optional, for figures
+```
+
+```julia
+using DuckietownDecisionModels, POMDPs, Random
+
+mdp = DuckietownMDP(scenario_config(:stop_and_duck); action_space=:discrete)
+s   = rand(MersenneTwister(1001), initialstate(mdp))
+sp, r = @gen(:sp, :r)(mdp, s, FAST_STRAIGHT, MersenneTwister(7))
+```
+
+Runnable version, with a lane follower, the privileged-state projections and
+an optional figure: [`examples/quickstart.jl`](examples/quickstart.jl), or the
+same thing as a notebook, [`examples/quickstart.ipynb`](examples/quickstart.ipynb).
+The notebook is generated from the script by `tools/make_notebook.jl` and CI
+fails if the two drift apart.
+
+> **Which config?** `scenario_config(:stop_and_duck)` builds a world that
+> exercises the task. `default_config` returns the Python source defaults,
+> which contain **no stop sign at all** — useful for provenance, useless for
+> driving. Neither reproduces a reported experiment: those need the frozen
+> `training_config.yaml` and policy checkpoints from the separate `duckduck`
+> supplementary package, which are not distributed here.
+
 ## Status
 
 | Gate | Scope | Status |

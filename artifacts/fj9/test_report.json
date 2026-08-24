@@ -2,8 +2,8 @@
     "errors": 0,
     "julia_version": "1.11.3",
     "failures": 0,
-    "testsets": 200,
-    "assertions": 148823,
+    "testsets": 201,
+    "assertions": 148855,
     "broken": 0,
     "schema": "fj99.reporter.1",
     "testsets_detail": [
@@ -24,6 +24,13 @@
         {
             "name": "validation mirrors Python constructors",
             "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "named scenarios are new configs, not edits to the defaults",
+            "passes": 32,
             "errors": 0,
             "broken": 0,
             "fails": 0

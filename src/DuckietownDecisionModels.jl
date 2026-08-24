@@ -238,6 +238,6 @@ export SliceMode, FEATURE_SPACE, SLICE_FEATURE_SPACE_CAVEAT, SliceAxis,
     raw_state_grid, continuous_state_grid, value_surface, action_surface,
     tie_surface, margin_surface, v_surface, omega_surface,
     TABULAR_SLICE_FIELDS
-export default_config, load_config
+export default_config, load_config, SCENARIOS, scenario_config
 
 end

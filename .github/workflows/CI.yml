@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # The core must load and run with no optional backend present. This job
+  # installs nothing but the package's own dependencies, so a Python, Makie or
+  # solver import that crept into src/ would fail here rather than in review.
+  core:
+    name: core (${{ matrix.os }}, julia ${{ matrix.version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # FJ9.9a found the package is validated on exactly one platform.
+        # macOS and Windows are here to find out what that was hiding.
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        version: ['1.10', '1.11']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.version }}
+      - uses: julia-actions/cache@v2
+      - uses: julia-actions/julia-buildpkg@v1
+
+      - name: Load the core with no optional backend
+        shell: julia --color=yes --project=. {0}
+        run: |
+            using DuckietownDecisionModels
+            loaded = [string(m.name) for m in keys(Base.loaded_modules)]
+            for p in ("PythonCall", "CondaPkg", "PyCall", "MCTS", "Makie")
+                if any(==(p), loaded)
+                    error("$p was loaded by `using DuckietownDecisionModels`")
+                end
+            end
+            println("core loaded clean on ", Sys.MACHINE)
+
+      - name: Run the quickstart example
+        shell: julia --color=yes --project=. {0}
+        run: |
+            include("examples/quickstart.jl")
+
+      - name: Executable audits (docs, imports, formulation fingerprint)
+        shell: julia --color=yes --project=. {0}
+        run: |
+            using DuckietownDecisionModels
+            root = pkgdir(DuckietownDecisionModels)
+
+            docs = documentation_audit(root)
+            imports = source_import_audit(root)
+            for i in docs
+                println("DOC  ", i.kind, "  ", i.file, "  ", i.detail)
+            end
+            for i in imports
+                println("IMPORT  ", i.file, "  ", i.detail)
+            end
+            isempty(docs) || error("documentation audit found $(length(docs)) issue(s)")
+            isempty(imports) || error("banned import in src/")
+
+            # the formulation identity must not depend on what is installed
+            fp = core_fingerprint(DuckietownMDP(scenario_config(:stop_and_duck)))
+            println("core_fingerprint = ", fp)
+
+      - name: Notebook is in sync with the script it is generated from
+        shell: julia --color=yes --project=. {0}
+        run: |
+            nb = joinpath("examples", "quickstart.ipynb")
+            before = read(nb, String)
+            include(joinpath("tools", "make_notebook.jl"))
+            read(nb, String) == before || error(
+                "examples/quickstart.ipynb is stale — regenerate it with " *
+                "`julia --project=. tools/make_notebook.jl` and commit the result")
+
+  # The full suite. Parity against the live Python reference needs the
+  # ddm-ref interpreter, which CI does not have; those test sets skip
+  # themselves, exactly as FJ9.9a measured on a clean depot.
+  test:
+    name: full suite (ubuntu, julia 1.11)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.11'
+      - uses: julia-actions/cache@v2
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+
+      - name: Structured test report
+        if: always()
+        shell: julia --color=yes --project=. {0}
+        run: |
+            using JSON3
+            p = joinpath("artifacts", "fj9", "test_report.json")
+            isfile(p) || error("no structured report was written")
+            r = JSON3.read(read(p, String))
+            println("testsets   ", r.testsets)
+            println("assertions ", r.assertions)
+            println("failures   ", r.failures)
+            println("errors     ", r.errors)
+            # the detail rows must sum to the headline, or the headline is a guess
+            sum(t -> t.passes, r.testsets_detail) == r.assertions ||
+                error("report is internally inconsistent")
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-report
+          path: artifacts/fj9/test_report.json

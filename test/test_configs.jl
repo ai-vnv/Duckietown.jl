@@ -283,3 +283,67 @@ end
     @test_throws ArgumentError EnvironmentConfig(spawn_position_bounds_xz=(0.5, 0.1, 0.0, 1.0))
     @test_throws ArgumentError default_config(:ppo)
 end
+# FJ-post: the notebook-facing scenarios. `default_config` must keep meaning
+# "the Python source defaults" — a corrected or altered world gets its own
+# name, which has been the rule for every config change in this project.
+@testset "named scenarios are new configs, not edits to the defaults" begin
+    using POMDPs, Random
+
+    @test SCENARIOS == (:lane_following, :stop_and_duck)
+    @test_throws ArgumentError scenario_config(:nonsense)
+
+    # the defaults are untouched, including the two switches that matter
+    d = default_config(:q_learning)
+    @test d.duck_controller.inject_stop_if_missing == false
+    @test d.duck_controller.require_stop == false
+    @test d.duck_controller.p_cross == 0.02
+    # `==` on these structs is object identity (they carry a Vector), so
+    # compare field by field
+    same(a, b) = all(getfield(a, f) == getfield(b, f)
+                     for f in fieldnames(typeof(a)))
+    lf = scenario_config(:lane_following)
+    @test same(lf.environment, d.environment)
+    @test same(lf.duck_controller, d.duck_controller)
+    @test same(lf.reward, d.reward)
+
+    # ...and the world built from them genuinely has no stop sign, which is
+    # why a notebook user must not be pointed at it
+    m0 = DuckietownMDP(d; action_space=:discrete)
+    s0 = rand(MersenneTwister(1001), initialstate(m0))
+    @test isempty(s0.stop_signs)
+
+    # the scenario turns the task on
+    sc = scenario_config(:stop_and_duck)
+    @test sc.duck_controller.inject_stop_if_missing
+    @test sc.duck_controller.require_stop
+    @test sc.duck_controller.p_cross == 1.0
+    @test sc.duck_controller.max_crossings_per_episode == 1
+    # and constrains the spawn, or a straight rollout leaves the road at once
+    @test sc.environment.spawn_max_abs_d == 0.08
+    @test sc.environment.spawn_max_abs_phi == 0.175
+
+    m1 = DuckietownMDP(sc; action_space=:discrete)
+    s1 = rand(MersenneTwister(1001), initialstate(m1))
+    @test length(s1.stop_signs) == 1
+    @test length(s1.ducks) == 1
+    raw1, _ = get_raw_state(s1, m1.transition.state_cfg)
+    @test abs(raw1.d) <= 0.08 + 1e-9
+    @test abs(raw1.phi) <= 0.175 + 1e-9
+
+    # reward and state semantics are NOT touched by the scenario: it changes
+    # where an episode starts and what is on the road, never how it is scored
+    @test same(sc.reward, d.reward)
+    @test same(sc.state, d.state)
+    @test same(sc.actions, d.actions)
+    @test same(sc.solver, d.solver)
+
+    # every algorithm, both action spaces
+    for alg in (:q_learning, :sarsa, :sac, :td3)
+        c = scenario_config(:stop_and_duck; algorithm=alg)
+        @test c.algorithm === alg
+        @test c.duck_controller.require_stop
+    end
+    mc = DuckietownMDP(scenario_config(:stop_and_duck; algorithm=:td3);
+        action_space=:continuous)
+    @test length(rand(MersenneTwister(4), initialstate(mc)).stop_signs) == 1
+end
