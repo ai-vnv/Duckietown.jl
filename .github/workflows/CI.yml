@@ -47,7 +47,10 @@ jobs:
       - name: Run the quickstart example
         shell: julia --color=yes --project=. {0}
         run: |
-            include("examples/quickstart.jl")
+            # `shell: julia {0}` runs the script from a temp directory, and
+            # `include` resolves relative to the INCLUDING file — so every
+            # path here has to be anchored to the checkout explicitly.
+            include(joinpath(pwd(), "examples", "quickstart.jl"))
 
       - name: Executable audits (docs, imports, formulation fingerprint)
         shell: julia --color=yes --project=. {0}
@@ -73,9 +76,9 @@ jobs:
       - name: Notebook is in sync with the script it is generated from
         shell: julia --color=yes --project=. {0}
         run: |
-            nb = joinpath("examples", "quickstart.ipynb")
+            nb = joinpath(pwd(), "examples", "quickstart.ipynb")
             before = read(nb, String)
-            include(joinpath("tools", "make_notebook.jl"))
+            include(joinpath(pwd(), "tools", "make_notebook.jl"))
             read(nb, String) == before || error(
                 "examples/quickstart.ipynb is stale — regenerate it with " *
                 "`julia --project=. tools/make_notebook.jl` and commit the result")
