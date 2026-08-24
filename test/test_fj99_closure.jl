@@ -10,8 +10,9 @@ using Test
 using JSON3
 
 const FJ99_ROOT = pkgdir(DuckietownDecisionModels)
-const FJ99_CFG = joinpath(FJ99_ROOT, "..", "duckduck", "policies",
-    "q_learning", "training_config.yaml")
+# the fingerprint is a property of the FORMULATION, so the package's own
+# scenario serves it: this check must run anywhere, not only beside the
+# reference package
 
 @testset "FJ9.9c the artifact ledger distinguishes kinds of evidence" begin
     led = artifact_ledger(FJ99_ROOT)
@@ -75,20 +76,21 @@ end
 end
 
 @testset "FJ9.9e optional packages do not alter the core formulation" begin
-    if !isfile(FJ99_CFG)
-        @test_skip "reference config unavailable"
-    else
-        mdp = DuckietownMDP(FJ99_CFG; action_space=:discrete)
+    begin
+        mdp = DuckietownMDP(scenario_config(:stop_and_duck);
+            action_space=:discrete)
         fp = core_fingerprint(mdp)
         @test !isempty(fp)
         @test length(fp) == 16
         # deterministic, and independent of whatever is loaded in this session
-        @test core_fingerprint(DuckietownMDP(FJ99_CFG; action_space=:discrete)) == fp
+        @test core_fingerprint(DuckietownMDP(scenario_config(:stop_and_duck);
+            action_space=:discrete)) == fp
         # an InstrumentedMDP is a counter, not a different model
         @test core_fingerprint(InstrumentedMDP(mdp)) == fp
 
         # a different formulation IS a different fingerprint
-        cont = DuckietownMDP(FJ99_CFG; action_space=:continuous)
+        cont = DuckietownMDP(scenario_config(:stop_and_duck; algorithm=:td3);
+            action_space=:continuous)
         @test core_fingerprint(cont) != fp
 
         # the full matrix is measured by tools/run_manifest.sh; if it has run,

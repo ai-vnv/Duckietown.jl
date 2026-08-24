@@ -3,7 +3,7 @@
 **Status: READY FOR REVIEW** · 2026-08-18 · package `DuckietownDecisionModels.jl` v0.1.0
 (UUID `b9206cf4-d873-49ff-bdb0-b4cd6bc56877`)
 
-Reference contract: [`duckduck/docs/FJ0_repository_audit.md`](../../duckduck/docs/FJ0_repository_audit.md)
+Reference contract: `duckduck/docs/FJ0_repository_audit.md`
 (accepted audit). FJ1 scope is strictly: skeleton + typed data model + config
 hierarchy + interface boundaries. No dynamics, MCTS, or visualization
 implementation is included.

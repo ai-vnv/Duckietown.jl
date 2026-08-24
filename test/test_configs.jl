@@ -11,6 +11,9 @@ function config_path(algorithm::String)
 end
 
 @testset "load_config parses all four reference configs" begin
+  if !(@isdefined(HAVE_REFERENCE)) || !HAVE_REFERENCE
+    @test_skip "reference package not checked out beside this repository"
+  else
     ql = load_config(config_path("q_learning"))
     sarsa = load_config(config_path("sarsa"))
     sac = load_config(config_path("sac"))
@@ -245,6 +248,7 @@ end
         @test td3.training.initial_checkpoint == "runs/td3_stop_curriculum/checkpoints/td3_step_000100000.pt"
         @test td3.training.save_initial_checkpoint === nothing
     end
+  end
 end
 
 @testset "default_config matches Python source defaults" begin

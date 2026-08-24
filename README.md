@@ -6,7 +6,7 @@ deadline-driven SLAM/planning reward-machinery experiment suite — as a
 POMDPs.jl ecosystem package.
 
 The reference semantics are pinned by the repository audit
-[`../duckduck/docs/FJ0_repository_audit.md`](../duckduck/docs/FJ0_repository_audit.md), which is the contract every port gate (`FJ2`–`FJ10` below)
+`duckduck/docs/FJ0_repository_audit.md`, which is the contract every port gate (`FJ2`–`FJ10` below)
 is verified against.
 
 ## Quickstart
