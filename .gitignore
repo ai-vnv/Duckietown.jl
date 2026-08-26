@@ -28,3 +28,20 @@ jl_*
 
 # stale backup from the FJ8.2 dependency rework
 Project.toml.pre-fj82.bak
+
+# Python bytecode (tools/parity is executed in place by the reference env)
+__pycache__/
+*.pyc
+
+# notebooks/: heavy or local-only experiment products. The recordings that
+# the DORA notebook needs (two JSONs + the per-decision GIF cache) ARE
+# committed; the raw frame PNGs, serialized Julia states, videos and logs
+# are regenerable from the committed scripts and stay local.
+notebooks/safe_frames/
+notebooks/zigzag_frames/
+notebooks/bev_frames/
+notebooks/*.jls
+notebooks/*.mp4
+notebooks/*.log
+notebooks/pluto_gifs/*_s_*.gif
+notebooks/maps_bev.png

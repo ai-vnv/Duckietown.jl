@@ -3,7 +3,7 @@
     "julia_version": "1.11.3",
     "failures": 0,
     "testsets": 201,
-    "assertions": 148855,
+    "assertions": 148863,
     "broken": 0,
     "schema": "fj99.reporter.1",
     "testsets_detail": [
@@ -30,7 +30,7 @@
         },
         {
             "name": "named scenarios are new configs, not edits to the defaults",
-            "passes": 32,
+            "passes": 40,
             "errors": 0,
             "broken": 0,
             "fails": 0

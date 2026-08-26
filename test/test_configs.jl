@@ -293,7 +293,7 @@ end
 @testset "named scenarios are new configs, not edits to the defaults" begin
     using POMDPs, Random
 
-    @test SCENARIOS == (:lane_following, :stop_and_duck)
+    @test SCENARIOS == (:lane_following, :stop_and_duck, :stop_and_duck_safe)
     @test_throws ArgumentError scenario_config(:nonsense)
 
     # the defaults are untouched, including the two switches that matter
@@ -350,4 +350,25 @@ end
     mc = DuckietownMDP(scenario_config(:stop_and_duck; algorithm=:td3);
         action_space=:continuous)
     @test length(rand(MersenneTwister(4), initialstate(mc)).stop_signs) == 1
+
+    # `:stop_and_duck_safe` is the same rule applied again: a NEW name for a
+    # changed world, never an edit to `:stop_and_duck`. It may differ from
+    # `:stop_and_duck` in exactly the documented places — four safety reward
+    # weights, and the stop sign turned to face the actual traffic on a
+    # straight with enough detection runway — and nowhere else.
+    safe = scenario_config(:stop_and_duck_safe)
+    reward_delta = [f for f in fieldnames(typeof(safe.reward))
+                    if getfield(safe.reward, f) != getfield(sc.reward, f)]
+    @test sort(reward_delta) == sort([:duck_unsafe, :stop_approach_distance,
+        :stop_approach_yield, :stop_approach_unsafe])
+    @test safe.reward.duck_unsafe == -5.0
+    @test safe.reward.stop_approach_distance == 0.60
+    duck_delta = [f for f in fieldnames(typeof(safe.duck_controller))
+                  if getfield(safe.duck_controller, f) !=
+                     getfield(sc.duck_controller, f)]
+    @test sort(duck_delta) == sort([:stop_spawn_pos, :stop_spawn_rotate])
+    @test safe.duck_controller.stop_spawn_rotate == 0.0
+    @test same(safe.environment, sc.environment)
+    @test same(safe.state, sc.state)
+    @test same(safe.actions, sc.actions)
 end

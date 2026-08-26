@@ -153,6 +153,27 @@ action(solve(MCTSSolver(n_iterations = 100), im), s)
 model_calls(im)
 ```
 
+### DORA: a full worked case study
+
+[`notebooks/DORA_on_Duckietown.jl`](notebooks/DORA_on_Duckietown.jl) is a
+Pluto notebook showing an online SSP solver
+([DORASolvers.jl](https://github.com/ai-vnv/DORASolvers.jl)) driving this
+model end to end: the SSP formulation (measured-deterministic kernel, key
+aggregation, ring-progress goal, reward-derived costs), receding-horizon
+execution, and tile-by-tile replays of two recorded laps — a `small_loop`
+lap that yields to the crossing duck and performs a full stop at the sign,
+and a 26-tile `zigzag_dists` lap. The notebook also runs the solver live on
+a reduced task. The experiment and diagnostic scripts next to it reproduce
+every number.
+
+```julia
+using Pluto; Pluto.run()   # then open notebooks/DORA_on_Duckietown.jl
+```
+
+[`notebooks/Playground.jl`](notebooks/Playground.jl) is the companion
+starter: pick a scenario and a solver (random / MCTS / DORA), tick run, and
+watch the schematic trajectory — everything computes live in the notebook.
+
 ---
 
 ## Testing, and reproducing the reported experiments

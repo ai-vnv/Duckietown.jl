@@ -76,6 +76,21 @@ function default_config(algorithm::Symbol)
     )
 end
 
+
+"""
+    _with(cfg; kwargs...)
+
+Copy an immutable config struct, replacing the named fields. Used to build a
+scenario's reward from the defaults without mutating anything.
+"""
+function _with(cfg::T; kwargs...) where {T}
+    vals = Any[]
+    for f in fieldnames(T)
+        push!(vals, haskey(kwargs, f) ? values(kwargs)[f] : getfield(cfg, f))
+    end
+    return T(vals...)
+end
+
 """
     SCENARIOS
 
@@ -88,6 +103,7 @@ that "the defaults" keep meaning one fixed thing.
 |---|---|
 | `:lane_following` | the Python defaults — no stop sign, duck effectively static |
 | `:stop_and_duck` | one stop sign and a duck that always crosses |
+| `:stop_and_duck_safe` | the same world, with the yield and stop-approach reward terms switched on |
 
 `:stop_and_duck` is the scenario shape the reported experiments use, but it is
 **not** byte-identical to their frozen `training_config.yaml`: those files also
@@ -95,7 +111,7 @@ carry trained-policy hyperparameters and tuned reward weights that differ per
 algorithm. Use it to explore the task; use [`load_config`](@ref) on the frozen
 file to reproduce a reported number.
 """
-const SCENARIOS = (:lane_following, :stop_and_duck)
+const SCENARIOS = (:lane_following, :stop_and_duck, :stop_and_duck_safe)
 
 """
     scenario_config(scenario; algorithm=:q_learning) -> DuckietownConfig
@@ -145,6 +161,17 @@ function scenario_config(scenario::Symbol; algorithm::Symbol = :q_learning)
         goal_tile = e.goal_tile,
     )
 
+    # `:stop_and_duck_safe` additionally switches on the safety shaping the
+    # Python source defaults leave at zero. With `duck_yield = duck_unsafe = 0`
+    # the pedestrian term is inert, so passing a crossing duck at speed costs
+    # nothing and braking is strictly worse — measured at 0.102 against 0.040
+    # on the frames where a duck was CROSSING_NEAR. The weights below are the
+    # project's own values from the SAC/TD3 configs, not new numbers.
+    reward = scenario === :stop_and_duck_safe ?
+        _with(base.reward, duck_unsafe = -5.0, duck_yield = 0.0,
+              stop_approach_distance = 0.60, stop_approach_yield = 1.0,
+              stop_approach_unsafe = -5.0) : base.reward
+
     d = base.duck_controller
     duck = DuckControllerConfig(
         p_cross = 1.0,
@@ -162,13 +189,34 @@ function scenario_config(scenario::Symbol; algorithm::Symbol = :q_learning)
         repeat_rearm_distance = d.repeat_rearm_distance,
         inject_stop_if_missing = true,
         require_stop = true,
-        stop_spawn_pos = d.stop_spawn_pos,
-        stop_spawn_rotate = d.stop_spawn_rotate,
+        # The Python default places the sign at YAML (1.20, 2.10) rotate 180,
+        # and its docstring claims that faces "vehicles travelling east". Both
+        # halves fail on the actual route, which travels WEST there (measured
+        # forward = (-1, 0)): at 180 deg the traffic sees the back of the
+        # board, so the observer's facing test (dot <= -cos 45 deg) rejects it
+        # on every frame and `d_stop` never fires. Turning it to face traffic
+        # is not enough either: at (0.702, 1.814) the sign sits on the corner,
+        # 0.36 m off the lane axis, and leaves the detection corridor at
+        # d_stop = 0.395 m — before the stop line, the hold zone, or the pass
+        # line can ever be reached, so sigma_stop stays geometrically
+        # unreachable. Mid-straight is not enough either: the detection
+        # corridor only opens ~0.34 m before the line — less than one decision
+        # of travel — so the end-of-decision snapshots the tracker and the
+        # reward see never contain the sign at all. `:stop_and_duck_safe`
+        # therefore puts the sign at the WEST end of the straight, YAML
+        # (1.11, 2.00) = world (0.649, 1.755), lateral 0.30 m, facing the
+        # westbound traffic, giving ~0.65 m of detection runway — longer than
+        # `stop_approach_distance`, so the approach shaping can engage.
+        # `:stop_and_duck` keeps the source's own placement, warts included.
+        stop_spawn_pos = scenario === :stop_and_duck_safe ?
+            (1.11, 2.00) : d.stop_spawn_pos,
+        stop_spawn_rotate = scenario === :stop_and_duck_safe ?
+            0.0 : d.stop_spawn_rotate,
         stop_spawn_height = d.stop_spawn_height,
     )
     return DuckietownConfig(
         base.algorithm, base.stage, base.seed, env, base.state,
-        base.continuous_state, base.actions, duck, base.reward, base.solver,
+        base.continuous_state, base.actions, duck, reward, base.solver,
         base.lane_teacher, base.transition_model, base.training,
         base.evaluation, base.wandb,
     )

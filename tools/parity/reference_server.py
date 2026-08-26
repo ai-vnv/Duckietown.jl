@@ -397,6 +397,24 @@ class Session:
         return {"rows": rows}
 
 
+def render_topdown(session, path, width=800, height=600):
+    """Save gym-duckietown's own top-down view of the CURRENT state.
+
+    Additive to the FJ5 protocol: no existing handler is touched. The image
+    is written to disk and only the path is returned, because a 600x800x3
+    array through the JSON line protocol would be 1.4 MB per frame.
+    """
+    from PIL import Image
+    sim = session.mdp
+    while not hasattr(sim, "_render_img") and hasattr(sim, "env"):
+        sim = sim.env
+    img = sim._render_img(width, height, sim.multi_fbo_human,
+                          sim.final_fbo_human, sim.img_array_human,
+                          top_down=True)
+    Image.fromarray(img).save(path)
+    return {"path": path, "shape": list(img.shape)}
+
+
 def main():
     claim_protocol_channel()
     session = Session()
@@ -411,6 +429,9 @@ def main():
         "probe_stop": lambda p: session.probe_stop(p.get("decisions", 400),
                                                    p.get("policy", "lane_follow")),
         "ping": lambda p: {"pong": True},
+        "render": lambda p: render_topdown(session, p["path"],
+                                           p.get("width", 800),
+                                           p.get("height", 600)),
     }
     sys.stderr.write("reference_server ready\n")
     sys.stderr.flush()
