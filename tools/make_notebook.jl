@@ -57,6 +57,34 @@ function cells(path)
     return out
 end
 
+# `--check` verifies the notebook is up to date without rewriting it.
+#
+# It compares CELL CONTENT, not serialized bytes: JSON3's pretty-printer is
+# not guaranteed byte-stable across its own versions, so a byte comparison
+# tests the formatter rather than the notebook, and fails on a machine that
+# resolved a different JSON3.
+if "--check" in ARGS
+    isfile(OUT) || error("$OUT does not exist — run this script without --check")
+    have = JSON3.read(read(OUT, String))
+    want = cells(SRC)
+    got = [(String(c["cell_type"]), join(String.(c["source"])))
+           for c in have["cells"]]
+    exp = [(c["cell_type"], join(c["source"])) for c in want]
+    if got != exp
+        n = min(length(got), length(exp))
+        first_diff = findfirst(i -> got[i] != exp[i], 1:n)
+        error("""
+            examples/quickstart.ipynb is stale.
+
+            cells in notebook: $(length(got))   cells from script: $(length(exp))
+            first differing cell: $(something(first_diff, n + 1))
+
+            Regenerate it with:  julia --project=. tools/make_notebook.jl""")
+    end
+    println("notebook is in sync (", length(exp), " cells)")
+    exit(0)
+end
+
 nb = Dict(
     "cells" => cells(SRC),
     "metadata" => Dict(

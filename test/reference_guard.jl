@@ -1,10 +1,14 @@
 # Where the reference material lives, and whether it is here.
 #
 # This package is a PORT. Its parity gates (FJ2-FJ7) compare against recorded
-# outputs from the Python `duckduck` supplementary package, and its evaluation
-# gates load that package's frozen `training_config.yaml` and policy
-# checkpoints. None of that is distributable from here, so on any machine
-# without a sibling `duckduck` checkout those test sets cannot run.
+# outputs from the Python reference at
+#
+#     https://github.com/PannnTastic/DuckieMDP
+#
+# and its evaluation gates load that project's frozen `training_config.yaml`
+# and policy checkpoints. Those are not redistributed here, so on any machine
+# without the reference material checked out beside this package, those test
+# sets cannot run.
 #
 # They must SKIP, loudly and by name — never error, and never quietly pass.
 # Before this guard existed the suite errored 69 times on a clean checkout,
@@ -37,14 +41,16 @@ function reference_config(algorithm::AbstractString)
     isfile(p) || error("""
         reference config not available: $p
 
-        This test needs the `duckduck` supplementary package checked out
-        beside this repository. It is not distributed here.""")
+        This test needs the reference material from
+        https://github.com/PannnTastic/DuckieMDP checked out beside this
+        repository as ../duckduck/. It is not redistributed here.""")
     return p
 end
 
 if !HAVE_REFERENCE
     @info """
-    Reference package not found at $REFERENCE_ROOT.
+    Reference material not found at $REFERENCE_ROOT.
+    (get it from https://github.com/PannnTastic/DuckieMDP)
 
     Parity and evaluation test sets will SKIP. What still runs: the model
     itself, the POMDPs interface, the visualisation geometry, the audits, and

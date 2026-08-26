@@ -73,15 +73,10 @@ jobs:
             fp = core_fingerprint(DuckietownMDP(scenario_config(:stop_and_duck)))
             println("core_fingerprint = ", fp)
 
+      # Compares cell CONTENT, not serialized bytes: a byte comparison tests
+      # JSON3's pretty-printer, which is not guaranteed stable across versions.
       - name: Notebook is in sync with the script it is generated from
-        shell: julia --color=yes --project=. {0}
-        run: |
-            nb = joinpath(pwd(), "examples", "quickstart.ipynb")
-            before = read(nb, String)
-            include(joinpath(pwd(), "tools", "make_notebook.jl"))
-            read(nb, String) == before || error(
-                "examples/quickstart.ipynb is stale — regenerate it with " *
-                "`julia --project=. tools/make_notebook.jl` and commit the result")
+        run: julia --color=yes --project=. tools/make_notebook.jl --check
 
   # The full suite. Parity against the live Python reference needs the
   # ddm-ref interpreter, which CI does not have; those test sets skip
