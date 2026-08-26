@@ -41,6 +41,11 @@ For the full DORA case study with the photorealistic renderer, see
 | `random` | uniform over the 7 macro actions | baseline — expect it to leave the road |
 | `MCTS` | Monte-Carlo tree search ([MCTS.jl](https://github.com/JuliaPOMDP/MCTS.jl)), plans per decision | the README's `solve` / `action` pattern, verbatim |
 | `DORA` | online SSP solver ([DORASolvers.jl](https://github.com/ai-vnv/DORASolvers.jl)) on the tabularised model, receding horizon | the case-study formulation: ring-progress goal, reward-derived costs |
+| `Q-learning` / `SARSA` | **frozen trained policies** (greedy over the reference Q-tables) | native `.npy` reader + `QTablePolicy`; the checkpoints live in the sibling reference material and are *not* distributed here — available only next to a local copy |
+| `SAC` / `TD3` | **frozen trained actors** (continuous actions) | native Julia inference (FJ7.4b/7.5b) from the weight exports committed at `artifacts/fj9/weights/` — works on any clone, no PyTorch |
+
+The trained policies are inference-only references, warts included: what you
+see is what the frozen checkpoints actually do, crashes and all.
 
 Scenarios (`scenario_config`): `:lane_following` (empty ring),
 `:stop_and_duck` (duck + stop sign, but the safety reward weights are the
@@ -61,11 +66,12 @@ begin
     pg_cost(r) = max(C_MIN, 1.0 - r.reward.total)
 
     """Everything the runners need for one scenario, built once per choice."""
-    function pg_setup(scenario::Symbol)
-        cfg = scenario_config(scenario)
-        mdp = DuckietownMDP(cfg; action_space = :discrete)
+    function pg_setup(scenario::Symbol; algorithm = :q_learning,
+                      space = :discrete)
+        cfg = scenario_config(scenario; algorithm)
+        mdp = DuckietownMDP(cfg; action_space = space)
         tr = mdp.transition
-        acts = collect(POMDPs.actions(mdp))
+        acts = space === :discrete ? collect(POMDPs.actions(mdp)) : MacroAction[]
         ring = let m = initial_map(cfg)
             t = collect(drivable_tiles(m))
             cx = sum(first.(t)) / length(t)
@@ -121,6 +127,42 @@ begin
         end
         return (:horizon, prog, rec)
     end
+
+    # ── continuous frozen actors (SAC / TD3): obs -> DuckieAction ─────────
+    function pg_run_continuous(S, pol; seed, horizon)
+        rng = MersenneTwister(1)
+        s = rand(MersenneTwister(seed), initialstate(S.mdp))
+        ccfg = S.tr.continuous_cfg
+        raw, _ = get_raw_state(s, S.tr.state_cfg)
+        cs = get_continuous_state(s, raw, S.tr.state_cfg, ccfg;
+            controller_cfg = S.cfg.duck_controller, stop_hold_progress = 0.0)
+        obs = encode_continuous_state(cs, ccfg)
+        rec = NamedTuple[]
+        prog = 0
+        tile = pg_tile(S, s)
+        for t in 1:horizon
+            POMDPs.isterminal(S.mdp, s) && return (:terminal, prog, rec)
+            a = act(pol, obs)
+            r = simulate_decision(S.tr, s, a, rng)
+            pg_record!(rec, S, r)
+            prog = pg_advance(S, prog, tile, pg_tile(S, r.sp))
+            tile = pg_tile(S, r.sp)
+            s = r.sp
+            obs = encode_continuous_state(r.continuous_state, ccfg)
+            prog >= S.nring && return (:lap, prog, rec)
+            (r.terminated || r.truncated) &&
+                return (r.terminated ? :crash : :timeout, prog, rec)
+        end
+        return (:horizon, prog, rec)
+    end
+
+    # frozen-checkpoint locations: the actor weight exports ship with this
+    # repository; the tabular Q-tables belong to the sibling reference
+    # material and are only found next to a local copy
+    actor_weights_dir(name) =
+        normpath(joinpath(@__DIR__, "..", "artifacts", "fj9", "weights", name))
+    qtable_path(name) = normpath(joinpath(@__DIR__, "..", "..",
+        "duckduck", "policies", name, "policy.npy"))
 
     # ── DORA: the case-study SSP adaptor, compact ─────────────────────────
     struct PGState
@@ -237,6 +279,10 @@ md"""
 @bind solver Select([
     "dora" => "DORA (receding horizon, macro actions)",
     "mcts" => "MCTS (plans every decision)",
+    "q_learning" => "Q-learning (frozen reference policy — needs the sibling checkpoints)",
+    "sarsa" => "SARSA (frozen reference policy — needs the sibling checkpoints)",
+    "sac" => "SAC (frozen reference actor, continuous — ships with the repo)",
+    "td3" => "TD3 (frozen reference actor, continuous — ships with the repo)",
     "random" => "random actions (baseline)",
 ])
 
@@ -285,6 +331,28 @@ else
             (s, t) -> action(planner, s); seed, horizon = budget)
         (; S, out, prog, rec,
            note = "MCTS, $(mcts_iters) iterations per decision, depth 20")
+    elseif solver in ("q_learning", "sarsa")
+        qp = qtable_path(solver)
+        if !isfile(qp)
+            (; S, out = :unavailable, prog = 0, rec = NamedTuple[],
+               note = "checkpoint not found at $(qp) — the tabular " *
+                      "Q-tables belong to the sibling reference material " *
+                      "and are not distributed with this repository")
+        else
+            pol = QTablePolicy(qp)
+            out, prog, rec = pg_run_decision(S,
+                (s, t) -> act(pol, pg_raw(S, s)); seed, horizon = budget)
+            (; S, out, prog, rec,
+               note = "frozen $(solver) reference policy, greedy over the Q-table")
+        end
+    elseif solver in ("sac", "td3")
+        Sc = pg_setup(scenario; algorithm = Symbol(solver), space = :continuous)
+        pol = solver == "sac" ? SACActorPolicy(actor_weights_dir(solver)) :
+                                TD3ActorPolicy(actor_weights_dir(solver))
+        out, prog, rec = pg_run_continuous(Sc, pol; seed, horizon = budget)
+        (; S = Sc, out, prog, rec,
+           note = "frozen $(uppercase(solver)) reference actor, native Julia " *
+                  "inference from artifacts/fj9/weights (continuous actions)")
     else
         goal = clamp(budget, 1, 8)
         out, prog, rec, plans = pg_run_dora(S; seed, goal)
@@ -327,6 +395,10 @@ md"""
   and watch the trajectory tighten.
 - **Random is the honest floor:** it usually leaves the road within a few
   decisions — that is what "the task is nontrivial" looks like.
+- **Frozen policies are evidence, not showcases:** the SAC/TD3 actors and
+  the tabular policies replay exactly what their checkpoints learned — on
+  some spawns they drive, on others they leave the road. Compare them
+  against DORA on the same seed.
 - To instrument planner cost in generative calls (the unit the README
   quotes), wrap the model in `InstrumentedMDP` — see the README's
   *Running a planner* section.
