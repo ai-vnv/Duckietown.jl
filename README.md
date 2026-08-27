@@ -8,6 +8,15 @@ It is a native reimplementation of the Python environment in
 against it decision by decision — including exact NumPy RNG streams, so a
 seeded episode reproduces bit for bit.
 
+![MCTS driving small_loop, drawn by the package's native renderer](docs/assets/native_mcts_lap.gif)
+
+*MCTS.jl driving one lap under the exact [FJ8 lap-study
+protocol](artifacts/fj8/lap_completion.txt) (36 iterations / depth 10 ≈
+1000 generative calls per decision, the frozen q-learning evaluation
+config), drawn by [`render_native`](#native-lookalike-renderer) — solver,
+physics and renderer all in Julia. 2× speed; lookalike render, not parity
+evidence.*
+
 ```julia
 using DuckietownDecisionModels, POMDPs, Random
 
