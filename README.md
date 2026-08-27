@@ -129,6 +129,26 @@ save("world.png", render_world(mdp, s))
 `render_belief` are deliberately **not** implemented — those signatures are
 reserved for a partially observable formulation that does not exist yet.
 
+### Native lookalike renderer
+
+With a rasterising backend and the reference asset tree on disk, the world
+can also be drawn the way the reference simulator draws it — same tile
+textures, same OBJ meshes, same camera constants (fov 75°, height 0.108 m,
+pitch 19.15°) — with **no Python involved**:
+
+```julia
+using GLMakie                   # CairoMakie cannot texture-map per pixel
+save("ego.png", render_native(w; view = :ego))   # the robot's forward camera
+save("bev.png", render_native(w; view = :bev))   # top-down, ego mesh included
+```
+
+Point `ENV["DUCKIETOWN_ASSETS"]` at a gym-duckietown
+`duckietown_world/data/gd1` directory (the assets are the reference's own
+files and are not shipped here). A same-state comparison against the real
+renderer lives at `notebooks/native_vs_reference.png`. Honesty note, quoted
+from `NATIVE_RENDER_NOTE`: this is a *lookalike* for casual use — it is never
+parity evidence; the recorded case-study laps use the real renderer.
+
 ---
 
 ## Running a planner
@@ -220,7 +240,9 @@ reporter was caught.
 The port was developed as a sequence of validation gates. Each has a status
 document recording what was measured, what deviated, and what was left
 undone — worth reading if you want to know how far any particular claim has
-actually been checked.
+actually been checked. [`docs/BUILDING.md`](docs/BUILDING.md) is the
+narrative companion: what every file is, why it exists, and where each
+claim's evidence lives — under an explicit provenance rule.
 
 | Gate | Scope | Document |
 |---|---|---|

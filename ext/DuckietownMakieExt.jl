@@ -1333,4 +1333,77 @@ function DDM.render_composite(c::PublicationComposite;
     return fig
 end
 
+
+# ---------------------------------------------------------------------------
+# Native lookalike renderer (render_native)
+#
+# All geometry, texture assignment, material grouping and camera poses come
+# from the pure core (`native_world` in src/visualization/native_render.jl);
+# this section only turns NativeMeshGroup/NativeObject values into Makie
+# meshes. Requires a rasterising backend (GLMakie): CairoMakie interpolates
+# mesh textures per vertex, not per pixel, which destroys the road markings.
+# ---------------------------------------------------------------------------
+
+const _native_texcache = Dict{String,Any}()
+_native_tex(path) = get!(_native_texcache, path) do
+    Makie.FileIO.load(path)
+end
+
+function _native_tile!(scene, ts, i, j, texpath, rot)
+    x0, x1 = i * ts, (i + 1) * ts
+    z0, z1 = j * ts, (j + 1) * ts
+    pts = Point3f[(x0, 0, z0), (x1, 0, z0), (x1, 0, z1), (x0, 0, z1)]
+    uv0 = Vec2f[(0, 1), (1, 1), (1, 0), (0, 0)]
+    uv = [uv0[mod1(k + rot, 4)] for k in 1:4]
+    m = Makie.GeometryBasics.Mesh(pts,
+        [Makie.GeometryBasics.TriangleFace(1, 2, 3),
+         Makie.GeometryBasics.TriangleFace(1, 3, 4)]; uv = uv)
+    mesh!(scene, m; color = _native_tex(texpath), shading = NoShading)
+end
+
+function _native_object!(scene, o::DDM.NativeObject)
+    for g in o.groups
+        pts = [Point3f(p...) for p in g.points]
+        fcs = [Makie.GeometryBasics.TriangleFace(f...) for f in g.faces]
+        uvs = [Vec2f(u...) for u in g.uvs]
+        m = Makie.GeometryBasics.Mesh(pts, fcs; uv = uvs)
+        col = g.texture === nothing ? RGBf(g.color...) : _native_tex(g.texture)
+        plt = mesh!(scene, m; color = col, shading = NoShading)
+        Makie.scale!(plt, o.scale, o.scale, o.scale)
+        Makie.rotate!(plt, Makie.qrotation(Vec3f(0, 1, 0), o.angle))
+        Makie.translate!(plt, o.offset...)
+    end
+end
+
+function DDM.render_native(w::DuckieWorldState; view::Symbol = :ego,
+        size = (800, 600), assets = DDM.duckietown_assets_root(),
+        eye = nothing, lookat = nothing, fov = nothing)
+    nw = DDM.native_world(w; assets = assets)
+    scene = Scene(size = size, backgroundcolor = RGBf(0.45, 0.82, 0.98))
+    cam3d!(scene)
+    for (i, j, texpath, rot) in nw.tiles
+        _native_tile!(scene, nw.tile_size, i, j, texpath, rot)
+    end
+    foreach(o -> _native_object!(scene, o), nw.objects)
+    view === :bev && _native_object!(scene, nw.ego)
+
+    cam = cameracontrols(scene)
+    if view === :ego
+        cam.fov[] = fov === nothing ? nw.fov : fov
+        e = eye === nothing ? nw.ego_eye : eye
+        l = lookat === nothing ? nw.ego_lookat : lookat
+        update_cam!(scene, Vec3f(e...), Vec3f(l...), Vec3f(0, 1, 0))
+    elseif view === :bev
+        cam.fov[] = fov === nothing ? 35.0 : fov
+        cx, cz = nw.extent[1] / 2, nw.extent[2] / 2
+        ht = 1.6 * max(nw.extent...)
+        e = eye === nothing ? (cx, ht, cz + 1e-3) : eye
+        l = lookat === nothing ? (cx, 0.0, cz) : lookat
+        update_cam!(scene, Vec3f(e...), Vec3f(l...), Vec3f(0, 1, 0))
+    else
+        throw(ArgumentError("view must be :ego or :bev, got :$view"))
+    end
+    return scene
+end
+
 end # module

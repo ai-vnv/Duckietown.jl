@@ -17,6 +17,7 @@ try
 
 include("test_configs.jl")
 include("test_data_model.jl")
+include("test_native_render.jl")
 if HAVE_REFERENCE
     include("test_fj2_parity.jl")
     include("test_fj3_map.jl")

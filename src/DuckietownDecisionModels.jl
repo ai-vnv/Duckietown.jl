@@ -78,6 +78,7 @@ include("evaluation/comparison.jl")
 # core; a backend extension only draws it. No plotting package is a
 # dependency of this package.
 include("visualization/scene.jl")
+include("visualization/native_render.jl")
 include("visualization/world_view.jl")
 # FJ9.3: slices. Included after the solver adapters it dispatches on.
 include("visualization/policy_slice.jl")
@@ -181,6 +182,11 @@ export FieldDiff, StepParityReport, compare_worlds, compare_step,
     nonzero_fields, LIBM_1ULP_FIELDS, LIBM_DERIVED_FIELDS, LIBM_MAX_ULPS,
     LIBM_MAX_ABSDIFF, bitwise_only_fields, SIGNED_ZERO_FIELDS
 export OBSERVATION_NAMES, Q_SHAPE, STATE_SHAPE, TRACKING_ERROR_BINS, V_BINS
+export render_native, native_world, NativeWorld, NativeObject,
+    NativeMeshGroup, load_obj_groups, place_object, tile_texture_file,
+    duckietown_assets_root, NATIVE_RENDER_NOTE, NATIVE_CAMERA_FOV_Y,
+    NATIVE_CAMERA_FLOOR_DIST, NATIVE_CAMERA_FORWARD_DIST,
+    NATIVE_CAMERA_ANGLE
 export render_world, render_projection, render_policy, render_search,
     render_search_action_plane,
     render_rollout, render_diagnostics, render_diagnostics_aggregate,

@@ -32,6 +32,18 @@ intended behaviour for a package that does not depend on a plotting library.
 function render_world end
 
 """
+    render_native(w::DuckieWorldState; view=:ego, size=(800, 600), kwargs...)
+
+Native LOOKALIKE render of the latent world using the reference simulator's
+own texture and mesh assets: `view = :ego` gives the robot's forward camera
+(reference constants: fov 75°, height 0.108 m), `view = :bev` the top-down
+view. Requires a rasterising Makie backend (`using GLMakie`) — CairoMakie
+cannot texture-map meshes per pixel. See [`NATIVE_RENDER_NOTE`](@ref): this
+output is for casual, Python-free use and is never parity evidence.
+"""
+function render_native end
+
+"""
     render_projection(raw, cont; kwargs...)
 
 Panel of the model's own projections. These are **privileged** quantities, not

@@ -2,8 +2,8 @@
     "errors": 0,
     "julia_version": "1.11.3",
     "failures": 0,
-    "testsets": 201,
-    "assertions": 148863,
+    "testsets": 202,
+    "assertions": 148907,
     "broken": 0,
     "schema": "fj99.reporter.1",
     "testsets_detail": [
@@ -73,6 +73,13 @@
         {
             "name": "EventFlags defaults",
             "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "native render: pure layer",
+            "passes": 41,
             "errors": 0,
             "broken": 0,
             "fails": 0
@@ -1325,7 +1332,7 @@
         },
         {
             "name": "FJ10 every NOT_READY claim is genuinely absent",
-            "passes": 131,
+            "passes": 134,
             "errors": 0,
             "broken": 0,
             "fails": 0
