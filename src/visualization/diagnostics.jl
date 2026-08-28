@@ -454,7 +454,7 @@ const DECISION_QUANTITY_CONTRACT = (
 """
     decision_log_audit(log) -> Vector{DecisionFieldItem}
 
-FJ9.6a. What the enriched log actually supports, probed rather than assumed,
+What the enriched log actually supports (FJ9.6a), probed rather than assumed,
 one line per wanted quantity plus the derived and absent entries.
 
 The audit is executable and therefore self-invalidating: if a future artefact

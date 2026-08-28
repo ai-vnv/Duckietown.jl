@@ -6,7 +6,7 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 export PATH="$HOME/.juliaup/bin:$PATH"
 cd "$REPO"
 LOG="${1:-/tmp/fj98_publication.log}"
-julia --project=experiments tools/fj98_publication.jl > "$LOG" 2>&1
+julia --project=experiments tools/publication_figures.jl > "$LOG" 2>&1
 status=$?
 echo "PUBLICATION_EXIT=$status" | tee -a "$LOG"
 exit $status

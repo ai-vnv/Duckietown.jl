@@ -432,8 +432,8 @@ function search_artifact_audit(dir::AbstractString)
 
     push!(items, SearchDataItem("planner configuration",
         isfile(joinpath(dir, "..", "..", "configs", "planning",
-            "fj8_evaluation.yaml")) ? PERSISTED : ABSENT,
-        "frozen in configs/planning/fj8_evaluation.yaml"))
+            "evaluation.yaml")) ? PERSISTED : ABSENT,
+        "frozen in configs/planning/evaluation.yaml"))
 
     return items
 end

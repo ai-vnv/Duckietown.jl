@@ -72,7 +72,8 @@ _bytes(path) = isdir(path) ?
 """
     artifact_ledger(root) -> Vector{ArtifactRecord}
 
-FJ9.9c. Every artefact, what kind of thing it is, and whether it is there.
+Every artefact, what kind of thing it is, and whether it is there
+(the FJ9.9c ledger).
 
 The distinction matters: a `PERSISTED_SOURCE` that a rebuild would overwrite
 is not reproducibility, it is data loss. Only `REBUILT` entries are expected
@@ -96,7 +97,7 @@ Claims the evidence has contradicted. Each is banned from the normative
 documents; the allowlist names the files permitted to quote it, which are the
 correction itself and the tests that guard it.
 
-FJ9.6 is the reason this exists: `docs/validation/FJ8_STATUS.md` asserted that TD3 "never
+FJ9.6 is the reason this exists: `docs/src/validation/FJ8_STATUS.md` asserted that TD3 "never
 reaches a stop sign" while its own artefact recorded 2 289 stop-zone
 decisions. The sentence survived because nothing checked prose.
 """
@@ -104,8 +105,8 @@ const STALE_CLAIMS = (
     (claim = "never reaches a stop sign",
      correction = "TD3 reaches the sign, performs a full stop, and never " *
                   "proceeds past it (FJ9.6)",
-     allow = ("docs/validation/FJ8_STATUS.md", "docs/validation/FJ96_STATUS.md",
-              "docs/validation/FJ98_STATUS.md", "docs/validation/FJ99_STATUS.md",
+     allow = ("docs/src/validation/FJ8_STATUS.md", "docs/src/validation/FJ96_STATUS.md",
+              "docs/src/validation/FJ98_STATUS.md", "docs/src/validation/FJ99_STATUS.md",
               "src/visualization/paper_figure.jl",
               "test/test_fj98_publication.jl",
               "test/test_fj96_diagnostics.jl",
@@ -114,8 +115,8 @@ const STALE_CLAIMS = (
               "test/test_fj99_closure.jl")),
     (claim = "never reaches the stop sign",
      correction = "same as above, alternate phrasing",
-     allow = ("docs/validation/FJ96_STATUS.md", "docs/validation/FJ98_STATUS.md",
-              "docs/validation/FJ99_STATUS.md", "src/visualization/paper_figure.jl",
+     allow = ("docs/src/validation/FJ96_STATUS.md", "docs/src/validation/FJ98_STATUS.md",
+              "docs/src/validation/FJ99_STATUS.md", "src/visualization/paper_figure.jl",
               "src/interfaces/reproducibility.jl",
               "test/test_fj99_closure.jl")),
 )
@@ -138,7 +139,7 @@ _doc_files(root) = String[
 """
     documentation_audit(root) -> Vector{DocIssue}
 
-FJ9.9d. Executable documentation consistency.
+Executable documentation consistency (FJ9.9d).
 
 Checks three things across every `.md` and `.jl` in the repository:
 
@@ -190,7 +191,7 @@ end
 """
     core_fingerprint(mdp) -> String
 
-FJ9.9e. An identity for the FORMULATION: action semantics, state semantics,
+An identity for the FORMULATION (FJ9.9e): action semantics, state semantics,
 reward configuration and discount.
 
 Loading Makie, MCTS or PythonCall must not change it. FJ8.5 established that
@@ -231,7 +232,7 @@ const SOURCE_IMPORT_BAN = ("PythonCall", "CondaPkg", "PyCall", "MCTS",
 """
     source_import_audit(root) -> Vector{DocIssue}
 
-FJ9.9e. Lint `src/` for a banned import. Importing a planning library in the
+Lint `src/` for a banned import (FJ9.9e). Importing a planning library in the
 core would make the package refuse to load without that library installed,
 which is the architecture FJ8 was rebuilt to avoid.
 

@@ -7,7 +7,7 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh" 2>/dev/null || true
 conda activate ddm-torch 2>/dev/null || true
 cd "$REPO"
 LOG="${1:-/tmp/fj98_weights.log}"
-julia --project=experiments tools/fj98_export_weights.jl > "$LOG" 2>&1
+julia --project=experiments tools/export_actor_weights.jl > "$LOG" 2>&1
 status=$?
 echo "EXPORT_EXIT=$status" | tee -a "$LOG"
 exit $status

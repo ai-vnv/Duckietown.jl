@@ -87,7 +87,8 @@ const PUBLICATION_LAYOUT_VERSION = "fj98.1"
 """
     publication_inventory(root) -> Vector{PublicationArtifact}
 
-FJ9.8a. Every artefact the project has produced, classified before any layout
+Every artefact the project has produced (the FJ9.8a inventory),
+classified before any layout
 is chosen, and probed for existence rather than assumed.
 
 Not everything belongs in the main body. A composite assembled from

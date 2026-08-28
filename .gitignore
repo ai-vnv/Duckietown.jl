@@ -45,3 +45,4 @@ notebooks/*.mp4
 notebooks/*.log
 notebooks/pluto_gifs/*_s_*.gif
 notebooks/maps_bev.png
+docs/build/

@@ -267,7 +267,7 @@ DDM.render_rollout(c::RolloutComparison; kwargs...) =
 # ---------------------------------------------------------------------------
 #
 # These methods take a `SearchSnapshot` and nothing else. No planner, no
-# `solve`, no MCTS.jl on the canonical path — `tools/fj9_render_check.jl`
+# `solve`, no MCTS.jl on the canonical path — `tools/render_check.jl`
 # proves in a fresh process that the figures redraw with MCTS_LOADED=false.
 #
 # Display filters change what is DRAWN, never the snapshot; `visible_nodes`

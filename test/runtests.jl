@@ -48,10 +48,18 @@ if HAVE_REFERENCE
     include("test_fj8_mcts.jl")
 # FJ8.3: continuous-action DPW, action widening on, state widening off.
     include("test_fj8_dpw.jl")
-# FJ8.4a: the cost-search curve and compute-matched operating points.
-    include("test_fj8_budget.jl")
+# FJ8.4a: the cost-search curve and compute-matched operating points. This
+# is a real planner benchmark (MCTS and DPW driven across budget curves) and
+# is the single most expensive file in the suite — measured at 3m23s of an
+# 8-minute run. DDM_SKIP_BENCH=1 skips it for day-to-day runs; leave it
+# unset for release-grade runs. The skip is announced, never silent.
+    if get(ENV, "DDM_SKIP_BENCH", "") == "1"
+        @info "DDM_SKIP_BENCH=1 — skipping test_fj8_budget.jl (the planner benchmark, ~3.5 min); unset it for a release-grade run"
+    else
+        include("test_fj8_budget.jl")
+    end
 # FJ8.4b: the cross-family comparison machinery (the experiment itself is
-# tools/fj8_comparison.jl, which is far too slow for a regression suite).
+# tools/solver_comparison.jl, which is far too slow for a regression suite).
     include("test_fj8_comparison.jl")
 # FJ10: POMDP readiness audit — an audit, not an implementation.
 # FJ9.0/9.1: the visualisation contract and world geometry. Runs with NO

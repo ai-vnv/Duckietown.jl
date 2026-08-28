@@ -1,10 +1,15 @@
 # Duckietown.jl
 
+[![CI](https://github.com/PannnTastic/Duckietown.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/PannnTastic/Duckietown.jl/actions/workflows/CI.yml)
+[![codecov](https://codecov.io/gh/PannnTastic/Duckietown.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/PannnTastic/Duckietown.jl)
+[![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://pannntastic.github.io/Duckietown.jl/dev/)
+[![V&V](https://img.shields.io/endpoint?url=https%3A%2F%2Fpannntastic.github.io%2FDuckietown.jl%2Fvnv-badge.json)](https://github.com/PannnTastic/Duckietown.jl/blob/main/.vnvspec/spec.yaml)
+
 A Duckietown lane-following-with-obstacles MDP, written in Julia as a
 [POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl) problem.
 
 It is a native reimplementation of the Python environment in
-[PannnTastic/DuckieMDP](https://github.com/PannnTastic/DuckieMDP), validated
+[DuckieMDP](https://github.com/PannnTastic/DuckieMDP), validated
 against it decision by decision — including exact NumPy RNG streams, so a
 seeded episode reproduces bit for bit.
 
@@ -220,7 +225,7 @@ environment by the [Duckietown Project](https://www.duckietown.org).*
 
 The results in `docs/` and `artifacts/` were produced against the **frozen
 configs and trained checkpoints** from
-[PannnTastic/DuckieMDP](https://github.com/PannnTastic/DuckieMDP), which are
+[DuckieMDP](https://github.com/PannnTastic/DuckieMDP), which are
 not redistributed here. `scenario_config` gives the right *shape* of task but
 not the exact evaluated environment — the reward weights and spawn settings
 there differ per algorithm.
@@ -240,6 +245,10 @@ parent/
 Then `using Pkg; Pkg.test()`. Without it the suite still runs: it skips the 26
 reference-dependent files by name and says so, rather than failing or quietly
 passing.
+
+`DDM_SKIP_BENCH=1` skips the planner benchmark (the single most expensive
+file, ~3.5 of the ~8 minutes) for day-to-day runs — announced, never silent.
+Leave it unset for release-grade runs.
 
 ```
 with the reference     201 test sets, 148 855 assertions
@@ -261,20 +270,20 @@ The port was developed as a sequence of validation gates. Each has a status
 document recording what was measured, what deviated, and what was left
 undone — worth reading if you want to know how far any particular claim has
 actually been checked; the index lives at
-[`docs/validation/`](docs/validation/README.md). [`docs/BUILDING.md`](docs/BUILDING.md) is the
+[`docs/src/validation/`](docs/src/validation/README.md). [`docs/src/building.md`](docs/src/building.md) is the
 narrative companion: what every file is, why it exists, and where each
 claim's evidence lives — under an explicit provenance rule.
 
 | Gate | Scope | Document |
 |---|---|---|
-| FJ2–FJ3 | semantic parity: actions, discretizer, reward, dynamics, observers, exact NumPy RNG | [FJ2](docs/validation/FJ2_STATUS.md), [FJ3](docs/validation/FJ3_STATUS.md) |
-| FJ4 | the POMDPs.jl interface | [FJ4](docs/validation/FJ4_STATUS.md) |
-| FJ5 / FJ5-R | live reference backends, out-of-process and in-process | [FJ5](docs/validation/FJ5_STATUS.md), [FJ5-R](docs/validation/FJ5R_STATUS.md) |
-| FJ6 | full-episode rollout parity | [FJ6](docs/validation/FJ6_STATUS.md) |
-| FJ7 | the four trained baselines, matched layer by layer | [FJ7](docs/validation/FJ7_STATUS.md) |
-| FJ8 | solver compatibility, planner cost curves, six-solver comparison | [FJ8](docs/validation/FJ8_STATUS.md), [FJ8.4c](docs/validation/FJ84C_STATUS.md) |
-| FJ9 | visualization, diagnostics, animation, publication figures | [FJ9](docs/validation/FJ9_STATUS.md) · [9.6](docs/validation/FJ96_STATUS.md) · [9.7](docs/validation/FJ97_STATUS.md) · [9.8](docs/validation/FJ98_STATUS.md) · [9.9](docs/validation/FJ99_STATUS.md) |
-| FJ10 | POMDP readiness audit, run *before* the renderer was designed | [FJ10](docs/validation/FJ10_STATUS.md) |
+| FJ2–FJ3 | semantic parity: actions, discretizer, reward, dynamics, observers, exact NumPy RNG | [FJ2](docs/src/validation/FJ2_STATUS.md), [FJ3](docs/src/validation/FJ3_STATUS.md) |
+| FJ4 | the POMDPs.jl interface | [FJ4](docs/src/validation/FJ4_STATUS.md) |
+| FJ5 / FJ5-R | live reference backends, out-of-process and in-process | [FJ5](docs/src/validation/FJ5_STATUS.md), [FJ5-R](docs/src/validation/FJ5R_STATUS.md) |
+| FJ6 | full-episode rollout parity | [FJ6](docs/src/validation/FJ6_STATUS.md) |
+| FJ7 | the four trained baselines, matched layer by layer | [FJ7](docs/src/validation/FJ7_STATUS.md) |
+| FJ8 | solver compatibility, planner cost curves, six-solver comparison | [FJ8](docs/src/validation/FJ8_STATUS.md), [FJ8.4c](docs/src/validation/FJ84C_STATUS.md) |
+| FJ9 | visualization, diagnostics, animation, publication figures | [FJ9](docs/src/validation/FJ9_STATUS.md) · [9.6](docs/src/validation/FJ96_STATUS.md) · [9.7](docs/src/validation/FJ97_STATUS.md) · [9.8](docs/src/validation/FJ98_STATUS.md) · [9.9](docs/src/validation/FJ99_STATUS.md) |
+| FJ10 | POMDP readiness audit, run *before* the renderer was designed | [FJ10](docs/src/validation/FJ10_STATUS.md) |
 
 ---
 

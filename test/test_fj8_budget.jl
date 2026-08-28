@@ -6,7 +6,7 @@
 # same iteration count are not on the same computational budget.
 #
 # Everything here runs on the DEVELOPMENT seed set. The evaluation seeds are
-# frozen in configs/planning/fj8_seeds.yaml and are not read by this file, so
+# frozen in configs/planning/seeds.yaml and are not read by this file, so
 # no configuration choice can be made against the seeds FJ8.4b will report.
 
 using DuckietownDecisionModels

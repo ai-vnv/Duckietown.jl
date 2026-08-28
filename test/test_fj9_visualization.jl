@@ -956,7 +956,7 @@ const FJ95_SNAPSHOTS = joinpath(pkgdir(DuckietownDecisionModels), "artifacts",
     else
         # NOTE: "loads without a solver" cannot be asserted here — Pkg.test
         # installs MCTS and FJ8.2 loads it earlier in this same session. The
-        # property is proved in a fresh process by tools/fj9_render_check.jl,
+        # property is proved in a fresh process by tools/render_check.jl,
         # which reports MCTS_LOADED=false alongside SNAPSHOTS_LOADED=true.
 
         snaps = load_snapshot.(paths)
@@ -1057,7 +1057,7 @@ end
 # ---------------------------------------------------------------------------
 #
 # The renderers themselves need Makie and are exercised by
-# tools/fj9_render_check.jl in a fresh process (which also proves they run
+# tools/render_check.jl in a fresh process (which also proves they run
 # with MCTS_LOADED=false). What is tested here is everything the figures are
 # built from, with no backend installed.
 

@@ -1,6 +1,6 @@
 # FJ8.4b — the comparison machinery.
 #
-# The expensive experiment lives in `tools/fj8_comparison.jl`: twenty seeds at
+# The expensive experiment lives in `tools/solver_comparison.jl`: twenty seeds at
 # a 150-decision horizon with two planners at ~1 000 generative calls per
 # decision is roughly twenty minutes of wall time, which does not belong in a
 # regression suite. What belongs here is proof that the machinery is right —
@@ -30,7 +30,7 @@ end
 
 @testset "FJ8.4b the evaluation protocol is frozen on disk" begin
     root = pkgdir(DuckietownDecisionModels)
-    path = joinpath(root, "configs", "planning", "fj8_evaluation.yaml")
+    path = joinpath(root, "configs", "planning", "evaluation.yaml")
     @test isfile(path)
     proto = YAML.load_file(path)
 

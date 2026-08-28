@@ -48,7 +48,7 @@ sc_tr(a, b; n=3) = a == b ||
     (a isa Float64 && b !== nothing && ulps_tr(a, unf_tr(b)) <= n)
 
 # acos/atan-derived angles: <= n ULP or the conditioning-scaled bound
-# (see test_fj3_obs.jl / docs/validation/FJ3_STATUS.md)
+# (see test_fj3_obs.jl / docs/src/validation/FJ3_STATUS.md)
 sc_angle_tr(a::Float64, b; n=3) = sc_tr(a, b; n) ||
     abs(a - unf_tr(b)) <= 8 * eps(1.0) / max(abs(sin(a)), 1e-6)
 

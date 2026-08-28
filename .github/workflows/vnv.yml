@@ -1,0 +1,25 @@
+name: VnV
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  vnvspec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ai-vnv/vnvspec/actions/vnvspec@main
+        with:
+          spec: .vnvspec/spec.yaml
+          # the requirements are verified by the Julia suite (CI.yml), not by
+          # a pytest run inside this job — so the assessment here is the spec
+          # itself (structure, quality, coverage), and it must not gate CI
+          fail-on: never
+          comment-pr: "false"

@@ -10,7 +10,7 @@ using Test
 
 @testset "FJ8.0 gen runs without any Python (fresh process)" begin
     script = joinpath(pkgdir(DuckietownDecisionModels), "tools",
-        "fj8_native_check.jl")
+        "native_gen_check.jl")
     @test isfile(script)
     project = pkgdir(DuckietownDecisionModels)
     out = try

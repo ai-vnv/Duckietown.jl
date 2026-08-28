@@ -20,7 +20,7 @@ struct FJ85FixedPolicy <: DuckietownDecisionModels.AbstractPolicy end
 POMDPs.action(::FJ85FixedPolicy, ::DuckietownMDP, ::DuckieWorldState) =
     SLOW_STRAIGHT
 
-"""The same fingerprint `tools/fj8_no_solver_check.jl` prints."""
+"""The same fingerprint `tools/solver_independence_check.jl` prints."""
 function fj85_fingerprint()
     root = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck")
     mdp = DuckietownMDP(joinpath(root, "policies", "q_learning",
@@ -48,7 +48,7 @@ end
 
 @testset "FJ8.5 the model is identical with and without the solver" begin
     script = joinpath(pkgdir(DuckietownDecisionModels), "tools",
-        "fj8_no_solver_check.jl")
+        "solver_independence_check.jl")
     @test isfile(script)
     project = pkgdir(DuckietownDecisionModels)
 

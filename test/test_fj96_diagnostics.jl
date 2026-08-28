@@ -375,7 +375,7 @@ end
         @test sum(x.n for x in ds) + first(ds).absent ==
             sum(episode_lengths(log, "dpw@1k"))
 
-        # this binning was written independently of tools/fj84c_enrich.jl and
+        # this binning was written independently of tools/enrich_decision_log.jl and
         # lands on the same five numbers FJ8.4c reported. Two implementations
         # agreeing is a check on both; one of them agreeing with itself is not
         @test [round(Int, x.mean) for x in b] == [1019, 835, 940, 602, 195]

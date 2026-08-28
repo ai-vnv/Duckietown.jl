@@ -80,18 +80,18 @@ function render_search end
 """
     render_search_action_plane(snapshot; kwargs...)
 
-FJ9.5d — the continuous root actions a search actually sampled. Only
-sampled points are drawn; a smoothed surface would imply the planner
-evaluated action combinations it never tried.
+The continuous root actions a search actually sampled. Only sampled
+points are drawn; a smoothed surface would imply the planner evaluated
+action combinations it never tried. (Validated in FJ9.5d.)
 """
 function render_search_action_plane end
 
 """
     render_diagnostics(episode; kwargs...)
 
-FJ9.6c — one episode's diagnostic time series, as five separate panels.
-Takes an [`EpisodeDiagnostics`](@ref) built from the frozen decision log, so
-the figure cannot be produced by running the environment.
+One episode's diagnostic time series, as five separate panels. Takes an
+[`EpisodeDiagnostics`](@ref) built from the frozen decision log, so the
+figure cannot be produced by running the environment. (Validated in FJ9.6c.)
 
 """
 function render_diagnostics end
@@ -99,39 +99,42 @@ function render_diagnostics end
 """
     render_diagnostics_aggregate(log, solvers; kwargs...)
 
-FJ9.6d — paired and aggregate diagnostics across every episode of each
-solver, binned by normalised progress with no interpolation.
+Paired and aggregate diagnostics across every episode of each solver,
+binned by normalised progress with no interpolation. (Validated in FJ9.6d.)
 """
 function render_diagnostics_aggregate end
 
 """
     render_frame(static, sequence, t; kwargs...)
 
-FJ9.7b — one animation frame: the world at decision `t`, the history up to
-`t`, and nothing after it. Takes recorded evidence only.
+One animation frame: the world at decision `t`, the history up to `t`,
+and nothing after it. Takes recorded evidence only. (Validated in FJ9.7b.)
 """
 function render_frame end
 
 """
     render_animation(static, sequence, path; kwargs...)
 
-FJ9.7 — write the playback of one episode to `path` (`.mp4` or `.gif`).
+Write the playback of one episode to `path` (`.mp4` or `.gif`).
+(Validated in FJ9.7.)
 """
 function render_animation end
 
 """
     render_paired_animation(static, a, b, path; kwargs...)
 
-FJ9.7d — two solvers on the same seed, side by side on the absolute decision
+Two solvers on the same seed, side by side on the absolute decision
 index. A panel whose episode has ended freezes on its terminal frame.
+(Validated in FJ9.7d.)
 """
 function render_paired_animation end
 
 """
     render_composite(composite; kwargs...)
 
-FJ9.8 — a publication composite, drawn from the same data objects the
-individual renderers consume. Never an assembly of pre-rendered images.
+A publication composite, drawn from the same data objects the individual
+renderers consume. Never an assembly of pre-rendered images. (Validated
+in FJ9.8.)
 """
 function render_composite end
 

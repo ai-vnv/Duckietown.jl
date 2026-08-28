@@ -1,4 +1,4 @@
-# Validation for docs/BUILDING.md:
+# Validation for docs/src/building.md:
 #   1. every repository path named in backticks exists;
 #   2. every relative markdown link resolves;
 #   3. the repository's own documentation audit accepts the file.
@@ -6,7 +6,7 @@
 using DuckietownDecisionModels
 
 root = normpath(joinpath(@__DIR__, ".."))
-doc = read(joinpath(root, "docs", "BUILDING.md"), String)
+doc = read(joinpath(root, "docs", "src", "building.md"), String)
 
 # 1. backticked paths that look like repo files
 paths = unique(m.captures[1] for m in eachmatch(
@@ -19,7 +19,7 @@ foreach(p -> println("  MISSING ", p), missing_paths)
 # 2. relative markdown links (BUILDING.md lives in docs/)
 links = unique(m.captures[1] for m in eachmatch(r"\]\(([^)#:]+)\)", doc))
 rel = [l for l in links if !startswith(l, "http")]
-missing_links = [l for l in rel if !ispath(normpath(joinpath(root, "docs", l)))]
+missing_links = [l for l in rel if !ispath(normpath(joinpath(root, "docs", "src", l)))]
 println("relative links: ", length(rel), "   dead: ", length(missing_links))
 foreach(l -> println("  DEAD ", l), missing_links)
 

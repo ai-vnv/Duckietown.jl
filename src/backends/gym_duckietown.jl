@@ -375,7 +375,7 @@ end
 """
     ref_probe_stop(backend; decisions=400, policy="lane_follow") -> rows
 
-FJ5.4: record every stop-candidate filter quantity per decision from the LIVE
+Record every stop-candidate filter quantity per decision from the LIVE
 reference runtime (observation only; the baseline config is untouched).
 """
 ref_probe_stop(b::ProcessReferenceBackend; decisions::Integer=400,

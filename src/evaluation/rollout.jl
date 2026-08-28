@@ -18,7 +18,7 @@
 #            and with it phi and the reward terms derived from phi. The
 #            physical state has NOT diverged.
 #   Type 2 — dynamical drift. `q0`/`v0` themselves differ. Measured cause in
-#            the one case where it happened (see docs/validation/FJ6_STATUS.md): NOT
+#            the one case where it happened (see docs/src/validation/FJ6_STATUS.md): NOT
 #            feedback from the readback drift, but a fresh 1-ULP disagreement
 #            in `cos` INSIDE the SE(2) exponential — glibc returns
 #            0.9999531746252679 for w = 0.009677369495122897 where OpenLibm

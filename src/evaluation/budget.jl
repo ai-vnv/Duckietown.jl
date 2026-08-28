@@ -233,13 +233,13 @@ end
 """
     planning_seed_config(path=default) -> NamedTuple
 
-Load the frozen FJ8 seed split (`configs/planning/fj8_seeds.yaml`). The
+Load the frozen planning seed split (`configs/planning/seeds.yaml`). The
 development and evaluation sets are disjoint on purpose: configuration choices
 are made on the former, and the six-solver comparison runs on the latter, so a
 planner can never be tuned against the seeds it will be reported on.
 """
 function planning_seed_config(path::AbstractString=joinpath(
-    pkgdir(@__MODULE__), "configs", "planning", "fj8_seeds.yaml"))
+    pkgdir(@__MODULE__), "configs", "planning", "seeds.yaml"))
     cfg = YAML.load_file(path)
     dev = cfg["development"]
     ev = cfg["evaluation"]

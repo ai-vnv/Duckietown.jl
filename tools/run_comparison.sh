@@ -26,7 +26,7 @@ end
 Pkg.instantiate()' > "$LOG" 2>&1
 
 echo "JULIA: $(julia --version)" | tee -a "$LOG"
-julia --project=experiments tools/fj8_comparison.jl >> "$LOG" 2>&1
+julia --project=experiments tools/solver_comparison.jl >> "$LOG" 2>&1
 status=$?
 echo "COMPARISON_EXIT=$status" | tee -a "$LOG"
 exit $status

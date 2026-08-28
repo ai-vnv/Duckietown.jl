@@ -9,7 +9,7 @@ per missing key, exactly as `RewardConfig(**config["reward"])` behaves).
 
 Terms (evaluated on the *post-transition* state, except the continuous
 `steering` term which uses the *pre-action* `kappa` and the clipped `ω_cmd`;
-see `docs/validation/FJ1_STATUS.md`):
+see `docs/src/validation/FJ1_STATUS.md`):
 - dense: `progress = α_p·v·cos(phi)`, `lateral = -α_d·d²`,
   `heading = -α_φ·phi²`, `time = -c_step`
 - pedestrian: `duck_yield` if `v < duck_yield_speed` during a crossing else

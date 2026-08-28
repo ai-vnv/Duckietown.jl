@@ -7,7 +7,7 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh" 2>/dev/null || true
 conda activate ddm-torch 2>/dev/null || true
 cd "$REPO"
 LOG="${1:-/tmp/fj84c_enrich.log}"
-julia --project=experiments tools/fj84c_enrich.jl > "$LOG" 2>&1
+julia --project=experiments tools/enrich_decision_log.jl > "$LOG" 2>&1
 status=$?
 echo "ENRICH_EXIT=$status" | tee -a "$LOG"
 exit $status
