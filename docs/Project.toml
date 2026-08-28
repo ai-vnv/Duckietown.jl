@@ -1,6 +1,0 @@
-[deps]
-Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-DuckietownDecisionModels = "b9206cf4-d873-49ff-bdb0-b4cd6bc56877"
-
-[compat]
-Documenter = "1"

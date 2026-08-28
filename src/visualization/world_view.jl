@@ -1,1 +1,0 @@
-# FJ8: Makie top-down world render + state panel.

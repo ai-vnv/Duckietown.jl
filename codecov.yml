@@ -1,8 +1,0 @@
-# Pin the branch Codecov treats as the default, so the badge cannot be
-# blanked by server-side default-branch metadata (the failure mode the
-# DORASolvers rename exposed). The README uses the branch-qualified badge
-# URL for the same reason. Coverage is measured by the CI full-suite job,
-# which runs WITHOUT the Python reference - the 26 parity files skip
-# themselves there, so the number reflects the core, not the parity layer.
-codecov:
-  branch: main
