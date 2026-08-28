@@ -288,27 +288,6 @@
             "fails": 0
         },
         {
-            "name": "FJ3.7 one-decision chain parity (24 scenarios)",
-            "passes": 59870,
-            "errors": 0,
-            "broken": 0,
-            "fails": 0
-        },
-        {
-            "name": "FJ3.7 branch purity + aliasing",
-            "passes": 35,
-            "errors": 0,
-            "broken": 0,
-            "fails": 0
-        },
-        {
-            "name": "FJ3.7 RNG-B determinism + frame-skip + delay memory",
-            "passes": 9,
-            "errors": 0,
-            "broken": 0,
-            "fails": 0
-        },
-        {
             "name": "FJ3.8-A MT19937 stream identity (9 seeds)",
             "passes": 891,
             "errors": 0,
@@ -332,6 +311,27 @@
         {
             "name": "FJ3.8-D reset spawn call log replay (PCG64)",
             "passes": 180,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.7 one-decision chain parity (24 scenarios)",
+            "passes": 59870,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.7 branch purity + aliasing",
+            "passes": 35,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.7 RNG-B determinism + frame-skip + delay memory",
+            "passes": 9,
             "errors": 0,
             "broken": 0,
             "fails": 0

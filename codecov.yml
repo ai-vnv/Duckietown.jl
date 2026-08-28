@@ -6,3 +6,10 @@
 # themselves there, so the number reflects the core, not the parity layer.
 codecov:
   branch: main
+
+# What coverage is measured against: the package core. The Makie/MCTS/Python
+# extensions cannot execute in headless CI (no GL, and the suite must not
+# load a solver), and tools/ are operator scripts, not the shipped surface.
+ignore:
+  - "ext"
+  - "tools"

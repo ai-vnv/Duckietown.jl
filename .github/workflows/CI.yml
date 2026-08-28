@@ -86,6 +86,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # The reference material is a PUBLIC repository; checking it out as
+      # the sibling the reference_guard looks for lets the config- and
+      # checkpoint-based parity sets (FJ3.7, FJ4, FJ7 tabular, FJ8) run in
+      # CI. The live-Python sets (FJ5, FJ5-R, FJ6, FJ7 actors) still skip
+      # themselves — each carries its own environment guard — because the
+      # pinned ddm-ref interpreter is not built here.
+      - name: Reference material (sibling checkout)
+        run: git clone --depth=1 https://github.com/PannnTastic/DuckieMDP ../duckduck
+
       - uses: julia-actions/setup-julia@v2
         with:
           version: '1.11'

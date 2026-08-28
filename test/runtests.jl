@@ -18,15 +18,22 @@ try
 include("test_configs.jl")
 include("test_data_model.jl")
 include("test_native_render.jl")
+# Fixture-based parity needs NOTHING from the reference checkout: the FJ2/FJ3
+# fixtures are committed in test/fixtures/, generated once from the reference
+# and frozen. These ran only under HAVE_REFERENCE for years by accident of
+# grouping, which is why CI coverage read 14% — the beefiest tests never
+# executed there. Only the files that read the reference's frozen configs,
+# checkpoints, or its live Python stay behind the guard.
+include("test_fj2_parity.jl")
+include("test_fj3_map.jl")
+include("test_fj3_ego.jl")
+include("test_fj3_delay.jl")
+include("test_fj3_duck.jl")
+include("test_fj3_obs.jl")
+include("test_fj3_rng.jl")
+
 if HAVE_REFERENCE
-    include("test_fj2_parity.jl")
-    include("test_fj3_map.jl")
-    include("test_fj3_ego.jl")
-    include("test_fj3_delay.jl")
-    include("test_fj3_duck.jl")
-    include("test_fj3_obs.jl")
     include("test_fj3_transition.jl")
-    include("test_fj3_rng.jl")
     include("test_fj4_pomdps.jl")
 # FJ5 runs the real Python reference stack side by side; it skips itself when
 # the reference environment (WSL + ddm-ref) is not present.

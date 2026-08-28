@@ -251,9 +251,15 @@ file, ~3.5 of the ~8 minutes) for day-to-day runs — announced, never silent.
 Leave it unset for release-grade runs.
 
 ```
-with the reference     201 test sets, 148 855 assertions
-without it              17 test sets,     167 assertions
+with the reference     201 test sets, 148 907 assertions
+without it              24 test sets,  78 897 assertions
 ```
+
+The fixture-based parity layers (FJ2/FJ3) run in both modes — their fixtures
+are committed — so a referenceless run still re-verifies the dynamics,
+observers, reward and RNG against recorded reference outputs. Only the sets
+that need the reference's frozen configs, checkpoints, or its live Python
+skip themselves.
 
 The authoritative count is the structured report the suite writes to
 `artifacts/fj9/test_report.json`, built from the `Test` result tree rather
