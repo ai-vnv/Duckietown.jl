@@ -21,7 +21,7 @@ Duckietown environment by the [Duckietown Project](https://www.duckietown.org).*
 
 ```julia
 using Pkg
-Pkg.add(url = "https://github.com/PannnTastic/Duckietown.jl")
+Pkg.add(url = "https://github.com/ai-vnv/Duckietown.jl")
 ```
 
 `using DuckietownDecisionModels` loads no Python, no plotting library and no
@@ -57,8 +57,8 @@ For a full worked case study with an online SSP solver
 ([DORASolvers.jl](https://github.com/ai-vnv/DORASolvers.jl)) — formulation,
 receding-horizon execution, and tile-by-tile replays of recorded laps — open
 the Pluto notebook
-[`notebooks/DORA_on_Duckietown.jl`](https://github.com/PannnTastic/Duckietown.jl/blob/main/notebooks/DORA_on_Duckietown.jl);
-[`notebooks/Playground.jl`](https://github.com/PannnTastic/Duckietown.jl/blob/main/notebooks/Playground.jl)
+[`notebooks/DORA_on_Duckietown.jl`](https://github.com/ai-vnv/Duckietown.jl/blob/main/notebooks/DORA_on_Duckietown.jl);
+[`notebooks/Playground.jl`](https://github.com/ai-vnv/Duckietown.jl/blob/main/notebooks/Playground.jl)
 is the pick-a-solver starter.
 
 ## Where to go next

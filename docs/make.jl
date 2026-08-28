@@ -9,7 +9,7 @@ makedocs(
     modules = [DuckietownDecisionModels],
     format = Documenter.HTML(
         prettyurls = get(ENV, "CI", "false") == "true",
-        canonical = "https://pannntastic.github.io/Duckietown.jl",
+        canonical = "https://ai-vnv.github.io/Duckietown.jl",
         assets = String[],
     ),
     pages = [
@@ -55,6 +55,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/PannnTastic/Duckietown.jl",
+    repo = "github.com/ai-vnv/Duckietown.jl",
     devbranch = "main",
 )

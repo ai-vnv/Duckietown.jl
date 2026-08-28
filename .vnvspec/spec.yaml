@@ -18,7 +18,7 @@ description: >
 
 requirements:
   - id: REQ-PARITY-FIXTURE-001
-    statement: The pure model functions (actions, discretizer, reward) shall reproduce the Python reference outputs on recorded fixtures.
+    statement: The system shall reproduce the Python reference outputs of the pure model functions on the recorded fixture cases.
     rationale: Fixture parity is the first, cheapest layer of the equivalence claim and runs everywhere, with no Python installed.
     verification_method: test
     acceptance_criteria:
@@ -29,7 +29,7 @@ requirements:
       gate: FJ2
 
   - id: REQ-PARITY-RNG-001
-    statement: Random streams shall reproduce NumPy bit for bit, so a seeded episode is identical across languages.
+    statement: The system shall reproduce the NumPy random streams bit for bit.
     rationale: Episode-level parity is impossible if the two sides consume different random numbers.
     verification_method: test
     acceptance_criteria:
@@ -40,7 +40,7 @@ requirements:
       gate: FJ3.8
 
   - id: REQ-PARITY-LIVE-001
-    statement: From any matched state, one decision of the Julia model shall equal one decision of the live Python reference.
+    statement: The system shall produce the same one-decision successor as the live Python reference from any matched state.
     rationale: Fixtures cannot cover the reachable state space; live matched-state parity samples it.
     verification_method: test
     acceptance_criteria:
@@ -51,7 +51,7 @@ requirements:
       gate: FJ5
 
   - id: REQ-PARITY-EPISODE-001
-    statement: Free-running seeded episodes shall match the reference step by step over full horizons.
+    statement: The system shall match the reference trajectory at every step of a free-running seeded episode.
     rationale: One-step parity does not exclude drift; episode parity does.
     verification_method: test
     acceptance_criteria:
@@ -61,7 +61,7 @@ requirements:
       gate: FJ6
 
   - id: REQ-POLICY-PARITY-001
-    statement: The frozen reference policies (Q-learning, SARSA, SAC, TD3) shall produce the reference actions under native Julia inference.
+    statement: The system shall reproduce the reference actions of each frozen policy under native Julia inference.
     rationale: Baselines are only baselines if they are the same policies, not retrained lookalikes.
     verification_method: test
     acceptance_criteria:
@@ -72,7 +72,7 @@ requirements:
       gate: FJ7
 
   - id: REQ-CORE-PURITY-001
-    statement: Loading the package shall require no Python, no solver, and no plotting library.
+    statement: The system shall load with only its declared Julia dependencies.
     rationale: A decision-model benchmark must not impose a solver or a rendering stack on its users.
     verification_method: test
     acceptance_criteria:
@@ -83,7 +83,7 @@ requirements:
       gate: FJ8.1
 
   - id: REQ-SCENARIO-ISOLATION-001
-    statement: Shipped defaults shall never be edited; a corrected or extended world gets a new named scenario, pinned to its documented deltas.
+    statement: The system shall keep the shipped default configuration identical to the Python source defaults.
     rationale: Silent config drift invalidates every recorded result downstream.
     verification_method: test
     acceptance_criteria:
@@ -93,7 +93,7 @@ requirements:
       gate: configs
 
   - id: REQ-DOC-CONSISTENCY-001
-    statement: Documentation shall contain no dead repository paths and no claim previously falsified by measurement.
+    statement: The system shall pass its documentation audit with zero issues.
     rationale: A fixed bug must not survive as prose; a moved file must not leave dead links.
     verification_method: test
     acceptance_criteria:
@@ -104,7 +104,7 @@ requirements:
       gate: FJ9.9d
 
   - id: REQ-EVIDENCE-LEDGER-001
-    statement: Every recorded artifact shall be classified (rebuilt, persisted source, or provisioned frozen input), and its class shall decide what a rebuild may do.
+    statement: The system shall classify every recorded artifact in the artifact ledger.
     rationale: Evidence that can be silently regenerated is not evidence.
     verification_method: test
     acceptance_criteria:
@@ -114,7 +114,7 @@ requirements:
       gate: FJ9.9c
 
   - id: REQ-REPORTING-001
-    statement: The suite shall write a structured, machine-readable result whose detail rows sum to its headline counts.
+    statement: The system shall write a machine-readable test report with detail rows that sum to its headline counts.
     rationale: A terminal summary can be misparsed; the first run of the reporter itself was caught undercounting by independent cross-checks.
     verification_method: test
     acceptance_criteria:
