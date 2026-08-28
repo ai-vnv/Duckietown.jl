@@ -8,7 +8,7 @@ environment, validated against it decision by decision, including exact
 NumPy RNG streams, so a seeded episode reproduces bit for bit.
 
 ```@raw html
-<img src="https://raw.githubusercontent.com/PannnTastic/Duckietown.jl/main/docs/assets/native_dora_lap.gif"
+<img src="https://raw.githubusercontent.com/ai-vnv/Duckietown.jl/main/docs/assets/native_dora_lap.gif"
      alt="DORA completing a lap, drawn by the package's native renderer" style="max-width:100%"/>
 ```
 

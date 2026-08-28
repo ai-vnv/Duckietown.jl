@@ -7,18 +7,21 @@ already caused a problem here at least once.
 ## Getting set up
 
 ```bash
-git clone https://github.com/PannnTastic/Duckietown.jl
+git clone https://github.com/ai-vnv/Duckietown.jl
 cd Duckietown.jl
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 julia --project=. -e 'using Pkg; Pkg.test()'
 ```
 
-That works with nothing else installed. It runs 17 test sets and skips 26
-files by name, because those compare against the Python reference.
+That works with nothing else installed, and it is the expected way to
+contribute: one clone, no second repository. It runs 101 test sets and
+79 050 assertions — including the full fixture-based parity layers, whose
+fixtures are committed — and skips the 21 files that compare against the
+Python reference, each by name, never silently.
 
-To run everything, put the reference material from
-[PannnTastic/DuckieMDP](https://github.com/PannnTastic/DuckieMDP) beside the
-package:
+Running those 21 files too is a maintainer concern, not a contribution
+requirement: they need the reference material (frozen training configs and
+policy checkpoints) laid out beside the package as
 
 ```
 parent/
@@ -26,8 +29,9 @@ parent/
 └── duckduck/policies/{q_learning,sarsa,sac,td3}/
 ```
 
-Then the suite runs 201 test sets and 148 855 assertions. Both numbers should
-hold; if one moves, say so in the pull request and explain why.
+which is not published in [PannnTastic/DuckieMDP](https://github.com/PannnTastic/DuckieMDP)
+yet. With it, the suite runs 202 test sets and 148 907 assertions. All these
+counts should hold; if one moves, say so in the pull request and explain why.
 
 ## Rules that matter
 

@@ -21,7 +21,16 @@ const FJ9_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
 fj9_mdp() = DuckietownMDP(FJ9_QCFG; action_space=:discrete)
 fj9_state(m, seed=11) = rand(MersenneTwister(seed), initialstate(m))
 
-@testset "FJ9.0 the contract exists and needs no backend" begin
+# The policy-backed sets construct MDPs and policies from the reference
+# checkout's frozen configs and checkpoints (../duckduck/policies/). The
+# geometric sets need none of that and run everywhere; the policy-backed
+# sets skip by name when the checkout is absent, never silently.
+const FJ9_HAVE_POLICIES = isfile(FJ9_QCFG)
+if !FJ9_HAVE_POLICIES
+    @info "FJ9: skipping 13 policy-backed testsets (they need ../duckduck/policies/, the reference checkout's frozen configs and checkpoints)"
+end
+
+FJ9_HAVE_POLICIES && @testset "FJ9.0 the contract exists and needs no backend" begin
     # the four entry points FJ10 marked buildable are declared ...
     for f in (:render_world, :render_projection, :render_policy, :render_search)
         @test isdefined(DuckietownDecisionModels, f)
@@ -51,7 +60,7 @@ fj9_state(m, seed=11) = rand(MersenneTwister(seed), initialstate(m))
         "DuckietownMakieExt.jl"))
 end
 
-@testset "FJ9.1 the drawn world IS the model's geometry" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.1 the drawn world IS the model's geometry" begin
     mdp = fj9_mdp()
     s = fj9_state(mdp)
     sc = world_scene(mdp, s)
@@ -122,7 +131,7 @@ end
     @test worlds_identical(s, snapshot)
 end
 
-@testset "FJ9.1 the stop line is the model's measurement, not a decoration" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.1 the stop line is the model's measurement, not a decoration" begin
     # The model has no stop-line object. `next_stop_candidate` measures
     #     ahead  = dot(sign.pos - ego.pos, forward)
     #     d_stop = max(0, ahead - sign_to_line_offset)
@@ -193,7 +202,7 @@ end
     @info "FJ9.1 stop-line identity checked on $checked (state, sign) pairs"
 end
 
-@testset "FJ9.1 the view shows what lies outside the tile grid" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.1 the view shows what lies outside the tile grid" begin
     # On small_loop the injected stop sign sits at z = 1.8135 while the 3x3
     # grid ends at 1.755 — the reference's own placement, validated in FJ3 and
     # exercised live in FJ5/FJ6. A view clipped to the map would hide it.
@@ -221,7 +230,7 @@ end
         round.(sc.view_extent; digits=4)
 end
 
-@testset "FJ9.1 trajectory overlay" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.1 trajectory overlay" begin
     mdp = fj9_mdp()
     s = fj9_state(mdp)
     rng = MersenneTwister(3)
@@ -242,7 +251,7 @@ end
     @test world_scene(mdp, cur).trajectory == NTuple{2,Float64}[]
 end
 
-@testset "FJ9.2 the panel's semantics come from the core, not the backend" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.2 the panel's semantics come from the core, not the backend" begin
     mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
         "duckduck", "policies", "sac", "training_config.yaml");
         action_space=:continuous)
@@ -317,7 +326,7 @@ end
         unique(e.category for e in sc.entries)
 end
 
-@testset "FJ9.2 the projection panel is labelled privileged" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.2 the projection panel is labelled privileged" begin
     mdp = fj9_mdp()
     s = fj9_state(mdp)
     raw, _ = get_raw_state(s, mdp.transition.state_cfg)
@@ -383,7 +392,7 @@ end
 fj9_qpolicy() = QTablePolicy(joinpath(pkgdir(DuckietownDecisionModels), "..",
     "duckduck", "policies", "q_learning", "policy.npy"); solver=:q_learning)
 
-@testset "FJ9.3a the slice contract is core data, not a figure" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.3a the slice contract is core data, not a figure" begin
     pol = fj9_qpolicy()
     sl = policy_slice(pol, :d, :phi; xs=range(-0.2, 0.2; length=21),
         ys=range(-0.5, 0.5; length=21), name="q_learning")
@@ -407,7 +416,7 @@ fj9_qpolicy() = QTablePolicy(joinpath(pkgdir(DuckietownDecisionModels), "..",
     @test eltype(value_surface(sl)) === Float64
 end
 
-@testset "FJ9.3b the tabular action comes from the validated decide()" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.3b the tabular action comes from the validated decide()" begin
     pol = fj9_qpolicy()
     sl = policy_slice(pol, :d, :phi; xs=range(-0.2, 0.2; length=15),
         ys=range(-0.5, 0.5; length=15))
@@ -451,7 +460,7 @@ end
     @test all(c -> c.q_margin == 0.0, sl.cells)
 end
 
-@testset "FJ9.3c value and ambiguity are separate layers" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.3c value and ambiguity are separate layers" begin
     pol = fj9_qpolicy()
     sl = policy_slice(pol, :d, :phi)
 
@@ -475,7 +484,7 @@ end
         count(==(1), ties) tied_cells = count(>(1), ties)
 end
 
-@testset "FJ9.3e honesty: coordinates, mode and fixed context" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.3e honesty: coordinates, mode and fixed context" begin
     pol = fj9_qpolicy()
     sl = policy_slice(pol, :d, :phi)
 
@@ -510,7 +519,7 @@ end
     @test length(slice_fingerprint(sl)) == 16
 end
 
-@testset "FJ9.3d continuous slices keep v and omega separate" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.3d continuous slices keep v and omega separate" begin
     if !torch_policy_available()
         @test_skip "ddm-torch unavailable"
     else
@@ -570,7 +579,7 @@ end
     end
 end
 
-@testset "FJ9.3e the fixed context is not a neutral choice" begin
+FJ9_HAVE_POLICIES && @testset "FJ9.3e the fixed context is not a neutral choice" begin
     # The strongest argument for recording `mode` and `fixed` as data rather
     # than as a caption: a slice's default context can be off the manifold of
     # states the policy actually visits, and the picture changes qualitatively

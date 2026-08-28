@@ -242,7 +242,7 @@ parent/
         └── policy.npy   (tabular)  |  policy.pt  (SAC/TD3)
 ```
 
-Then `using Pkg; Pkg.test()`. Without it the suite still runs: it skips the 26
+Then `using Pkg; Pkg.test()`. Without it the suite still runs: it skips the 21
 reference-dependent files by name and says so, rather than failing or quietly
 passing.
 
@@ -251,8 +251,8 @@ file, ~3.5 of the ~8 minutes) for day-to-day runs — announced, never silent.
 Leave it unset for release-grade runs.
 
 ```
-with the reference     201 test sets, 148 907 assertions
-without it              50 test sets,  77 544 assertions
+with the reference     202 test sets, 148 907 assertions
+without it             101 test sets,  79 050 assertions
 ```
 
 The fixture-based parity layers (FJ2/FJ3) run in both modes — their fixtures

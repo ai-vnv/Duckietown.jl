@@ -20,7 +20,15 @@ const FJ10_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
 const FJ10_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
-@testset "FJ10 the audit is well formed" begin
+# Three sets audit MDPs built from the reference checkout's frozen training
+# configs; the other three audit the package itself. Contributors without the
+# checkout still run the latter — the former skip by name, never silently.
+const FJ10_HAVE_POLICIES = isfile(FJ10_QCFG)
+if !FJ10_HAVE_POLICIES
+    @info "FJ10: skipping 3 config-backed testsets (they need ../duckduck/policies/, the reference checkout's frozen training configs)"
+end
+
+FJ10_HAVE_POLICIES && @testset "FJ10 the audit is well formed" begin
     items = pomdp_readiness(DuckietownMDP(FJ10_QCFG; action_space=:discrete))
     @test length(items) == 16
     @test all(i -> !isempty(i.component), items)
@@ -47,7 +55,7 @@ const FJ10_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
     @info "FJ10 readiness counts" c
 end
 
-@testset "FJ10 every READY claim is true of the live package" begin
+FJ10_HAVE_POLICIES && @testset "FJ10 every READY claim is true of the live package" begin
     mdp = DuckietownMDP(FJ10_QCFG; action_space=:discrete)
     cmdp = DuckietownMDP(FJ10_CCFG; action_space=:continuous)
     s = rand(MersenneTwister(11), initialstate(mdp))
@@ -143,7 +151,7 @@ end
     @info "FJ10 observability counts" c
 end
 
-@testset "FJ10 the RNG contract holds and is not extended" begin
+FJ10_HAVE_POLICIES && @testset "FJ10 the RNG contract holds and is not extended" begin
     mdp = DuckietownMDP(FJ10_QCFG; action_space=:discrete)
     s = rand(MersenneTwister(11), initialstate(mdp))
 

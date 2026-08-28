@@ -68,23 +68,27 @@ if HAVE_REFERENCE
 # FJ8.4b: the cross-family comparison machinery (the experiment itself is
 # tools/solver_comparison.jl, which is far too slow for a regression suite).
     include("test_fj8_comparison.jl")
-# FJ10: POMDP readiness audit — an audit, not an implementation.
-# FJ9.0/9.1: the visualisation contract and world geometry. Runs with NO
-# plotting backend — the geometry is core, the drawing is an extension.
 # FJ8.4c: frozen-protocol replication with per-decision logging.
     include("test_fj84c_enrichment.jl")
-    include("test_fj9_visualization.jl")
-# FJ9.6: diagnostic time series read from the FJ8.4c log — no execution.
+    include("test_fj8_solver_independence.jl")
+else
+    @warn "SKIPPING 21 reference-dependent test files" files=21
+end
+# The FJ9/FJ10 family below was probed file by file with the reference
+# checkout hidden (tools/probe_gated_tests.sh): these five run from a single
+# clone. The policy-backed testsets inside fj9_visualization and
+# fj10_readiness guard themselves on ../duckduck/policies/ and skip by name.
+# FJ9.0/9.1: the visualisation contract and world geometry. Runs with NO
+# plotting backend — the geometry is core, the drawing is an extension.
+include("test_fj9_visualization.jl")
+# FJ9.6: diagnostic time series read from the committed FJ8.4c log — no execution.
 include("test_fj96_diagnostics.jl")
 # FJ9.7: animation as playback of the same log — still no execution.
 include("test_fj97_animation.jl")
 # FJ9.8: publication composites — captions validated like data.
 include("test_fj98_publication.jl")
-    include("test_fj10_readiness.jl")
-    include("test_fj8_solver_independence.jl")
-else
-    @warn "SKIPPING 26 reference-dependent test files" files=26
-end
+# FJ10: POMDP readiness audit — an audit, not an implementation.
+include("test_fj10_readiness.jl")
 # FJ9.9: reproducibility closure — audits that fail when reality drifts.
 include("test_fj99_closure.jl")
 

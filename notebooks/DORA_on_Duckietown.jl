@@ -36,7 +36,7 @@ md"""
 [DORASolvers.jl](https://github.com/ai-vnv/DORASolvers.jl) is an **online
 stochastic-shortest-path (SSP) solver**: it operates on a finite tabular SSP
 whose transition structure is *known* and whose traversal costs are *learned
-online*. [DuckietownDecisionModels.jl](https://github.com/PannnTastic/DuckieMDP)
+online*. [DuckietownDecisionModels.jl](https://github.com/ai-vnv/Duckietown.jl)
 is a **continuous** driving MDP.
 
 This notebook builds the bridge between them **step by step — every cell

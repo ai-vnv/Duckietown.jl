@@ -171,8 +171,15 @@ end
     else
         r = JSON3.read(read(rp, String))
         @test r.schema == "fj99.reporter.1"
-        @test r.testsets > 100
-        @test r.assertions > 100_000
+        # The floor must hold for BOTH run modes, because the previous run may
+        # have been either: the release-grade run measures 202 testsets and
+        # 148 907 assertions, the single-clone run (no reference checkout)
+        # roughly 90 and 79 000. Release-grade-ness of the COMMITTED report is
+        # enforced elsewhere: the VnV badge workflow fails unless every
+        # requirement's testsets — including FJ5/FJ6/FJ7 — are present and
+        # green in it.
+        @test r.testsets > 40
+        @test r.assertions > 50_000
 
         # Deliberately NOT asserted here: failures == 0. This file is written
         # at the END of a run, so the copy on disk while this testset executes

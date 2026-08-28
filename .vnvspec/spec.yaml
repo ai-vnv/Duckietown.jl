@@ -27,6 +27,7 @@ requirements:
     priority: blocking
     metadata:
       gate: FJ2
+      testset_prefixes: ["FJ2"]
 
   - id: REQ-PARITY-RNG-001
     statement: The system shall reproduce the NumPy random streams bit for bit.
@@ -38,6 +39,7 @@ requirements:
     priority: blocking
     metadata:
       gate: FJ3.8
+      testset_prefixes: ["FJ3.8"]
 
   - id: REQ-PARITY-LIVE-001
     statement: The system shall produce the same one-decision successor as the live Python reference from any matched state.
@@ -49,6 +51,7 @@ requirements:
     priority: blocking
     metadata:
       gate: FJ5
+      testset_prefixes: ["FJ5"]
 
   - id: REQ-PARITY-EPISODE-001
     statement: The system shall match the reference trajectory at every step of a free-running seeded episode.
@@ -59,6 +62,7 @@ requirements:
     priority: blocking
     metadata:
       gate: FJ6
+      testset_prefixes: ["FJ6"]
 
   - id: REQ-POLICY-PARITY-001
     statement: The system shall reproduce the reference actions of each frozen policy under native Julia inference.
@@ -70,6 +74,7 @@ requirements:
     priority: high
     metadata:
       gate: FJ7
+      testset_prefixes: ["FJ7"]
 
   - id: REQ-CORE-PURITY-001
     statement: The system shall load with only its declared Julia dependencies.
@@ -81,6 +86,7 @@ requirements:
     priority: blocking
     metadata:
       gate: FJ8.1
+      testset_prefixes: ["FJ8.5", "FJ9.9e"]
 
   - id: REQ-SCENARIO-ISOLATION-001
     statement: The system shall keep the shipped default configuration identical to the Python source defaults.
@@ -91,6 +97,7 @@ requirements:
     priority: high
     metadata:
       gate: configs
+      testset_prefixes: ["named scenarios"]
 
   - id: REQ-DOC-CONSISTENCY-001
     statement: The system shall pass its documentation audit with zero issues.
@@ -102,6 +109,7 @@ requirements:
     priority: high
     metadata:
       gate: FJ9.9d
+      testset_prefixes: ["FJ9.9d"]
 
   - id: REQ-EVIDENCE-LEDGER-001
     statement: The system shall classify every recorded artifact in the artifact ledger.
@@ -112,6 +120,7 @@ requirements:
     priority: high
     metadata:
       gate: FJ9.9c
+      testset_prefixes: ["FJ9.9c"]
 
   - id: REQ-REPORTING-001
     statement: The system shall write a machine-readable test report with detail rows that sum to its headline counts.
@@ -123,3 +132,4 @@ requirements:
     priority: high
     metadata:
       gate: FJ9.9b
+      testset_prefixes: ["FJ9.9b"]
