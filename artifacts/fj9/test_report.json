@@ -1,0 +1,1425 @@
+{
+    "errors": 0,
+    "julia_version": "1.11.3",
+    "failures": 0,
+    "testsets": 202,
+    "assertions": 148907,
+    "broken": 0,
+    "schema": "fj99.reporter.1",
+    "testsets_detail": [
+        {
+            "name": "load_config parses all four reference configs",
+            "passes": 186,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "default_config matches Python source defaults",
+            "passes": 26,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "validation mirrors Python constructors",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "named scenarios are new configs, not edits to the defaults",
+            "passes": 40,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "enums match Python integer values",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "OBSERVATION_NAMES is 15 features, hold progress last",
+            "passes": 2,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "RawState / ContinuousState construction",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "StopTracker state semantics",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "DuckieWorldState is branchable",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "EventFlags defaults",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "native render: pure layer",
+            "passes": 41,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.1 actions parity",
+            "passes": 361,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.2 discretizer parity (2700 cases)",
+            "passes": 2703,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.3 encoding parity (1810 cases)",
+            "passes": 28963,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.3 gate_duck_visibility parity (70 cases)",
+            "passes": 70,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.6 classify_tile parity",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.4 StopTracker parity (16 sequences)",
+            "passes": 160,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.5 reward parity (1617 cases)",
+            "passes": 16170,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.6 bezier + curvature parity",
+            "passes": 294,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ2.6 terminal_lane_fallback parity",
+            "passes": 20,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.1 map reconstruction",
+            "passes": 77,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.1 lane geometry parity",
+            "passes": 141,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.1 bezier_closest parity",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.1 spawn sampling algorithm",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.1 spawn fixture draws",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.2 SE(2) primitives parity",
+            "passes": 30,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.2 world-frame conversion parity",
+            "passes": 15,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.2 DB18 model parity (96 cases)",
+            "passes": 192,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.2 delayed command selection parity",
+            "passes": 93,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.2 tick chain parity (18 ticks, layered)",
+            "passes": 326,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.2 delay window spans decisions (frame_skip=6)",
+            "passes": 2,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.3 delay buffer window parity (18 ticks)",
+            "passes": 91,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.3 cross-decision memory (frame_skip=6 chunks)",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.3 u0 fallback before the window",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.4 duck walk parity (standalone DuckieObj.step)",
+            "passes": 3600,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.5 before_step trigger + FJ3.4 tick chain parity (rollout)",
+            "passes": 1650,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.5 before_step edge cases",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.6 lane frames + raw-state extraction parity",
+            "passes": 7964,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.6 continuous-state extraction parity",
+            "passes": 11022,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.6 coverage sanity",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.7 one-decision chain parity (24 scenarios)",
+            "passes": 59870,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.7 branch purity + aliasing",
+            "passes": 35,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.7 RNG-B determinism + frame-skip + delay memory",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.8-A MT19937 stream identity (9 seeds)",
+            "passes": 891,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.8-B SeedSequence + PCG64 stream identity",
+            "passes": 2241,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.8-C p_cross=0.5 trigger chain via simulate_decision",
+            "passes": 1402,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ3.8-D reset spawn call log replay (PCG64)",
+            "passes": 180,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 model construction + POMDPs interface",
+            "passes": 225,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 injected objects match the reference reset",
+            "passes": 41,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 initialstate distribution",
+            "passes": 71,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 spawn_accepted agrees with the reference resets",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 gen is a thin adapter over simulate_decision",
+            "passes": 64,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 isterminal / truncation semantics",
+            "passes": 1610,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ4 end-user rollout works like a benchmark MDP",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5.1 reference backend lifecycle",
+            "passes": 15,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5.2 state bridge round-trips exactly",
+            "passes": 28,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5.3 matched-state one-step parity (discrete)",
+            "passes": 40,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5.3 matched-state one-step parity (continuous)",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5-R environment identification",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5-R backend construction + interface",
+            "passes": 19,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5-R libm interposition (why the transports differ)",
+            "passes": 2,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5-R transport equivalence (process vs pythoncall)",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5-R matched-state parity vs native Julia (discrete)",
+            "passes": 16,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ5-R matched-state parity vs native Julia (continuous)",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ6 free-running rollout parity (discrete)",
+            "passes": 25,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ6 free-running rollout parity (continuous)",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ6 harness invariants",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.1 native .npy loading (no Python involved)",
+            "passes": 17,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.1 greedy rule semantics",
+            "passes": 54,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.1 policy drives the validated MDP",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.1/7.2 9000-state greedy parity vs the reference adapter",
+            "passes": 28,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.1 restricted action set parity",
+            "passes": 1,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.4a/7.5a torch oracle + weight export",
+            "passes": 33,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.4b SAC inference parity (layer by layer)",
+            "passes": 1084,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.5b TD3 inference parity (layer by layer)",
+            "passes": 1029,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.4/7.5 observations from real rollouts",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.6 evaluation harness (solver independent)",
+            "passes": 97,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ7.6 reference policies through the shared harness",
+            "passes": 35,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 gen is deterministic",
+            "passes": 63,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 gen never mutates the state it is called on",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 sibling branches do not alias",
+            "passes": 33,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 the shared legacy RNG is frozen, not merely shared",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 branch order does not change the result",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 terminal semantics survive branching",
+            "passes": 39,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 the action sets a planner will search",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 gen cost profile (measured, not asserted)",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.0 gen runs without any Python (fresh process)",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 InstrumentedMDP is transparent",
+            "passes": 65,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 the call counter counts what a planner consumes",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 any POMDPs.Policy plugs in without a wrapper",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 diagnostics are generic, and open for solver specifics",
+            "passes": 15,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 planning cost aggregates without assuming a tree",
+            "passes": 18,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 model capabilities are measured, not declared",
+            "passes": 26,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.1 the core names no solver",
+            "passes": 1,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 the standard POMDPs.jl call sequence works",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 planning does not disturb the model",
+            "passes": 17,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 the search runs on native Julia gen",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 the planner is reproducible",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 diagnostics arrive through the generic slot",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 the planner enters the shared evaluator unchanged",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 the ecosystem's own requirements check",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 state identity: a measured consequence, not a blocker",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.2 negative control: the planner really reads THIS model",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3a the action proposal is genuinely continuous",
+            "passes": 18,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3a the actions the planner really proposed",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3b action widening is active and sublinear",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3b negative control: widening off changes the tree",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3c the baseline transition is a point mass where it matters",
+            "passes": 254,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3c the tree shows no state-widening activity",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.3d DPW integrates like any other POMDPs.jl policy",
+            "passes": 17,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4a the seed split is frozen and disjoint",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4a cost-search curve for both planners",
+            "passes": 36,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4a what actually sets the cost per iteration",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4a matching is on measured calls, not iterations",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4a a learned policy has a flat curve",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b the evaluation protocol is frozen on disk",
+            "passes": 15,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b summary statistics",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b episodes are paired by seed",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b denominators are explicit",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b task and cost blocks stay separate",
+            "passes": 17,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b per-decision records keep episode structure",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4b the episode CSV preserves the paired structure",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4c the logger is observational",
+            "passes": 75,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4c the trace re-aggregates to the episode metrics",
+            "passes": 100,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4c the frozen replication reproduced FJ8.4b exactly",
+            "passes": 15,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.4c the enriched log carries per-decision planning cost",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.0 the contract exists and needs no backend",
+            "passes": 16,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.1 the drawn world IS the model's geometry",
+            "passes": 65,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.1 the stop line is the model's measurement, not a decoration",
+            "passes": 49,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.1 the view shows what lies outside the tile grid",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.1 trajectory overlay",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.2 the panel's semantics come from the core, not the backend",
+            "passes": 85,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.2 the projection panel is labelled privileged",
+            "passes": 34,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.0 the search snapshot is solver-neutral and validated",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3a the slice contract is core data, not a figure",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3b the tabular action comes from the validated decide()",
+            "passes": 1125,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3b near-tie: the slice must not fall back to argmax",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3c value and ambiguity are separate layers",
+            "passes": 1178,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3e honesty: coordinates, mode and fixed context",
+            "passes": 16,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3d continuous slices keep v and omega separate",
+            "passes": 19,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.3e the fixed context is not a neutral choice",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.4 the artefact is the only source of data",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.4 the loader validates rather than forgives",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.4 negative control: perturbed evidence is different evidence",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.4 pairing is preserved and seeds are explicit",
+            "passes": 136,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.4 horizon is distinguished from environment termination",
+            "passes": 227,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.4 not-applicable survives to the renderer",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5a search-data availability, tracked not assumed",
+            "passes": 36,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5a a snapshot cannot be reconstructed from aggregates",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5b snapshots load and validate with no solver installed",
+            "passes": 30,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5b what the two searches actually did",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5b a modified snapshot is refused",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5c statistics are per action, not per child node",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5c display filters never mutate the snapshot",
+            "passes": 77,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5d the value label matches what MCTS.jl computes",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.5d the continuous action plane draws only sampled actions",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6a the loader validates before it interprets",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6b series carry unit, category and semantics from the core",
+            "passes": 110,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6b missing survives to the renderer",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6b events come from logged indices only",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6b horizon and environment termination are distinguished",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6b the fingerprint is figure identity",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6a negative control: one edited cell moves what it should",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6a the enriched artefact supports the contract",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6b the three FJ9.6c episodes are available",
+            "passes": 264,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6c the series expose what the aggregate could not",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.6d progress bins aggregate without interpolating",
+            "passes": 13,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7a the sequence is built from logged rows only",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7a the timeline never claims wall-clock time",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7b the frame never shows the future",
+            "passes": 22,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7b an event appears at its frame and not before",
+            "passes": 32,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7b missing d_stop stays missing in playback",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7b horizon and termination are visually distinct",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7c selection rules are stated, not chosen by eye",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7d pairing is by absolute decision, with a freeze",
+            "passes": 24,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7 negative control 1: edit an ego position",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7 negative control 2: shift an event by one decision",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7 negative control 3: edit model_calls",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7 negative control 4: turn a missing d_stop into zero",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.7 the absent list is reported, not reconstructed",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8a the inventory classifies before any layout is chosen",
+            "passes": 19,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8b layout and wrapping are core concerns",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8d a caption is checked, not trusted",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8c Figure 3 refuses to compare two different states",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8c Figure 4 carries the FJ9.6 correction",
+            "passes": 20,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8 the figure fingerprint tracks its content",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.8e the exported artefacts exist in vector and raster form",
+            "passes": 39,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ10 the audit is well formed",
+            "passes": 14,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ10 every READY claim is true of the live package",
+            "passes": 17,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ10 every NOT_READY claim is genuinely absent",
+            "passes": 134,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ10 ContinuousState is a privileged projection, not an observation",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ10 the RNG contract holds and is not extended",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ10 the visualization extension points are recorded for FJ9",
+            "passes": 24,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.5 the model is identical with and without the solver",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ8.5 the solver stays a weak dependency",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9c the artifact ledger distinguishes kinds of evidence",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9d the documentation audit finds no stale claim",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9e optional packages do not alter the core formulation",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9e src/ imports no optional backend",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9f known limitations are recorded, not hidden",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9f the manifest is complete when it has been built",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "FJ9.9b the structured report agrees with the parsers",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        }
+    ]
+}

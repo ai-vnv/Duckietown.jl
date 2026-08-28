@@ -1,0 +1,32 @@
+{
+    "continuous_lanefollow": {
+        "process_d_stop_seen": 14,
+        "julia_d_stop_seen": 14,
+        "process_min_d_stop": 0.09360281492293515,
+        "julia_min_d_stop": 0.09360281492293515
+    },
+    "continuous_stop_pass": {
+        "process_d_stop_seen": 18,
+        "julia_d_stop_seen": 18,
+        "process_min_d_stop": 0.12980655465524632,
+        "julia_min_d_stop": 0.12980655465524632
+    },
+    "discrete_long": {
+        "process_d_stop_seen": 0,
+        "julia_d_stop_seen": 0,
+        "process_min_d_stop": null,
+        "julia_min_d_stop": null
+    },
+    "continuous_stop_compliance": {
+        "process_d_stop_seen": 20,
+        "julia_d_stop_seen": 20,
+        "process_min_d_stop": 0.04114487678718745,
+        "julia_min_d_stop": 0.04114487678718745
+    },
+    "discrete_lanefollow": {
+        "process_d_stop_seen": 0,
+        "julia_d_stop_seen": 0,
+        "process_min_d_stop": null,
+        "julia_min_d_stop": null
+    }
+}

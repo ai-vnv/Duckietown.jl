@@ -1,0 +1,48 @@
+# Windows "downloaded file" metadata, created by the WSL/Windows boundary
+*:Zone.Identifier
+
+# Julia
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+deps/deps.jl
+jl_*
+/docs/build/
+
+# Editors / OS
+.DS_Store
+*.swp
+*~
+.vscode/
+
+# NOTE: Manifest.toml, Manifest-v1.11.toml and experiments/Manifest.toml are
+# deliberately COMMITTED. This project pins its validation environment per
+# Julia version (see README) and FJ9.9 treats the resolved dependency set as
+# part of the reproducibility claim, not as a local detail.
+#
+# NOTE: artifacts/ is deliberately COMMITTED. The FJ9.9c ledger classifies the
+# FJ8.4b evaluation, the FJ8.4c decision log and the two search snapshots as
+# PERSISTED_SOURCE — recorded evidence that cannot be regenerated, only
+# checked. Excluding them would leave every reproducibility claim in docs/
+# unverifiable by anyone else.
+
+# stale backup from the FJ8.2 dependency rework
+Project.toml.pre-fj82.bak
+
+# Python bytecode (tools/parity is executed in place by the reference env)
+__pycache__/
+*.pyc
+
+# notebooks/: heavy or local-only experiment products. The recordings that
+# the DORA notebook needs (two JSONs + the per-decision GIF cache) ARE
+# committed; the raw frame PNGs, serialized Julia states, videos and logs
+# are regenerable from the committed scripts and stay local.
+notebooks/safe_frames/
+notebooks/zigzag_frames/
+notebooks/bev_frames/
+notebooks/*.jls
+notebooks/*.mp4
+notebooks/*.log
+notebooks/pluto_gifs/*_s_*.gif
+notebooks/maps_bev.png
+docs/build/

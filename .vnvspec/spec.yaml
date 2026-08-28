@@ -1,0 +1,125 @@
+# Verification & validation specification for DuckietownDecisionModels.jl.
+#
+# Each requirement is one of the claims the package makes publicly, mapped
+# to the gate that established it (docs/src/validation/) and the tests that
+# re-establish it on every suite run. Nothing here is aspirational: every
+# requirement below is currently verified by the suite (148k+ assertions;
+# artifacts/fj9/test_report.json is the machine-readable result).
+
+name: duckietown-decision-models
+version: "0.1.0"
+description: >
+  A native Julia reimplementation of the decision layer of a
+  gym-duckietown-based environment, exposed through POMDPs.jl and validated
+  against the Python reference implementation decision by decision. The
+  verification methods below are executable: the referenced tests run in
+  the package suite, and the parity layers additionally run against the
+  live Python reference where it is installed.
+
+requirements:
+  - id: REQ-PARITY-FIXTURE-001
+    statement: The system shall reproduce the Python reference outputs of the pure model functions on the recorded fixture cases.
+    rationale: Fixture parity is the first, cheapest layer of the equivalence claim and runs everywhere, with no Python installed.
+    verification_method: test
+    acceptance_criteria:
+      - test/test_fj2_parity.jl passes against test/fixtures/fj2_parity.json (16k+ cases).
+      - Fixture files are committed and never regenerated silently.
+    priority: blocking
+    metadata:
+      gate: FJ2
+
+  - id: REQ-PARITY-RNG-001
+    statement: The system shall reproduce the NumPy random streams bit for bit.
+    rationale: Episode-level parity is impossible if the two sides consume different random numbers.
+    verification_method: test
+    acceptance_criteria:
+      - test/test_fj3_rng.jl passes against fixtures generated from NumPy.
+      - Ziggurat constants are carried verbatim from the reference implementation.
+    priority: blocking
+    metadata:
+      gate: FJ3.8
+
+  - id: REQ-PARITY-LIVE-001
+    statement: The system shall produce the same one-decision successor as the live Python reference from any matched state.
+    rationale: Fixtures cannot cover the reachable state space; live matched-state parity samples it.
+    verification_method: test
+    acceptance_criteria:
+      - test/test_fj5_reference.jl passes with the reference environment installed.
+      - Without the reference, the suite skips these sets by name and says so (test/reference_guard.jl), never passing silently.
+    priority: blocking
+    metadata:
+      gate: FJ5
+
+  - id: REQ-PARITY-EPISODE-001
+    statement: The system shall match the reference trajectory at every step of a free-running seeded episode.
+    rationale: One-step parity does not exclude drift; episode parity does.
+    verification_method: test
+    acceptance_criteria:
+      - test/test_fj6_rollout.jl passes; recorded trajectories live in artifacts/fj6/.
+    priority: blocking
+    metadata:
+      gate: FJ6
+
+  - id: REQ-POLICY-PARITY-001
+    statement: The system shall reproduce the reference actions of each frozen policy under native Julia inference.
+    rationale: Baselines are only baselines if they are the same policies, not retrained lookalikes.
+    verification_method: test
+    acceptance_criteria:
+      - test/test_fj7_actors.jl and test/test_fj7_tabular.jl pass (layer-by-layer actor parity, 9000-state greedy parity).
+      - Checkpoints are read-only frozen inputs and never rewritten.
+    priority: high
+    metadata:
+      gate: FJ7
+
+  - id: REQ-CORE-PURITY-001
+    statement: The system shall load with only its declared Julia dependencies.
+    rationale: A decision-model benchmark must not impose a solver or a rendering stack on its users.
+    verification_method: test
+    acceptance_criteria:
+      - test/test_fj8_solver_independence.jl passes.
+      - source_import_audit finds no banned import in src/; the CI core job fails if PythonCall, MCTS, or Makie is loaded by `using`.
+    priority: blocking
+    metadata:
+      gate: FJ8.1
+
+  - id: REQ-SCENARIO-ISOLATION-001
+    statement: The system shall keep the shipped default configuration identical to the Python source defaults.
+    rationale: Silent config drift invalidates every recorded result downstream.
+    verification_method: test
+    acceptance_criteria:
+      - The `named scenarios are new configs` testset pins :stop_and_duck and :stop_and_duck_safe to exactly their documented field deltas.
+    priority: high
+    metadata:
+      gate: configs
+
+  - id: REQ-DOC-CONSISTENCY-001
+    statement: The system shall pass its documentation audit with zero issues.
+    rationale: A fixed bug must not survive as prose; a moved file must not leave dead links.
+    verification_method: test
+    acceptance_criteria:
+      - documentation_audit returns zero issues on the repository (runs in the suite and in CI).
+      - STALE_CLAIMS entries are quotable only from their allowlisted files.
+    priority: high
+    metadata:
+      gate: FJ9.9d
+
+  - id: REQ-EVIDENCE-LEDGER-001
+    statement: The system shall classify every recorded artifact in the artifact ledger.
+    rationale: Evidence that can be silently regenerated is not evidence.
+    verification_method: test
+    acceptance_criteria:
+      - artifact_ledger enumerates the artifacts and their classes; test/test_fj99_closure.jl checks it.
+    priority: high
+    metadata:
+      gate: FJ9.9c
+
+  - id: REQ-REPORTING-001
+    statement: The system shall write a machine-readable test report with detail rows that sum to its headline counts.
+    rationale: A terminal summary can be misparsed; the first run of the reporter itself was caught undercounting by independent cross-checks.
+    verification_method: test
+    acceptance_criteria:
+      - artifacts/fj9/test_report.json is written on every suite run.
+      - CI fails if the detail rows do not sum to the headline assertion count.
+    priority: high
+    metadata:
+      gate: FJ9.9b
