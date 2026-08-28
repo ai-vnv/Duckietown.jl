@@ -252,7 +252,7 @@ Leave it unset for release-grade runs.
 
 ```
 with the reference     201 test sets, 148 907 assertions
-without it              24 test sets,  78 897 assertions
+without it              50 test sets,  77 544 assertions
 ```
 
 The fixture-based parity layers (FJ2/FJ3) run in both modes — their fixtures

@@ -111,10 +111,17 @@ function duck_from_rng(dj)
         tuple3_rng(dj.max_coords), corners, norm_m)
 end
 
-@testset "FJ3.8-C p_cross=0.5 trigger chain via simulate_decision" begin
+# This one subtestset reads the reference's frozen training config directly
+# (a raw sibling path, which is how it slipped past the dependency audit that
+# un-gated this file): it self-guards instead of assuming HAVE_REFERENCE.
+const FJ38C_CFG = joinpath(pkgdir(DuckietownDecisionModels), "..",
+    "duckduck", "policies", "q_learning", "training_config.yaml")
+if !isfile(FJ38C_CFG)
+    @info "FJ3.8-C: skipped (needs the reference's frozen training config at ../duckduck/policies/; the public reference repository does not ship the policies directory)"
+end
+isfile(FJ38C_CFG) && @testset "FJ3.8-C p_cross=0.5 trigger chain via simulate_decision" begin
     tc = fixtures_rng.trigger_chain
-    cfg = load_config(joinpath(pkgdir(DuckietownDecisionModels), "..",
-        "duckduck", "policies", "q_learning", "training_config.yaml"))
+    cfg = load_config(FJ38C_CFG)
     m0 = DuckieTransitionModel(cfg)
     d = m0.duck_cfg
     dc = DuckControllerConfig(
