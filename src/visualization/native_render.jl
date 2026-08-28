@@ -156,6 +156,11 @@ function load_obj_groups(objpath::AbstractString)
             push!(vs, (parse(Float32, t[2]), parse(Float32, t[3]),
                        parse(Float32, t[4])))
         elseif t[1] == "vt"
+            # kept EXACTLY as in the file: the reference meshes rely on
+            # OpenGL REPEAT wrap (the sign board's v runs 1..2), so the
+            # backend must sample with a repeating sampler — flipping or
+            # normalising coordinates here rotates the sign face 180°
+            # (measured on sign_stop.png before this was settled)
             push!(vts, (parse(Float32, t[2]), parse(Float32, t[3])))
         elseif t[1] == "usemtl"
             cur = t[2]

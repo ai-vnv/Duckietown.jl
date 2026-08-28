@@ -1345,8 +1345,14 @@ end
 # ---------------------------------------------------------------------------
 
 const _native_texcache = Dict{String,Any}()
+# The reference meshes rely on OpenGL's default REPEAT wrap: the stop sign
+# board's uv run from v = 1 to v = 2 (measured in sign_stop.obj), which under
+# Makie's clamp-to-edge default samples the texture's white margin row and
+# renders the board blank. A repeating sampler reproduces the reference
+# behaviour.
 _native_tex(path) = get!(_native_texcache, path) do
-    Makie.FileIO.load(path)
+    Makie.ShaderAbstractions.Sampler(Makie.FileIO.load(path);
+        x_repeat = :repeat, y_repeat = :repeat)
 end
 
 function _native_tile!(scene, ts, i, j, texpath, rot)
