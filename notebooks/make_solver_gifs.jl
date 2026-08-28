@@ -221,6 +221,14 @@ hero_out === :lap || error("hero DORA episode did not complete a lap")
 const ASSETS = duckietown_assets_root()
 const PW, PH = 380, 285
 
+# repeating sampler, as in the extension: the sign board's uv run v = 1..2
+# and rely on GL_REPEAT; a plain image samples the white margin instead
+const _tex_cache = Dict{String,Any}()
+_tex(path) = get!(_tex_cache, path) do
+    Makie.ShaderAbstractions.Sampler(Makie.FileIO.load(path);
+        x_repeat = :repeat, y_repeat = :repeat)
+end
+
 function populate_static!(scene, nw)
     for (i, j, texpath, rot) in nw.tiles
         x0, x1 = i * nw.tile_size, (i + 1) * nw.tile_size
@@ -231,7 +239,7 @@ function populate_static!(scene, nw)
         m = Makie.GeometryBasics.Mesh(pts,
             [Makie.GeometryBasics.TriangleFace(1, 2, 3),
              Makie.GeometryBasics.TriangleFace(1, 3, 4)]; uv = uv)
-        mesh!(scene, m; color = Makie.FileIO.load(texpath),
+        mesh!(scene, m; color = _tex(texpath),
               shading = NoShading)
     end
 end
@@ -244,7 +252,7 @@ function add_object!(scene, o::DDM.NativeObject)
         uvs = [Vec2f(u...) for u in g.uvs]
         m = Makie.GeometryBasics.Mesh(pts, fcs; uv = uvs)
         col = g.texture === nothing ? RGBf(g.color...) :
-              Makie.FileIO.load(g.texture)
+              _tex(g.texture)
         push!(plots, mesh!(scene, m; color = col, shading = NoShading))
     end
     return plots
