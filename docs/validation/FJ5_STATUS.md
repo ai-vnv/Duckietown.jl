@@ -200,7 +200,7 @@ Julia ≥ 1.11 on Windows.
 `tools/parity/run_fj54_stop_probe.jl` drives the LIVE reference runtime for
 400 decisions on the **unmodified baseline config**, recording every
 stop-candidate filter quantity per decision (raw data:
-`docs/fj54_stop_probe.json`).
+`docs/validation/fj54_stop_probe.json`).
 
 | Quantity (baseline, 400 decisions, 1 reset) | Value |
 |---|---|
@@ -223,7 +223,7 @@ dec 385  d_stop 0.257  ahead 0.457  lateral 0.057  orient -0.883
 dec 388  d_stop 0.181  ahead 0.381  lateral 0.125  orient -0.950
 ```
 
-**Correction to the record.** `docs/FJ3_STATUS.md` recorded a "scenario
+**Correction to the record.** `docs/validation/FJ3_STATUS.md` recorded a "scenario
 observation" that the baseline sign may never pass the candidate filter
 (`d_stop = None` across a 300-decision rollout). That conclusion was
 over-generalized from ONE trajectory: the hits above need a particular

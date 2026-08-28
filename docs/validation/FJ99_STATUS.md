@@ -263,7 +263,7 @@ docstring. That is the argument for executable audits over checklists — not
 that they are more rigorous in principle, but that a checklist cannot fail.
 
 The `comparison.jl` finding is the one worth keeping. FJ9.6 corrected the
-sentence in `docs/FJ8_STATUS.md` and stopped there, because that was where the
+sentence in `docs/validation/FJ8_STATUS.md` and stopped there, because that was where the
 wrong claim had been *read*. It was still sitting in the code comment that had
 generated it, ready to be re-read by anyone maintaining the compliance metric.
 A correction applied where a claim was found, rather than everywhere it lives,

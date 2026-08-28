@@ -96,7 +96,7 @@ Claims the evidence has contradicted. Each is banned from the normative
 documents; the allowlist names the files permitted to quote it, which are the
 correction itself and the tests that guard it.
 
-FJ9.6 is the reason this exists: `docs/FJ8_STATUS.md` asserted that TD3 "never
+FJ9.6 is the reason this exists: `docs/validation/FJ8_STATUS.md` asserted that TD3 "never
 reaches a stop sign" while its own artefact recorded 2 289 stop-zone
 decisions. The sentence survived because nothing checked prose.
 """
@@ -104,8 +104,8 @@ const STALE_CLAIMS = (
     (claim = "never reaches a stop sign",
      correction = "TD3 reaches the sign, performs a full stop, and never " *
                   "proceeds past it (FJ9.6)",
-     allow = ("docs/FJ8_STATUS.md", "docs/FJ96_STATUS.md",
-              "docs/FJ98_STATUS.md", "docs/FJ99_STATUS.md",
+     allow = ("docs/validation/FJ8_STATUS.md", "docs/validation/FJ96_STATUS.md",
+              "docs/validation/FJ98_STATUS.md", "docs/validation/FJ99_STATUS.md",
               "src/visualization/paper_figure.jl",
               "test/test_fj98_publication.jl",
               "test/test_fj96_diagnostics.jl",
@@ -114,8 +114,8 @@ const STALE_CLAIMS = (
               "test/test_fj99_closure.jl")),
     (claim = "never reaches the stop sign",
      correction = "same as above, alternate phrasing",
-     allow = ("docs/FJ96_STATUS.md", "docs/FJ98_STATUS.md",
-              "docs/FJ99_STATUS.md", "src/visualization/paper_figure.jl",
+     allow = ("docs/validation/FJ96_STATUS.md", "docs/validation/FJ98_STATUS.md",
+              "docs/validation/FJ99_STATUS.md", "src/visualization/paper_figure.jl",
               "src/interfaces/reproducibility.jl",
               "test/test_fj99_closure.jl")),
 )

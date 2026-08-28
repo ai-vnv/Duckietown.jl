@@ -101,7 +101,7 @@ and deferred the reachability question to FJ5. **Resolved there:** the FJ5.4
 probe of the live reference runtime returns `A_REACHABLE` — the baseline sign
 does become a candidate (19 of 400 decisions). The earlier
 "possibly unreachable" note was an artifact of a single trajectory and is
-superseded; see `docs/FJ5_STATUS.md` §FJ5.4.
+superseded; see `docs/validation/FJ5_STATUS.md` §FJ5.4.
 
 ## Next gate
 

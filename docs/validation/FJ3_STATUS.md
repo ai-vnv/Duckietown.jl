@@ -102,8 +102,8 @@ Carry the stop-sign scenario observation below into that gate.
    a property of the configuration: probing the LIVE reference runtime for
    400 decisions returns a candidate on 19 of them (`d_stop` from 0.336 m
    down to 0.181 m as the ego approaches, minimum lateral offset 0.0023 m),
-   verdict `A_REACHABLE`. See `docs/FJ5_STATUS.md` §FJ5.4 and the raw data in
-   `docs/fj54_stop_probe.json`. The baseline config is fine and must not be
+   verdict `A_REACHABLE`. See `docs/validation/FJ5_STATUS.md` §FJ5.4 and the raw data in
+   `docs/validation/fj54_stop_probe.json`. The baseline config is fine and must not be
    changed.
 
 ## FJ3.7 design

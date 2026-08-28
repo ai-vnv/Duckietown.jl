@@ -9,7 +9,7 @@
 #
 # Accumulators live inside functions: a bare top-level loop puts them in soft
 # scope and Julia makes them fresh locals, which has cost this project three
-# debugging cycles (see docs/FJ84C_STATUS.md).
+# debugging cycles (see docs/validation/FJ84C_STATUS.md).
 
 using DuckietownDecisionModels
 using POMDPs

@@ -200,7 +200,7 @@ events, outcome             unchanged
 
 **One, in FJ8's prose, found by this gate's figures and corrected.**
 
-`docs/FJ8_STATUS.md` stated that TD3 "never reaches a stop sign". The TD3
+`docs/validation/FJ8_STATUS.md` stated that TD3 "never reaches a stop sign". The TD3
 time series shows the opposite: `full_stop` fires at decision 28, `sigma_stop`
 is true for 123 of the 150 decisions that follow, `d_stop` falls to 0, and
 `v` sits at 0.005 m/s for the rest of the episode. TD3 reaches the sign,

@@ -16,7 +16,7 @@ using JSON3
 using Printf
 
 out_path = length(ARGS) >= 1 ? ARGS[1] :
-    joinpath(pkgdir(DuckietownDecisionModels), "docs", "fj54_stop_probe.json")
+    joinpath(pkgdir(DuckietownDecisionModels), "docs", "validation", "fj54_stop_probe.json")
 
 reference_backend_available() ||
     error("FJ5.4 probe needs the reference backend (WSL + ddm-ref)")

@@ -26,7 +26,7 @@ const FJ5_AVAILABLE = FJ5_JULIA_OK && reference_backend_available()
 
 if !FJ5_JULIA_OK
     @info "FJ5: skipped on Julia $(VERSION) — the live parity set needs " *
-        "Julia >= 1.11 (1.10.11 Windows GC crash, see docs/FJ5_STATUS.md)"
+        "Julia >= 1.11 (1.10.11 Windows GC crash, see docs/validation/FJ5_STATUS.md)"
 elseif !FJ5_AVAILABLE
     @info "FJ5: reference backend unavailable (needs WSL + ddm-ref) — skipping"
 end

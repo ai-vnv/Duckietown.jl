@@ -128,7 +128,7 @@ FJ5R_PYCALL_OK && @testset "FJ5-R libm interposition (why the transports differ)
     # CPython's and NumPy's `atan2` resolve to Julia's implementation instead
     # of glibc's. Demonstrated here on the exact q0 entries the pose readback
     # uses. Standalone Python returns 0.4677396694940821 for the same inputs
-    # (measured; see docs/FJ5R_STATUS.md) — one ULP away.
+    # (measured; see docs/validation/FJ5R_STATUS.md) — one ULP away.
     math = pyimport("math")
     np = pyimport("numpy")
     q21, q11 = 0.45086989117635035, 0.8925896824580856

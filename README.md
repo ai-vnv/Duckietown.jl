@@ -260,20 +260,21 @@ reporter was caught.
 The port was developed as a sequence of validation gates. Each has a status
 document recording what was measured, what deviated, and what was left
 undone — worth reading if you want to know how far any particular claim has
-actually been checked. [`docs/BUILDING.md`](docs/BUILDING.md) is the
+actually been checked; the index lives at
+[`docs/validation/`](docs/validation/README.md). [`docs/BUILDING.md`](docs/BUILDING.md) is the
 narrative companion: what every file is, why it exists, and where each
 claim's evidence lives — under an explicit provenance rule.
 
 | Gate | Scope | Document |
 |---|---|---|
-| FJ2–FJ3 | semantic parity: actions, discretizer, reward, dynamics, observers, exact NumPy RNG | [FJ2](docs/FJ2_STATUS.md), [FJ3](docs/FJ3_STATUS.md) |
-| FJ4 | the POMDPs.jl interface | [FJ4](docs/FJ4_STATUS.md) |
-| FJ5 / FJ5-R | live reference backends, out-of-process and in-process | [FJ5](docs/FJ5_STATUS.md), [FJ5-R](docs/FJ5R_STATUS.md) |
-| FJ6 | full-episode rollout parity | [FJ6](docs/FJ6_STATUS.md) |
-| FJ7 | the four trained baselines, matched layer by layer | [FJ7](docs/FJ7_STATUS.md) |
-| FJ8 | solver compatibility, planner cost curves, six-solver comparison | [FJ8](docs/FJ8_STATUS.md), [FJ8.4c](docs/FJ84C_STATUS.md) |
-| FJ9 | visualization, diagnostics, animation, publication figures | [FJ9](docs/FJ9_STATUS.md) · [9.6](docs/FJ96_STATUS.md) · [9.7](docs/FJ97_STATUS.md) · [9.8](docs/FJ98_STATUS.md) · [9.9](docs/FJ99_STATUS.md) |
-| FJ10 | POMDP readiness audit, run *before* the renderer was designed | [FJ10](docs/FJ10_STATUS.md) |
+| FJ2–FJ3 | semantic parity: actions, discretizer, reward, dynamics, observers, exact NumPy RNG | [FJ2](docs/validation/FJ2_STATUS.md), [FJ3](docs/validation/FJ3_STATUS.md) |
+| FJ4 | the POMDPs.jl interface | [FJ4](docs/validation/FJ4_STATUS.md) |
+| FJ5 / FJ5-R | live reference backends, out-of-process and in-process | [FJ5](docs/validation/FJ5_STATUS.md), [FJ5-R](docs/validation/FJ5R_STATUS.md) |
+| FJ6 | full-episode rollout parity | [FJ6](docs/validation/FJ6_STATUS.md) |
+| FJ7 | the four trained baselines, matched layer by layer | [FJ7](docs/validation/FJ7_STATUS.md) |
+| FJ8 | solver compatibility, planner cost curves, six-solver comparison | [FJ8](docs/validation/FJ8_STATUS.md), [FJ8.4c](docs/validation/FJ84C_STATUS.md) |
+| FJ9 | visualization, diagnostics, animation, publication figures | [FJ9](docs/validation/FJ9_STATUS.md) · [9.6](docs/validation/FJ96_STATUS.md) · [9.7](docs/validation/FJ97_STATUS.md) · [9.8](docs/validation/FJ98_STATUS.md) · [9.9](docs/validation/FJ99_STATUS.md) |
+| FJ10 | POMDP readiness audit, run *before* the renderer was designed | [FJ10](docs/validation/FJ10_STATUS.md) |
 
 ---
 

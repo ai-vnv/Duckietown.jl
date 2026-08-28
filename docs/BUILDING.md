@@ -6,7 +6,7 @@ why it exists, and how it was validated.
 **The provenance rule.** Every factual claim in this document traces to one
 of five sources, and says which:
 
-1. a **gate document** in `docs/FJ*_STATUS.md` (the validation record),
+1. a **gate document** in `docs/validation/FJ*_STATUS.md` (the validation record),
 2. a **test** in `test/` (executable, re-runnable),
 3. an **artifact** in `artifacts/` (recorded evidence),
 4. a **script + recording** in `notebooks/` (the DORA case study), or
@@ -58,7 +58,7 @@ The port was built as a sequence of **FJ gates**. A gate is a bounded claim
 ("the ego dynamics match", "a full episode matches", "the trained policies
 match") with:
 
-- a **status document** (`docs/FJ<N>_STATUS.md`) recording what was
+- a **status document** (`docs/validation/FJ<N>_STATUS.md`) recording what was
   measured, what deviated, and what was left undone;
 - **tests** that re-run the measurement (`test/test_fj<N>_*.jl`);
 - where applicable, **frozen artifacts** of the evidence (`artifacts/`).
@@ -69,16 +69,16 @@ entry linked to its document):
 
 | Gate | Claim | Record |
 |---|---|---|
-| FJ1 | package skeleton, typed data model, config hierarchy | [FJ1](FJ1_STATUS.md) |
-| FJ2 | semantic parity of the pure functions (actions, discretizer, reward) against fixtures generated from the Python source | [FJ2](FJ2_STATUS.md), `test/test_fj2_parity.jl`, `test/fixtures/fj2_parity.json` |
-| FJ3 | native dynamics, observers, transition, exact NumPy RNG | [FJ3](FJ3_STATUS.md), `test/test_fj3_*.jl` |
-| FJ4 | the POMDPs.jl model interface | [FJ4](FJ4_STATUS.md), `test/test_fj4_pomdps.jl` |
-| FJ5 / FJ5-R | live reference backends (out-of-process and in-process) + matched-state one-step parity | [FJ5](FJ5_STATUS.md), [FJ5-R](FJ5R_STATUS.md), `test/test_fj5_reference.jl` |
-| FJ6 | free-running full-episode rollout parity | [FJ6](FJ6_STATUS.md), `artifacts/fj6/` |
-| FJ7 | the four trained baselines (Q-learning, SARSA, SAC, TD3), matched layer by layer | [FJ7](FJ7_STATUS.md), `test/test_fj7_*.jl` |
-| FJ8 | online planning: solver contract, budget curves, cross-family comparison | [FJ8](FJ8_STATUS.md), [FJ8.4c](FJ84C_STATUS.md), `artifacts/fj8/` |
-| FJ9 | scientific visualization through publication figures and reproducibility closure | [FJ9](FJ9_STATUS.md), [9.6](FJ96_STATUS.md), [9.7](FJ97_STATUS.md), [9.8](FJ98_STATUS.md), [9.9](FJ99_STATUS.md) |
-| FJ10 | POMDP readiness audit ("an audit, not an implementation" — its own header) | [FJ10](FJ10_STATUS.md), `src/interfaces/pomdp_readiness.jl` |
+| FJ1 | package skeleton, typed data model, config hierarchy | [FJ1](validation/FJ1_STATUS.md) |
+| FJ2 | semantic parity of the pure functions (actions, discretizer, reward) against fixtures generated from the Python source | [FJ2](validation/FJ2_STATUS.md), `test/test_fj2_parity.jl`, `test/fixtures/fj2_parity.json` |
+| FJ3 | native dynamics, observers, transition, exact NumPy RNG | [FJ3](validation/FJ3_STATUS.md), `test/test_fj3_*.jl` |
+| FJ4 | the POMDPs.jl model interface | [FJ4](validation/FJ4_STATUS.md), `test/test_fj4_pomdps.jl` |
+| FJ5 / FJ5-R | live reference backends (out-of-process and in-process) + matched-state one-step parity | [FJ5](validation/FJ5_STATUS.md), [FJ5-R](validation/FJ5R_STATUS.md), `test/test_fj5_reference.jl` |
+| FJ6 | free-running full-episode rollout parity | [FJ6](validation/FJ6_STATUS.md), `artifacts/fj6/` |
+| FJ7 | the four trained baselines (Q-learning, SARSA, SAC, TD3), matched layer by layer | [FJ7](validation/FJ7_STATUS.md), `test/test_fj7_*.jl` |
+| FJ8 | online planning: solver contract, budget curves, cross-family comparison | [FJ8](validation/FJ8_STATUS.md), [FJ8.4c](validation/FJ84C_STATUS.md), `artifacts/fj8/` |
+| FJ9 | scientific visualization through publication figures and reproducibility closure | [FJ9](validation/FJ9_STATUS.md), [9.6](validation/FJ96_STATUS.md), [9.7](validation/FJ97_STATUS.md), [9.8](validation/FJ98_STATUS.md), [9.9](validation/FJ99_STATUS.md) |
+| FJ10 | POMDP readiness audit ("an audit, not an implementation" — its own header) | [FJ10](validation/FJ10_STATUS.md), `src/interfaces/pomdp_readiness.jl` |
 
 ### Standing rules the gates produced
 
