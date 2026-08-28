@@ -3,7 +3,7 @@
 [![CI](https://github.com/ai-vnv/Duckietown.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/ai-vnv/Duckietown.jl/actions/workflows/CI.yml)
 [![codecov](https://codecov.io/gh/ai-vnv/Duckietown.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/ai-vnv/Duckietown.jl)
 [![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://ai-vnv.github.io/Duckietown.jl/dev/)
-[![V&V](https://img.shields.io/endpoint?url=https%3A%2F%2Fai-vnv.github.io%2FDuckietown.jl%2Fvnv-badge.json)](https://github.com/ai-vnv/Duckietown.jl/blob/main/.vnvspec/spec.yaml)
+[![V&V](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fai-vnv%2FDuckietown.jl%2Fgh-pages%2Fvnv-badge.json)](https://github.com/ai-vnv/Duckietown.jl/blob/main/.vnvspec/spec.yaml)
 
 A Duckietown lane-following-with-obstacles MDP, written in Julia as a
 [POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl) problem.
