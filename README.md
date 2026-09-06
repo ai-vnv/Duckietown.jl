@@ -39,12 +39,20 @@ plotting library and no solver; the map is embedded in the package.
 
 ## Install
 
-Not in the General registry yet, so install from the repository:
+Registration in the General registry is pending. Until it merges, install from
+the repository:
 
 ```julia
 using Pkg
 Pkg.activate("duckie")            # a project of its own — see the note below
 Pkg.add(url = "https://github.com/ai-vnv/Duckietown.jl")
+Pkg.add("POMDPs")
+```
+
+Once the registration merges, the same two lines become:
+
+```julia
+Pkg.add("Duckietown")
 Pkg.add("POMDPs")
 ```
 

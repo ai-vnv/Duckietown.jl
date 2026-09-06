@@ -1,6 +1,9 @@
 name = "Duckietown"
 uuid = "b9206cf4-d873-49ff-bdb0-b4cd6bc56877"
-authors = ["Ahmad Alfan Alfian Irfan <alfanalfian622@gmail.com>"]
+authors = [
+    "Ahmad Alfan Alfian Irfan <alfanalfian622@gmail.com>",
+    "Mansur M. Arief <mansurarief91@gmail.com>",
+]
 version = "0.1.0"
 
 [deps]
