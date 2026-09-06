@@ -172,9 +172,9 @@ end
         r = JSON3.read(read(rp, String))
         @test r.schema == "fj99.reporter.1"
         # The floor must hold for BOTH run modes, because the previous run may
-        # have been either: the release-grade run measures 202 testsets and
-        # 148 907 assertions, the single-clone run (no reference checkout)
-        # roughly 90 and 79 000. Release-grade-ness of the COMMITTED report is
+        # have been either: the release-grade run measures 235 testsets and
+        # 149 240 assertions, the single-clone run (no reference checkout)
+        # 134 and roughly 79 000. Release-grade-ness of the COMMITTED report is
         # enforced elsewhere: the VnV badge workflow fails unless every
         # requirement's testsets — including FJ5/FJ6/FJ7 — are present and
         # green in it.

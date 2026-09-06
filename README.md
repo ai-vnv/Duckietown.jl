@@ -304,8 +304,8 @@ file, ~3.5 of the ~8 minutes) for day-to-day runs — announced, never silent.
 Leave it unset for release-grade runs.
 
 ```
-with the reference     202 test sets, 148 907 assertions
-without it             101 test sets,  79 050 assertions
+with the reference     235 test sets, 149 240 assertions
+without it             134 test sets,  79 383 assertions
 ```
 
 The fixture-based parity layers (FJ2/FJ3) run in both modes — their fixtures

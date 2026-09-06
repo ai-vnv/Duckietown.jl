@@ -68,6 +68,9 @@ include("solvers/adapters.jl")
 include("solvers/actor_adapters.jl")
 include("evaluation/rollout.jl")
 include("evaluation/parity.jl")
+# The reference-backed halves of parity and rollout evaluation: every line
+# needs the live reference installation, so they live with the bridges.
+include("backends/reference_parity.jl")
 include("evaluation/metrics.jl")
 include("evaluation/benchmark.jl")
 # FJ8.4a: the cost-search curve, solver-agnostic.

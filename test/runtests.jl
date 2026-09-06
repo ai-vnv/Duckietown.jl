@@ -89,6 +89,14 @@ include("test_fj97_animation.jl")
 include("test_fj98_publication.jl")
 # FJ10: POMDP readiness audit — an audit, not an implementation.
 include("test_fj10_readiness.jl")
+# Native-scenario coverage of the evaluation machinery and policy adapters:
+# the same code paths the gated FJ7/FJ8 experiments run through, exercised
+# from a single clone — scenario_config worlds, synthetic Q-tables, and the
+# committed exported actor weights. The gates validate these paths against
+# the reference; these files keep them exercised (and counted) everywhere.
+include("test_evaluation_native.jl")
+include("test_policies_native.jl")
+include("test_native_tails.jl")
 # FJ9.9: reproducibility closure — audits that fail when reality drifts.
 include("test_fj99_closure.jl")
 

@@ -2,8 +2,8 @@
     "errors": 0,
     "julia_version": "1.11.3",
     "failures": 0,
-    "testsets": 202,
-    "assertions": 148907,
+    "testsets": 235,
+    "assertions": 149240,
     "broken": 0,
     "schema": "fj99.reporter.1",
     "testsets_detail": [
@@ -1368,6 +1368,237 @@
         {
             "name": "FJ10 the visualization extension points are recorded for FJ9",
             "passes": 24,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: a policy is measured, not scored",
+            "passes": 27,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: planner cost is measured separately",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: capabilities are exercised, not asserted",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: decision traces reaggregate to the episodes",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: the budget study machinery",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: the generative benchmark measures, never guesses",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: native rollouts and drift analysis",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: comparison statistics on measured episodes",
+            "passes": 10,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "evaluation: parity helpers quantify differences",
+            "passes": 5,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "readiness: the audit runs on the package's own scenario",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "adapters: read_npy round-trips what it claims to support",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "adapters: a synthetic Q-table drives decide() honestly",
+            "passes": 43,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "actors: the committed exported weights load and act",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "slices: tabular and continuous policy slices from native inputs",
+            "passes": 11,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "config loader: a full synthetic YAML round-trips every block",
+            "passes": 20,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "config loader: the documented refusals refuse",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "parity: world comparison measured on native states",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "rng: rare paths of the verbatim numpy port",
+            "passes": 9,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "rng: seeding and rejection paths",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "pomdps: the spawn distribution refuses or degrades, never lies",
+            "passes": 2,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "pomdps: continuous action space and spawn machinery",
+            "passes": 8,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "maps: every tile template parses, rotates, and stays drivable",
+            "passes": 50,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "search snapshots: the audit rejects what it documents",
+            "passes": 12,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "readiness and metrics on the continuous formulation",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "capabilities: stochasticity is found where a duck can cross",
+            "passes": 2,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "collision: the verbatim SAT tests on synthetic geometry",
+            "passes": 4,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "pedestrian: re-arming and proximity spawning, called directly",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "benchmark: world differences by construction",
+            "passes": 6,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "capabilities: stochasticity found at duck-armed states",
+            "passes": 2,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "scene geometry: computed in the core, no backend loaded",
+            "passes": 7,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "readiness: tables and counts from the audit items",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "lane geometry helpers",
+            "passes": 3,
+            "errors": 0,
+            "broken": 0,
+            "fails": 0
+        },
+        {
+            "name": "animation: every recorded series is retrievable",
+            "passes": 18,
             "errors": 0,
             "broken": 0,
             "fails": 0

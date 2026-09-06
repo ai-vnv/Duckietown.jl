@@ -2,14 +2,24 @@
 # blanked by server-side default-branch metadata (the failure mode the
 # DORASolvers rename exposed). The README uses the branch-qualified badge
 # URL for the same reason. Coverage is measured by the CI full-suite job,
-# which runs WITHOUT the Python reference - the 26 parity files skip
+# which runs WITHOUT the Python reference - the 21 parity files skip
 # themselves there, so the number reflects the core, not the parity layer.
 codecov:
   branch: main
 
-# What coverage is measured against: the package core. The Makie/MCTS/Python
-# extensions cannot execute in headless CI (no GL, and the suite must not
-# load a solver), and tools/ are operator scripts, not the shipped surface.
+# What coverage is measured against: the package core that CAN execute in CI.
+# Each exclusion states why its lines cannot run there; nothing else is
+# excluded, and the parity/evaluation machinery is deliberately NOT excluded —
+# it is covered by the native-scenario tests.
+#
+# - ext/: the Makie/MCTS/PythonCall extensions cannot execute in headless CI
+#   (no GL, and `using Duckietown` must not load a solver).
+# - tools/: operator scripts, not the shipped surface.
+# - src/backends/: the live Python bridges (process transport, PythonCall,
+#   torch policy server). Every executable line needs the reference
+#   installation; they are validated by the FJ5/FJ7 release-grade runs whose
+#   results are committed and badge-checked.
 ignore:
   - "ext"
   - "tools"
+  - "src/backends"
