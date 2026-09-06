@@ -21,7 +21,7 @@
 # matters is that the difference stays negligible and never changes the
 # action materially. No blanket `isapprox` over everything.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -167,7 +167,7 @@ FJ7A_OK && @testset "FJ7.4b SAC inference parity (layer by layer)" begin
         end
 
         # the policy is usable as a POMDPs policy on the validated MDP
-        mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+        mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
             "duckduck", "policies", "sac", "training_config.yaml");
             action_space=:continuous)
         s = rand(MersenneTwister(73), initialstate(mdp))
@@ -229,7 +229,7 @@ FJ7A_OK && @testset "FJ7.5b TD3 inference parity (layer by layer)" begin
 " * join(["  $k = $(worst[k])" for k in sort(collect(keys(worst)))], "
 ") exact_actions = n_exact_action total = length(obs) clipped = n_clipped
 
-        mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+        mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
             "duckduck", "policies", "td3", "training_config.yaml");
             action_space=:continuous)
         s = rand(MersenneTwister(73), initialstate(mdp))
@@ -246,7 +246,7 @@ FJ7A_OK && @testset "FJ7.4/7.5 observations from real rollouts" begin
     # the observations a policy will actually see, not only synthetic ones
     b = TorchPolicyReferenceBackend()
     try
-        mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+        mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
             "duckduck", "policies", "sac", "training_config.yaml");
             action_space=:continuous)
         model = mdp.transition

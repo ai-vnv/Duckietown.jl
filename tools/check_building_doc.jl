@@ -3,7 +3,7 @@
 #   2. every relative markdown link resolves;
 #   3. the repository's own documentation audit accepts the file.
 
-using DuckietownDecisionModels
+using Duckietown
 
 root = normpath(joinpath(@__DIR__, ".."))
 doc = read(joinpath(root, "docs", "src", "building.md"), String)

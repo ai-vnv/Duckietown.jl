@@ -5,7 +5,7 @@
 # Usage: python tools/parity/gen_fj3_duck_fixtures.py [out_path]
 import json, math, os, sys
 out_path = sys.argv[1] if len(sys.argv) > 1 else (
-    "/home/pannntastic/aivnv/DuckietownDecisionModels.jl/test/fixtures/fj3_duck.json")
+    "/home/pannntastic/aivnv/Duckietown.jl/test/fixtures/fj3_duck.json")
 os.environ.setdefault("PYGLET_HEADLESS", "1")
 import numpy as np
 from gym_duckietown.envs import DuckietownEnv

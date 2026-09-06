@@ -3,6 +3,6 @@
 Spawn sampling and the one-decision transition.
 
 ```@autodocs
-Modules = [DuckietownDecisionModels]
+Modules = [Duckietown]
 Pages = ["generative/initial_state.jl", "generative/transition.jl"]
 ```

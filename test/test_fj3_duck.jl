@@ -12,12 +12,12 @@
 # Fields compared per decision: ego pos/angle/step_count, crossings_started,
 # crossing_armed, and the full duck state.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 using Random
 
-const FIXTURES_DUCK = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES_DUCK = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj3_duck.json")
 
 fixtures_duck = JSON3.read(FIXTURES_DUCK)

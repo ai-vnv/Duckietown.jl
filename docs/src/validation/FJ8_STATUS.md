@@ -28,7 +28,7 @@ detect later.
 The architectural rule, enforced by a test rather than by convention:
 
 ```
-DuckietownDecisionModels.jl  --implements-->  POMDPs.jl contracts
+Duckietown.jl  --implements-->  POMDPs.jl contracts
                                                      ^
                                    any solver --------+
 ```
@@ -273,7 +273,7 @@ the extension, because the model implements the standard generative contract
 and nothing else is required:
 
 ```julia
-using DuckietownDecisionModels, MCTS
+using Duckietown, MCTS
 mdp     = DuckietownMDP("…/q_learning/training_config.yaml")
 planner = solve(MCTSSolver(n_iterations = 60, depth = 12), mdp)
 a       = action(planner, s)     # a valid MacroAction
@@ -1095,14 +1095,14 @@ an exploration constant, not after.
 
 FJ8.2 — MCTS.jl `MCTSSolver` on the discrete model, as an **extension**
 (`ext/DuckietownMCTSExt.jl`) behind a weak dependency, so `using
-DuckietownDecisionModels` continues to work with no planning library installed.
+Duckietown` continues to work with no planning library installed.
 The extension may only bridge interfaces; it may not touch state, reward,
 transition, action bounds or termination semantics, and the `src/` guard test
 keeps solver vocabulary out of the core.
 
 The milestone FJ8.2 establishes is not the planner's score. It is:
 
-> `DuckietownDecisionModels.jl` is usable by an external, standard POMDPs.jl
+> `Duckietown.jl` is usable by an external, standard POMDPs.jl
 > online-planning solver without changing the model.
 
 FJ8.5 then makes solver independence a measured property rather than a

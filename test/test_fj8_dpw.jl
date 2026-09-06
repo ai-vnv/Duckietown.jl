@@ -13,7 +13,7 @@
 # hyper-parameter sweep. FJ8.0 measured a continuous `gen` at ~109 us and
 # 237 KiB, so the first question is correctness and scaling, not tuning.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -26,9 +26,9 @@ catch err
     false
 end
 
-const FJ83_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ83_CCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
-const FJ83_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ83_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
 
 fj83_cmdp() = DuckietownMDP(FJ83_CCFG; action_space=:continuous)
@@ -271,7 +271,7 @@ end
     # measurement of the TRANSITION, not a reading of a config value.
     dmdp = DuckietownMDP(FJ83_QCFG; action_space=:discrete)
     cmdp = fj83_cmdp()
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
 
     if !isfile(qpath)

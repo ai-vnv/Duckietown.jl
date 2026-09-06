@@ -5,11 +5,11 @@
 # module was ever loaded. Checking this inside the main test session would be
 # meaningless — FJ5-R deliberately loads PythonCall there.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 
-cfg = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck", "policies",
+cfg = joinpath(pkgdir(Duckietown), "..", "duckduck", "policies",
     "q_learning", "training_config.yaml")
 mdp = DuckietownMDP(cfg; action_space=:discrete)
 s = rand(MersenneTwister(11), initialstate(mdp))

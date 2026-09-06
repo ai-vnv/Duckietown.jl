@@ -14,13 +14,13 @@
 # - replaying an FJ3.7 scenario to its end pins `isterminal`/`is_truncated`
 #   against the recorded termination reason.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using JSON3
 using Random
 
-const DUCKDUCK_POLICIES_FJ4 = joinpath(pkgdir(DuckietownDecisionModels),
+const DUCKDUCK_POLICIES_FJ4 = joinpath(pkgdir(Duckietown),
     "..", "duckduck", "policies")
 
 qlearning_cfg_path() =
@@ -85,7 +85,7 @@ end
 
     # the duckie, against the reference `duck_init` recorded after a real
     # `env.reset()` in the FJ3.4/3.5 fixture
-    fx = JSON3.read(joinpath(pkgdir(DuckietownDecisionModels), "test",
+    fx = JSON3.read(joinpath(pkgdir(Duckietown), "test",
         "fixtures", "fj3_duck.json"))
     d0 = fx.duck_init
     unf(x) = x isa AbstractDict ?
@@ -172,7 +172,7 @@ end
     # every scenario init in the FJ3.7 fixture is a pose the reference
     # wrapper's own `_spawn_is_accepted` accepted
     mdp = DuckietownMDP(qlearning_cfg_path())
-    fx = JSON3.read(joinpath(pkgdir(DuckietownDecisionModels), "test",
+    fx = JSON3.read(joinpath(pkgdir(Duckietown), "test",
         "fixtures", "fj37_transition.json"))
     unf(x) = x isa AbstractDict ? NaN : Float64(x)
     n = 0
@@ -232,7 +232,7 @@ end
 
 @testset "FJ4 isterminal / truncation semantics" begin
     mdp = DuckietownMDP(qlearning_cfg_path())
-    fx = JSON3.read(joinpath(pkgdir(DuckietownDecisionModels), "test",
+    fx = JSON3.read(joinpath(pkgdir(Duckietown), "test",
         "fixtures", "fj37_transition.json"))
     unf(x) = x isa AbstractDict ? NaN : Float64(x)
     tuple3(v) = (unf(v[1]), unf(v[2]), unf(v[3]))

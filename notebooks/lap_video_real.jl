@@ -9,10 +9,10 @@
 # reference backend is used purely as a renderer here, and `set_state` is the
 # same validated path FJ5 uses for parity.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, Serialization, Printf, Random
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const CFG = joinpath(ROOT, "..", "duckduck", "policies", "q_learning",
                      "training_config.yaml")
 const OUT = joinpath(@__DIR__, "bev_frames")

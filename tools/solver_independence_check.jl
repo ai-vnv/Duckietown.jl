@@ -9,11 +9,11 @@
 # tabular baseline. `tools/fj8_solver_present_check.jl` prints the same
 # fingerprint with MCTS loaded; the two must agree exactly.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 
-root = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck")
+root = joinpath(pkgdir(Duckietown), "..", "duckduck")
 cfg = joinpath(root, "policies", "q_learning", "training_config.yaml")
 mdp = DuckietownMDP(cfg; action_space=:discrete)
 s = rand(MersenneTwister(11), initialstate(mdp))
@@ -32,7 +32,7 @@ if isfile(qpath)
 end
 
 # the shared evaluator must produce the same episode
-struct FixedPolicy <: DuckietownDecisionModels.AbstractPolicy end
+struct FixedPolicy <: Duckietown.AbstractPolicy end
 POMDPs.action(::FixedPolicy, ::DuckietownMDP, ::DuckieWorldState) = SLOW_STRAIGHT
 ep = evaluate_policy(mdp, FixedPolicy(); seeds=1:2, max_steps=12)
 
@@ -40,7 +40,7 @@ loaded = [string(m.name) for m in keys(Base.loaded_modules)]
 
 println("MCTS_LOADED=", any(==("MCTS"), loaded))
 println("MCTS_EXT_LOADED=",
-    Base.get_extension(DuckietownDecisionModels, :DuckietownMCTSExt) !== nothing)
+    Base.get_extension(Duckietown, :DuckietownMCTSExt) !== nothing)
 println("N_ACTIONS=", length(actions(mdp)))
 println("DISCOUNT=", repr(discount(mdp)))
 println("REWARDS=", join(repr.(rewards), "|"))

@@ -4,7 +4,7 @@
 # chain were only ever validated on small_loop, so before designing anything
 # around a junction map this has to be checked rather than assumed.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, Random, Printf, Statistics
 
 const TILES = ["curve_left/W" "straight/W"  "3way_left/W" "straight/W"  "curve_left/N";
@@ -100,7 +100,7 @@ lb, tb = survival(mdp, SCFG)
 
 # 4. The follower visits 1.5 tiles before dying, so there is no route-level
 # problem for it to have. Does the TRAINED controller traverse tiles?
-qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
                  "policies", "q_learning", "policy.npy")
 if !isfile(qpath)
     println("\nno trained checkpoint; cannot test the controller")

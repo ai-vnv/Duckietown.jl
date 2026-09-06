@@ -5,7 +5,7 @@
 # `world_to_ref` is the package's validated encoder — the same one FJ5 uses
 # for parity — so nothing about the state representation is improvised here.
 
-using DuckietownDecisionModels
+using Duckietown
 using Serialization, JSON3, Printf
 
 D = deserialize(joinpath(@__DIR__, "lap_frames.jls"))

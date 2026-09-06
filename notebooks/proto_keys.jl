@@ -9,7 +9,7 @@
 # This measures the trade-off directly, which is the engineering input the
 # proposed discrete formulation needs.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf
 

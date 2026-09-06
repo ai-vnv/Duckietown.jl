@@ -5,10 +5,10 @@
 # loader refuses anything it cannot interpret, that units and semantics are
 # decided in the core, and that a missing value stays missing.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 
-const FJ96_LOG = joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj8",
+const FJ96_LOG = joinpath(pkgdir(Duckietown), "artifacts", "fj8",
     "enriched", "decisions.csv")
 
 # a small hand-built log, so the loader's validation can be tested without the

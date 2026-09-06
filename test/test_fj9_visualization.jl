@@ -9,13 +9,13 @@
 # get_agent_corners of this state" proves that what is drawn is what the
 # physics uses.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 using LinearAlgebra
 
-const FJ9_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ9_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
 
 fj9_mdp() = DuckietownMDP(FJ9_QCFG; action_space=:discrete)
@@ -33,7 +33,7 @@ end
 FJ9_HAVE_POLICIES && @testset "FJ9.0 the contract exists and needs no backend" begin
     # the four entry points FJ10 marked buildable are declared ...
     for f in (:render_world, :render_projection, :render_policy, :render_search)
-        @test isdefined(DuckietownDecisionModels, f)
+        @test isdefined(Duckietown, f)
     end
     # ... with no methods, because no backend is loaded here. Calling one is a
     # MethodError, which is the correct behaviour for a package that does not
@@ -44,11 +44,11 @@ FJ9_HAVE_POLICIES && @testset "FJ9.0 the contract exists and needs no backend" b
     @test_throws MethodError render_world(mdp, fj9_state(mdp))
 
     # the FJ10 reservation still holds, and FJ9 must not quietly break it
-    @test !isdefined(DuckietownDecisionModels, :render_observation)
-    @test !isdefined(DuckietownDecisionModels, :render_belief)
+    @test !isdefined(Duckietown, :render_observation)
+    @test !isdefined(Duckietown, :render_belief)
 
     # no plotting package is a dependency
-    proj = read(joinpath(pkgdir(DuckietownDecisionModels), "Project.toml"),
+    proj = read(joinpath(pkgdir(Duckietown), "Project.toml"),
         String)
     deps = split(split(proj, "[deps]")[2], "\n[")[1]
     for pkg in ("Makie", "CairoMakie", "GLMakie", "Plots")
@@ -56,7 +56,7 @@ FJ9_HAVE_POLICIES && @testset "FJ9.0 the contract exists and needs no backend" b
     end
     @test occursin("Makie", split(split(proj, "[weakdeps]")[2], "\n[")[1])
     @test occursin("DuckietownMakieExt = \"Makie\"", proj)
-    @test isfile(joinpath(pkgdir(DuckietownDecisionModels), "ext",
+    @test isfile(joinpath(pkgdir(Duckietown), "ext",
         "DuckietownMakieExt.jl"))
 end
 
@@ -145,7 +145,7 @@ FJ9_HAVE_POLICIES && @testset "FJ9.1 the stop line is the model's measurement, n
     # actually reaches while driving — never from a spawn pose — so the states
     # are found by driving, exactly as FJ8.3c located the trigger region.
     function states_with_stop_candidate(n)
-        qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+        qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
             "policies", "q_learning", "policy.npy")
         pol = isfile(qpath) ? QTablePolicy(qpath; solver=:q_learning) : nothing
         out = DuckieWorldState[]
@@ -252,7 +252,7 @@ FJ9_HAVE_POLICIES && @testset "FJ9.1 trajectory overlay" begin
 end
 
 FJ9_HAVE_POLICIES && @testset "FJ9.2 the panel's semantics come from the core, not the backend" begin
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "sac", "training_config.yaml");
         action_space=:continuous)
     s = fj9_state(mdp, 11)
@@ -389,7 +389,7 @@ end
 # FJ9.3 — policy / value / ambiguity slices
 # ---------------------------------------------------------------------------
 
-fj9_qpolicy() = QTablePolicy(joinpath(pkgdir(DuckietownDecisionModels), "..",
+fj9_qpolicy() = QTablePolicy(joinpath(pkgdir(Duckietown), "..",
     "duckduck", "policies", "q_learning", "policy.npy"); solver=:q_learning)
 
 FJ9_HAVE_POLICIES && @testset "FJ9.3a the slice contract is core data, not a figure" begin
@@ -525,7 +525,7 @@ FJ9_HAVE_POLICIES && @testset "FJ9.3d continuous slices keep v and omega separat
     else
         b = TorchPolicyReferenceBackend()
         try
-            mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+            mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
                 "duckduck", "policies", "sac", "training_config.yaml");
                 action_space=:continuous)
             cfg = mdp.transition.continuous_cfg
@@ -594,7 +594,7 @@ FJ9_HAVE_POLICIES && @testset "FJ9.3e the fixed context is not a neutral choice"
     else
         b = TorchPolicyReferenceBackend()
         try
-            mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+            mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
                 "duckduck", "policies", "td3", "training_config.yaml");
                 action_space=:continuous)
             m = mdp.transition
@@ -653,7 +653,7 @@ end
 # FJ9.4 — rollout comparison from the frozen FJ8.4b artefacts
 # ---------------------------------------------------------------------------
 
-const FJ94_ARTIFACT = joinpath(pkgdir(DuckietownDecisionModels), "artifacts",
+const FJ94_ARTIFACT = joinpath(pkgdir(Duckietown), "artifacts",
     "fj8", "six_solver_episodes.csv")
 
 @testset "FJ9.4 the artefact is the only source of data" begin
@@ -862,7 +862,7 @@ end
 # ---------------------------------------------------------------------------
 
 @testset "FJ9.5a search-data availability, tracked not assumed" begin
-    dir = joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj8")
+    dir = joinpath(pkgdir(Duckietown), "artifacts", "fj8")
     items = search_artifact_audit(dir)
     @test length(items) == 8
     @test all(i -> !isempty(i.quantity) && !isempty(i.evidence), items)
@@ -954,7 +954,7 @@ end
 # is the property that makes FJ9.5c possible: a search figure must be
 # reproducible without the solver that produced it.
 
-const FJ95_SNAPSHOTS = joinpath(pkgdir(DuckietownDecisionModels), "artifacts",
+const FJ95_SNAPSHOTS = joinpath(pkgdir(Duckietown), "artifacts",
     "fj9")
 
 @testset "FJ9.5b snapshots load and validate with no solver installed" begin

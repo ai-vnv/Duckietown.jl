@@ -1,5 +1,5 @@
 """
-    DuckietownDecisionModels
+    Duckietown
 
 Solver-independent decision-process formulation package for the Duckietown MDP
 described by the Python repository at `aivnv/duckduck` (FJ0 audit:
@@ -19,14 +19,14 @@ Gate status: FJ1 (skeleton, typed config hierarchy, YAML loaders, data model,
 interface boundaries) — implemented. Dynamics, reward computation, transitions
 and solvers land in later gates (FJ2+).
 """
-module DuckietownDecisionModels
+module Duckietown
 
 using POMDPs
 using Random
 using YAML
 using LinearAlgebra
 # JSON3 is used only by the FJ5 reference-backend line protocol; it carries no
-# Python dependency — `using DuckietownDecisionModels` stays pure Julia.
+# Python dependency — `using Duckietown` stays pure Julia.
 using JSON3
 
 include("rng/ziggurat_constants.jl")

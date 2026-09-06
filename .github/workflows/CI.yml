@@ -35,11 +35,11 @@ jobs:
       - name: Load the core with no optional backend
         shell: julia --color=yes --project=. {0}
         run: |
-            using DuckietownDecisionModels
+            using Duckietown
             loaded = [string(m.name) for m in keys(Base.loaded_modules)]
             for p in ("PythonCall", "CondaPkg", "PyCall", "MCTS", "Makie")
                 if any(==(p), loaded)
-                    error("$p was loaded by `using DuckietownDecisionModels`")
+                    error("$p was loaded by `using Duckietown`")
                 end
             end
             println("core loaded clean on ", Sys.MACHINE)
@@ -55,8 +55,8 @@ jobs:
       - name: Executable audits (docs, imports, formulation fingerprint)
         shell: julia --color=yes --project=. {0}
         run: |
-            using DuckietownDecisionModels
-            root = pkgdir(DuckietownDecisionModels)
+            using Duckietown
+            root = pkgdir(Duckietown)
 
             docs = documentation_audit(root)
             imports = source_import_audit(root)

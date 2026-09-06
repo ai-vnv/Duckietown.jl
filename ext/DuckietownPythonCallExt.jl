@@ -17,11 +17,11 @@
 # verbatim.
 module DuckietownPythonCallExt
 
-using DuckietownDecisionModels
+using Duckietown
 using PythonCall
 using Random
 
-const DDM = DuckietownDecisionModels
+const DDM = Duckietown
 
 """
     PythonCallRefBackend <: DDM.AbstractReferenceBackend

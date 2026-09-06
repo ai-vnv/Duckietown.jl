@@ -51,7 +51,7 @@ regenerate.
 
 **The core names no solver, and imports no backend.** `src/` must not mention
 `MCTSSolver`, `DPWSolver` or `using MCTS`, and must not import PythonCall or
-Makie. Solver and plotting code lives in `ext/`. `using DuckietownDecisionModels`
+Makie. Solver and plotting code lives in `ext/`. `using Duckietown`
 has to work with none of them installed. Three separate lints enforce this and
 they have no allowlist — a doc comment that merely *quotes* a banned token will
 fail them, which is deliberate.

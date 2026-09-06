@@ -1,5 +1,5 @@
 # %% [markdown]
-# # DuckietownDecisionModels.jl — quickstart
+# # Duckietown.jl — quickstart
 #
 # Everything below runs with **no Python, no solver library, and no external
 # data file**. The map is embedded in the package.
@@ -9,7 +9,7 @@
 # the separate `duckduck` supplementary package. See the last section.
 
 # %%
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 
@@ -151,7 +151,7 @@ end
 for (what, path) in (("q-learning / SARSA table", "policies/q_learning/policy.npy"),
                      ("SAC / TD3 actor", "policies/td3/policy.pt"),
                      ("frozen evaluation config", "policies/q_learning/training_config.yaml"))
-    println(rpad(what, 26), isfile(joinpath(pkgdir(DuckietownDecisionModels),
+    println(rpad(what, 26), isfile(joinpath(pkgdir(Duckietown),
         path)) ? "available" : "NOT in this package")
 end
 

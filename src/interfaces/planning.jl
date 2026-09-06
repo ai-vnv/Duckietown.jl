@@ -4,7 +4,7 @@
 # is, what a tree is, or which library will be plugged in. The direction of
 # dependency is fixed:
 #
-#     DuckietownDecisionModels.jl  --implements-->  POMDPs.jl contracts
+#     Duckietown.jl  --implements-->  POMDPs.jl contracts
 #                                                          ^
 #                                       any solver ---------+
 #

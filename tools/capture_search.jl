@@ -18,12 +18,12 @@
 #
 #     tools/run_capture_search.sh
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 using MCTS
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const DUCK = joinpath(ROOT, "..", "duckduck")
 const OUT = joinpath(ROOT, "artifacts", "fj9")
 

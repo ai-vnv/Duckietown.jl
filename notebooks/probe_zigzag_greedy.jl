@@ -11,7 +11,7 @@
 #   greedy dies somewhere     -> the fault is in dynamics/observer/actions,
 #                                localised at the tile where it dies
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, Random, Printf
 
 const CFG = scenario_config(:lane_following)

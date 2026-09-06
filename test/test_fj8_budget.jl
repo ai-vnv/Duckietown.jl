@@ -9,7 +9,7 @@
 # frozen in configs/planning/seeds.yaml and are not read by this file, so
 # no configuration choice can be made against the seeds FJ8.4b will report.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -22,9 +22,9 @@ catch err
     false
 end
 
-const FJ84_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ84_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
-const FJ84_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ84_CCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
 @testset "FJ8.4a the seed split is frozen and disjoint" begin
@@ -139,7 +139,7 @@ FJ84_OK && @testset "FJ8.4a cost-search curve for both planners" begin
         operating_point_table(tuned)
 
     # write the artefact
-    dir = joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj8")
+    dir = joinpath(pkgdir(Duckietown), "artifacts", "fj8")
     mkpath(dir)
     path = joinpath(dir, "budget_study.md")
     open(path, "w") do io
@@ -264,7 +264,7 @@ end
     # the study is solver-agnostic: a policy that never consults the model
     # must report zero generative calls at every budget — 0, not -1, because
     # this is measured knowledge rather than a missing measurement
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
     if !isfile(qpath)
         @test_skip "tabular checkpoint unavailable"

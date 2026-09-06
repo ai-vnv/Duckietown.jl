@@ -8,7 +8,7 @@
 # Everything I built before this was me reshaping the model to fit the solver,
 # which is precisely what FJ8 forbade.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf
 

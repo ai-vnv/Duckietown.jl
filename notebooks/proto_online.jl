@@ -13,7 +13,7 @@
 # Online: known_costs=false, and every real decision is reported back with
 # observe!, so the cost statistics come from the environment itself.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using DORASolvers: observe!
 using Random, Statistics, Printf

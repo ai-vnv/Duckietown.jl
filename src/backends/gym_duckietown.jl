@@ -17,7 +17,7 @@
 # - FJ5-R `PythonCallReferenceBackend` — in-process, now possible because a
 #   Linux Julia exists inside WSL alongside `ddm-ref`. Lives in the
 #   `DuckietownPythonCallExt` package extension so PythonCall stays optional:
-#   `using DuckietownDecisionModels` never touches Python.
+#   `using Duckietown` never touches Python.
 
 """
     AbstractReferenceBackend <: AbstractBackend
@@ -31,7 +31,7 @@ the SAME reference runtime and the same `Session` semantics:
 - `PythonCallReferenceBackend` — in-process via PythonCall, available when
   Julia and the reference Python live on the same platform (FJ5-R). Provided
   by the `DuckietownPythonCallExt` package extension, so PythonCall stays an
-  optional dependency: `using DuckietownDecisionModels` never touches Python.
+  optional dependency: `using Duckietown` never touches Python.
 
 Both expose the same verbs — `ref_reset!`, `ref_get_state`, `ref_set_state!`,
 `ref_step!`, `ref_probe_stop`, `close` — and share one state mapping
@@ -94,7 +94,7 @@ const ReferenceBackend = ProcessReferenceBackend
 
 const REFERENCE_WSL_DISTRO = Ref("Ubuntu-Baru")
 const REFERENCE_CONDA_ENV = Ref("ddm-ref")
-const REFERENCE_REPO = Ref("/home/pannntastic/aivnv/DuckietownDecisionModels.jl")
+const REFERENCE_REPO = Ref("/home/pannntastic/aivnv/Duckietown.jl")
 
 """
     reference_backend_available() -> Bool

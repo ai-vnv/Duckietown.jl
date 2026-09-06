@@ -22,7 +22,7 @@
 # Requires: Linux Julia >= 1.11 in WSL, `using PythonCall` bound to the
 # validated `ddm-ref` interpreter. Skips cleanly everywhere else.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -143,7 +143,7 @@ FJ5R_PYCALL_OK && @testset "FJ5-R transport equivalence (process vs pythoncall)"
     reference_backend_available() ||
         (@info "FJ5-R: process backend unavailable, skipping transport test";
          return)
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "q_learning", "training_config.yaml"))
     pc = PythonCallReferenceBackend("q_learning"; seed=53, map=mdp.map)
     pr = ProcessReferenceBackend("q_learning"; seed=53, map=mdp.map)
@@ -189,7 +189,7 @@ FJ5R_PYCALL_OK && @testset "FJ5-R transport equivalence (process vs pythoncall)"
 end
 
 FJ5R_PYCALL_OK && @testset "FJ5-R matched-state parity vs native Julia (discrete)" begin
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "q_learning", "training_config.yaml"))
     ref = PythonCallReferenceBackend("q_learning"; seed=53, map=mdp.map)
     try
@@ -230,7 +230,7 @@ FJ5R_PYCALL_OK && @testset "FJ5-R matched-state parity vs native Julia (discrete
 end
 
 FJ5R_PYCALL_OK && @testset "FJ5-R matched-state parity vs native Julia (continuous)" begin
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "sac", "training_config.yaml");
         action_space=:continuous)
     ref = PythonCallReferenceBackend("sac"; seed=73, action_space=:continuous,

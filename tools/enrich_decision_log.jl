@@ -22,14 +22,14 @@
 #
 #     tools/run_enrich.sh
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 using YAML
 using JSON3
 using MCTS
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const DUCK = joinpath(ROOT, "..", "duckduck")
 const OUT = joinpath(ROOT, "artifacts", "fj8", "enriched")
 const ORIGINAL = joinpath(ROOT, "artifacts", "fj8", "six_solver_episodes.csv")

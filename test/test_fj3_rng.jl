@@ -17,12 +17,12 @@
 #    NumpyPCG64 — every result bit-exact, pinning the full reset stream that
 #    FJ4's `initialstate` will consume.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 using Random
 
-const FIXTURES_RNG = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES_RNG = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj38_rng.json")
 
 fixtures_rng = JSON3.read(FIXTURES_RNG)
@@ -114,7 +114,7 @@ end
 # This one subtestset reads the reference's frozen training config directly
 # (a raw sibling path, which is how it slipped past the dependency audit that
 # un-gated this file): it self-guards instead of assuming HAVE_REFERENCE.
-const FJ38C_CFG = joinpath(pkgdir(DuckietownDecisionModels), "..",
+const FJ38C_CFG = joinpath(pkgdir(Duckietown), "..",
     "duckduck", "policies", "q_learning", "training_config.yaml")
 if !isfile(FJ38C_CFG)
     @info "FJ3.8-C: skipped (needs the reference's frozen training config at ../duckduck/policies/; the public reference repository does not ship the policies directory)"

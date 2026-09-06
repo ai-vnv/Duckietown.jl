@@ -10,12 +10,12 @@
 # change the formulation. FJ8.5 asserted that architecturally — this measures
 # it.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using JSON3
 using Pkg
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const OUT = joinpath(ROOT, "artifacts", "fj9")
 const CFG = joinpath(ROOT, "..", "duckduck", "policies", "q_learning",
     "training_config.yaml")
@@ -107,7 +107,7 @@ end
 
 manifest = Dict{String,Any}(
     "schema" => "fj99.manifest.1",
-    "package" => "DuckietownDecisionModels.jl",
+    "package" => "Duckietown.jl",
     "git_commit" => git_commit(),
     "julia_version" => string(VERSION),
     "core_fingerprint" => core_fp,

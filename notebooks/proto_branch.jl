@@ -5,7 +5,7 @@
 # path solver is degenerate. DORA belongs at route level, so this is the
 # question that decides whether it has anything to solve here at all.
 
-using DuckietownDecisionModels
+using Duckietown
 using Printf
 
 function neighbours(m)

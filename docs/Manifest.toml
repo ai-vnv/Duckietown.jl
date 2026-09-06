@@ -153,18 +153,18 @@ deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 version = "1.6.0"
 
-[[deps.DuckietownDecisionModels]]
+[[deps.Duckietown]]
 deps = ["JSON3", "LinearAlgebra", "POMDPs", "Random", "YAML"]
-path = "/home/pannntastic/aivnv/DuckietownDecisionModels.jl"
+path = "/home/pannntastic/aivnv/Duckietown.jl"
 uuid = "b9206cf4-d873-49ff-bdb0-b4cd6bc56877"
 version = "0.1.0"
 
-    [deps.DuckietownDecisionModels.extensions]
+    [deps.Duckietown.extensions]
     DuckietownMCTSExt = "MCTS"
     DuckietownMakieExt = "Makie"
     DuckietownPythonCallExt = "PythonCall"
 
-    [deps.DuckietownDecisionModels.weakdeps]
+    [deps.Duckietown.weakdeps]
     MCTS = "e12ccd36-dcad-5f33-8774-9175229e7b33"
     Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
     PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"

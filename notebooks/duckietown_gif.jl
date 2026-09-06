@@ -9,7 +9,7 @@
 # Episodes are chosen by a stated rule, not by eye: the first success, the
 # first off-road and the first collision in seed order.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using CairoMakie, Random, Statistics, Printf
 CairoMakie.activate!(type = "png")

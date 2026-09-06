@@ -11,18 +11,18 @@
 # Both compute the same fingerprint. If loading a solver changed anything the
 # model does, the two would disagree.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 
-struct FJ85FixedPolicy <: DuckietownDecisionModels.AbstractPolicy end
+struct FJ85FixedPolicy <: Duckietown.AbstractPolicy end
 POMDPs.action(::FJ85FixedPolicy, ::DuckietownMDP, ::DuckieWorldState) =
     SLOW_STRAIGHT
 
 """The same fingerprint `tools/solver_independence_check.jl` prints."""
 function fj85_fingerprint()
-    root = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck")
+    root = joinpath(pkgdir(Duckietown), "..", "duckduck")
     mdp = DuckietownMDP(joinpath(root, "policies", "q_learning",
         "training_config.yaml"); action_space=:discrete)
     s = rand(MersenneTwister(11), initialstate(mdp))
@@ -47,10 +47,10 @@ function fj85_fingerprint()
 end
 
 @testset "FJ8.5 the model is identical with and without the solver" begin
-    script = joinpath(pkgdir(DuckietownDecisionModels), "tools",
+    script = joinpath(pkgdir(Duckietown), "tools",
         "solver_independence_check.jl")
     @test isfile(script)
-    project = pkgdir(DuckietownDecisionModels)
+    project = pkgdir(Duckietown)
 
     out = try
         read(`$(Base.julia_cmd()) --project=$project --startup-file=no $script`,
@@ -86,7 +86,7 @@ end
 
 @testset "FJ8.5 the solver stays a weak dependency" begin
     proj = TOML_PARSE = nothing
-    path = joinpath(pkgdir(DuckietownDecisionModels), "Project.toml")
+    path = joinpath(pkgdir(Duckietown), "Project.toml")
     text = read(path, String)
 
     # crude but decisive: the [deps] block must not name a solver
@@ -98,9 +98,9 @@ end
     @test occursin("DuckietownMCTSExt = \"MCTS\"", text)
 
     # the extension file exists and the core does not import the solver
-    @test isfile(joinpath(pkgdir(DuckietownDecisionModels), "ext",
+    @test isfile(joinpath(pkgdir(Duckietown), "ext",
         "DuckietownMCTSExt.jl"))
-    srcdir = joinpath(pkgdir(DuckietownDecisionModels), "src")
+    srcdir = joinpath(pkgdir(Duckietown), "src")
     offenders = String[]
     for (root, _, files) in walkdir(srcdir), f in files
         endswith(f, ".jl") || continue

@@ -13,7 +13,7 @@ fi
 for f in "$@"; do
   echo "=== $f ==="
   timeout 420 julia --project=. -e "
-    using DuckietownDecisionModels, Test
+    using Duckietown, Test
     cd(\"test\")
     include(\"reporter.jl\")
     include(\"reference_guard.jl\")

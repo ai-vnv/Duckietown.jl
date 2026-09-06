@@ -14,12 +14,12 @@
 #
 # The native half of the test needs no Python: the `.npy` reader is Julia.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 
-const POLICIES = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const POLICIES = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies")
 qpath(name) = joinpath(POLICIES, name, "policy.npy")
 
@@ -113,7 +113,7 @@ end
 
 FJ7_PYCALL && @testset "FJ7.1/7.2 9000-state greedy parity vs the reference adapter" begin
     sys = pyimport("sys")
-    dd = abspath(joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck"))
+    dd = abspath(joinpath(pkgdir(Duckietown), "..", "duckduck"))
     pyconvert(Bool, sys.path.__contains__(dd)) || sys.path.insert(0, dd)
     adapter_mod = pyimport("src.explainability.q_policy_adapter")
     kinds = pyimport("src.explainability.schema").SolverKind
@@ -163,7 +163,7 @@ end
 
 FJ7_PYCALL && @testset "FJ7.1 restricted action set parity" begin
     sys = pyimport("sys")
-    dd = abspath(joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck"))
+    dd = abspath(joinpath(pkgdir(Duckietown), "..", "duckduck"))
     pyconvert(Bool, sys.path.__contains__(dd)) || sys.path.insert(0, dd)
     adapter_mod = pyimport("src.explainability.q_policy_adapter")
     allowed = [1, 4, 6]

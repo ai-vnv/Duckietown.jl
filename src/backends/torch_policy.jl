@@ -7,7 +7,7 @@
 # simulator reference — or the PythonCall interpreter bound to it — onto a
 # different Python.
 #
-#     DuckietownDecisionModels.jl
+#     Duckietown.jl
 #              │ 15-D Float32 observation
 #              ▼
 #     TorchPolicyReferenceBackend  (out-of-process, ddm-torch)

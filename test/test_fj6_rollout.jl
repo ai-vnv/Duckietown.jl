@@ -15,7 +15,7 @@
 # Uses the PROCESS backend: after the FJ5-R interposition finding, that is the
 # numerical reference of record.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -33,7 +33,7 @@ const FJ6_MAX_DQ = 1e-14
 const FJ6_MAX_DRETURN = 1e-12
 
 FJ6_OK && @testset "FJ6 free-running rollout parity (discrete)" begin
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "q_learning", "training_config.yaml"))
     model = mdp.transition
     ref = ProcessReferenceBackend("q_learning"; seed=53, map=mdp.map)
@@ -83,7 +83,7 @@ FJ6_OK && @testset "FJ6 free-running rollout parity (discrete)" begin
 end
 
 FJ6_OK && @testset "FJ6 free-running rollout parity (continuous)" begin
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "sac", "training_config.yaml");
         action_space=:continuous)
     model = mdp.transition
@@ -110,7 +110,7 @@ FJ6_OK && @testset "FJ6 free-running rollout parity (continuous)" begin
 end
 
 FJ6_OK && @testset "FJ6 harness invariants" begin
-    mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+    mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
         "duckduck", "policies", "q_learning", "training_config.yaml"))
     model = mdp.transition
     x0 = rand(MersenneTwister(53), initialstate(mdp))

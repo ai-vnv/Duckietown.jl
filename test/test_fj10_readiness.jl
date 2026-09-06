@@ -10,14 +10,14 @@
 #     to be updated with it. The audit stays true by construction rather than
 #     by remembering to edit a document.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 
-const FJ10_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ10_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
-const FJ10_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ10_CCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
 # Three sets audit MDPs built from the reference checkout's frozen training
@@ -107,7 +107,7 @@ end
     end
 
     # no type in this package is an observation or a belief
-    pkg = DuckietownDecisionModels
+    pkg = Duckietown
     names_ = names(pkg; all=false)
     @test !any(n -> occursin(r"Observation$|^Belief|Belief$", String(n)), names_)
     # ... and nothing subtypes POMDPs.Updater here
@@ -215,11 +215,11 @@ end
     # tracks the STATUS rather than a snapshot of one day's package contents.
     for p in pts
         if occursin("do not implement", p.status)
-            @test !isdefined(DuckietownDecisionModels, Symbol(p.name))
+            @test !isdefined(Duckietown, Symbol(p.name))
         end
     end
-    @test isdefined(DuckietownDecisionModels, :render_world)
-    @test isdefined(DuckietownDecisionModels, :render_projection)
-    @test isdefined(DuckietownDecisionModels, :render_policy)
-    @test isdefined(DuckietownDecisionModels, :render_search)
+    @test isdefined(Duckietown, :render_world)
+    @test isdefined(Duckietown, :render_projection)
+    @test isdefined(Duckietown, :render_policy)
+    @test isdefined(Duckietown, :render_search)
 end

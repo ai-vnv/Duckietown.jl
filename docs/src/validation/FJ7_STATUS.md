@@ -90,7 +90,7 @@ Deliberately separate from `ProcessReferenceBackend`, which drives the
 simulator in `ddm-ref`:
 
 ```
-DuckietownDecisionModels.jl
+Duckietown.jl
          │ 15-D Float32 observation
          ▼
 TorchPolicyReferenceBackend  (out-of-process, ddm-torch)

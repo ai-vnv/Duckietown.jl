@@ -13,7 +13,7 @@ sampleable, plus `isterminal(m, s)`, `discount(m)`, `actions(m)`,
 ## Public surface
 
 ```julia
-using DuckietownDecisionModels, POMDPs, Random
+using Duckietown, POMDPs, Random
 
 mdp  = DuckietownMDP("../duckduck/policies/q_learning/training_config.yaml")
 mdpc = DuckietownMDP("../duckduck/policies/sac/training_config.yaml";

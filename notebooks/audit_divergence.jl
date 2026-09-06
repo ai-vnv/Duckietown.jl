@@ -5,7 +5,7 @@
 # same key; if the same macro action from those states lands in a DIFFERENT
 # key, the plan and reality fork. Find the first fork instead of theorising.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf
 

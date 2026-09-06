@@ -1,12 +1,12 @@
 using Documenter
-using DuckietownDecisionModels
+using Duckietown
 
-DocMeta.setdocmeta!(DuckietownDecisionModels, :DocTestSetup,
-    :(using DuckietownDecisionModels); recursive = true)
+DocMeta.setdocmeta!(Duckietown, :DocTestSetup,
+    :(using Duckietown); recursive = true)
 
 makedocs(
     sitename = "Duckietown.jl",
-    modules = [DuckietownDecisionModels],
+    modules = [Duckietown],
     format = Documenter.HTML(
         prettyurls = get(ENV, "CI", "false") == "true",
         canonical = "https://ai-vnv.github.io/Duckietown.jl",

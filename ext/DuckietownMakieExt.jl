@@ -22,10 +22,10 @@ exist yet, and a test asserts they stay unimplemented.
 """
 module DuckietownMakieExt
 
-using DuckietownDecisionModels
+using Duckietown
 using Makie
 
-const DDM = DuckietownDecisionModels
+const DDM = Duckietown
 
 # A palette that survives greyscale printing and does not rely on hue alone.
 const TILE_DRIVABLE = RGBAf(0.90, 0.90, 0.90, 1.0)

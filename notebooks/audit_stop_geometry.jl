@@ -7,7 +7,7 @@
 # lap. A weight that is switched on but whose subsystem never fires changes
 # nothing, and that has to be reported, not assumed away.
 
-using DuckietownDecisionModels, LinearAlgebra, Serialization, Printf
+using Duckietown, LinearAlgebra, Serialization, Printf
 
 const CFG = scenario_config(:stop_and_duck_safe)
 const SCFG = DuckietownMDP(CFG; action_space = :discrete).transition.state_cfg

@@ -1,6 +1,6 @@
 # FJ1 STATUS — Package skeleton, typed data model, config hierarchy, interfaces
 
-**Status: READY FOR REVIEW** · 2026-08-18 · package `DuckietownDecisionModels.jl` v0.1.0
+**Status: READY FOR REVIEW** · 2026-08-18 · package `Duckietown.jl` v0.1.0
 (UUID `b9206cf4-d873-49ff-bdb0-b4cd6bc56877`)
 
 Reference contract: `duckduck/docs/src/validation/FJ0_repository_audit.md`

@@ -3,11 +3,11 @@
 # Floats are compared bit-for-bit (Float64: reinterpret UInt64; Float32 values
 # stored as their exact float64 image, then re-rounded to Float32).
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 
-const FIXTURES = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj2_parity.json")
 
 fixtures = JSON3.read(FIXTURES)

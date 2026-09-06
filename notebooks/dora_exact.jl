@@ -13,7 +13,7 @@
 # isterminal, initialstate and transition — no `states`, no `stateindex`,
 # no `reward`. tabularize discovers the state set itself.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf, Statistics
 

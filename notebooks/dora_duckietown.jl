@@ -18,7 +18,7 @@ end
 
 # ╔═╡ a1000000-0000-0000-0000-000000000002
 begin
-    using DuckietownDecisionModels
+    using Duckietown
     using POMDPs, POMDPTools, DORASolvers
     using Random, Statistics, Printf, PlutoUI
     TableOfContents(title = "Contents")

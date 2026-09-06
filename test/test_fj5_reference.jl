@@ -9,7 +9,7 @@
 # The whole set skips (never fails) when the reference environment is absent,
 # so the package remains testable on machines without WSL + `ddm-ref`.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -97,7 +97,7 @@ FJ5_AVAILABLE && @testset "FJ5.2 state bridge round-trips exactly" begin
         @test all(d -> d.ulps == 0, compare_worlds(w, w2))
 
         # injecting a state the reference never produced (a Julia-sampled one)
-        mdp = DuckietownMDP(joinpath(pkgdir(DuckietownDecisionModels), "..",
+        mdp = DuckietownMDP(joinpath(pkgdir(Duckietown), "..",
             "duckduck", "policies", "q_learning", "training_config.yaml"))
         js = rand(MersenneTwister(7), initialstate(mdp))
         ref_set_state!(ref, js)
@@ -112,7 +112,7 @@ FJ5_AVAILABLE && @testset "FJ5.2 state bridge round-trips exactly" begin
 end
 
 FJ5_AVAILABLE && @testset "FJ5.3 matched-state one-step parity (discrete)" begin
-    cfg_path = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    cfg_path = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "training_config.yaml")
     mdp = DuckietownMDP(cfg_path)
     ref = ReferenceBackend("q_learning"; seed=53, map=mdp.map)
@@ -188,7 +188,7 @@ FJ5_AVAILABLE && @testset "FJ5.3 matched-state one-step parity (discrete)" begin
 end
 
 FJ5_AVAILABLE && @testset "FJ5.3 matched-state one-step parity (continuous)" begin
-    cfg_path = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    cfg_path = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "sac", "training_config.yaml")
     mdp = DuckietownMDP(cfg_path; action_space=:continuous)
     ref = ReferenceBackend("sac"; seed=73, action_space=:continuous,

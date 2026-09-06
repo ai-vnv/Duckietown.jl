@@ -18,13 +18,13 @@
 # d_stop fires only in the synthetic rows here. Whether the reference
 # training wrapper ever observes d_stop is an FJ4/FJ6 scenario question.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 using Random
 using LinearAlgebra: I
 
-const FIXTURES_OBS = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES_OBS = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj3_obs.json")
 
 fixtures_obs = JSON3.read(FIXTURES_OBS)

@@ -11,13 +11,13 @@
 # configs/planning/seeds.yaml. Nothing here reads a result and changes a
 # parameter.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 using YAML
 using MCTS
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const DUCK = joinpath(ROOT, "..", "duckduck")
 
 seeds_cfg = planning_seed_config()

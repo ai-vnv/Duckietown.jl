@@ -1,7 +1,7 @@
 # Prototype: can DORA be applied to Duckietown at all, and does the answer
 # survive execution on the real dynamics?
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Statistics, Printf
 

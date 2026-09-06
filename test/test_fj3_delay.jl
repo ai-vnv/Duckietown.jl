@@ -12,11 +12,11 @@
 # runs ticks in chunks of 6 produces the same world state as one continuous
 # run (no reset at decision boundaries).
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 
-const FIXTURES_DELAY = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES_DELAY = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj3_ego.json")
 
 fixtures_delay = JSON3.read(FIXTURES_DELAY)

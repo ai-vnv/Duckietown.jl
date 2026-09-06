@@ -7,7 +7,7 @@
 # If that is the cause, shortening K should turn in-model success from 0 to 1
 # without touching anything else. Measure, don't assume.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf
 
@@ -16,7 +16,7 @@ using Random, Printf
 # — which classifies as terminal, which the tabular model reports as crash
 # 1.000 at every K. The experiment raises the budget; nothing shipped changes.
 const CFG = let base = scenario_config(:lane_following)
-    env = DuckietownDecisionModels._with(base.environment, max_steps = 9000)
+    env = Duckietown._with(base.environment, max_steps = 9000)
     DuckietownConfig(base.algorithm, base.stage, base.seed, env, base.state,
         base.continuous_state, base.actions, base.duck_controller,
         base.reward, base.solver, base.lane_teacher, base.transition_model,

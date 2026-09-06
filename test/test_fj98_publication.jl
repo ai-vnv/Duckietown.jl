@@ -5,10 +5,10 @@
 # make that specific failure unrepresentable, and check the machinery that
 # generalises it.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 
-const FJ98_ROOT = pkgdir(DuckietownDecisionModels)
+const FJ98_ROOT = pkgdir(Duckietown)
 const FJ98_LOG = joinpath(FJ98_ROOT, "artifacts", "fj8", "enriched",
     "decisions.csv")
 

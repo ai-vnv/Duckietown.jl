@@ -3,7 +3,7 @@
 # which never uses `curve_right` — zigzag uses it six times, so the curve
 # templates' rotation indexing is unvalidated surface here.
 
-using DuckietownDecisionModels, JSON3
+using Duckietown, JSON3
 
 zigzag_tiles() = [
     "asphalt" "asphalt"      "asphalt"       "asphalt"       "asphalt"       "asphalt"    "asphalt"       "asphalt"      "asphalt"

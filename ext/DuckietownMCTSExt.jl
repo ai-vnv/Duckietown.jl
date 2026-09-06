@@ -7,7 +7,7 @@ one that can exist.
 MCTS.jl already works with `DuckietownMDP` without this extension:
 
 ```julia
-using DuckietownDecisionModels, MCTS
+using Duckietown, MCTS
 mdp     = DuckietownMDP("…/training_config.yaml")
 planner = solve(MCTSSolver(n_iterations = 200, depth = 20), mdp)
 a       = action(planner, s)
@@ -28,11 +28,11 @@ termination or discount.
 """
 module DuckietownMCTSExt
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using MCTS
 
-const DDM = DuckietownDecisionModels
+const DDM = Duckietown
 
 """
     tree_statistics(planner) -> NamedTuple

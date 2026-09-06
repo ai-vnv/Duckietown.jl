@@ -23,7 +23,7 @@ JSON-lines bridge** to a server running inside `ddm-ref`. This delivers the
 same capability the gate actually asks for — live side-by-side execution with
 matched states — and has two side benefits:
 
-1. `using DuckietownDecisionModels` needs **no Python dependency at all**
+1. `using Duckietown` needs **no Python dependency at all**
    (the client is `open(cmd, "r+")` + JSON3; nothing else), which satisfies
    the "native package must stay pure Julia" constraint even more cleanly
    than PythonCall behind weakdeps would.

@@ -8,9 +8,9 @@
 # bits — FJ7 validated the native reader against them layer by layer — and the
 # `.pt` checkpoints are read-only inputs that are never written to.
 
-using DuckietownDecisionModels
+using Duckietown
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const CACHE = joinpath(ROOT, "artifacts", "fj9", "weights")
 mkpath(CACHE)
 

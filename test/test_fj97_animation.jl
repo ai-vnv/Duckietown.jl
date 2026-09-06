@@ -5,10 +5,10 @@
 # rows 1..t and nothing after, and one edited row changes exactly what it
 # should. No environment, policy or planner runs here.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 
-const FJ97_LOG = joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj8",
+const FJ97_LOG = joinpath(pkgdir(Duckietown), "artifacts", "fj8",
     "enriched", "decisions.csv")
 
 # an edited copy of the real log, so the negative controls compare like with

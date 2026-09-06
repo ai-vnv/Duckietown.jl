@@ -5,7 +5,7 @@
 # that carries progress around the ring, which is what turns this into an
 # actual navigation SSP rather than a lane-keeping problem with a goal bolted on.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Statistics, Printf
 
@@ -124,7 +124,7 @@ D = collect_lap()
 # The hand-written follower cannot drive a lap, so the sampled graph has no
 # path to the goal at all. Does a TRAINED policy populate it?
 # ---------------------------------------------------------------------------
-qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
                  "policies", "q_learning", "policy.npy")
 if !isfile(qpath)
     println("\nno trained checkpoint available; stopping here")

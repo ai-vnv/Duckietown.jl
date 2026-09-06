@@ -8,7 +8,7 @@
 #
 # Measured, not assumed.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, Random, Printf, Statistics
 
 const BASE = DuckietownMDP(scenario_config(:stop_and_duck); action_space = :discrete)

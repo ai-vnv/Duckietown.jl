@@ -8,20 +8,20 @@
 # nothing about the episode) and the enriched rows re-aggregate to exactly the
 # original episode artefact.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 using JSON3
 
-const FJ84C_DIR = joinpath(pkgdir(DuckietownDecisionModels), "artifacts",
+const FJ84C_DIR = joinpath(pkgdir(Duckietown), "artifacts",
     "fj8", "enriched")
-const FJ84C_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ84C_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
 
 @testset "FJ8.4c the logger is observational" begin
     mdp = InstrumentedMDP(DuckietownMDP(FJ84C_QCFG; action_space=:discrete))
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
     if !isfile(qpath)
         @test_skip "tabular checkpoint unavailable"
@@ -56,7 +56,7 @@ end
 
 @testset "FJ8.4c the trace re-aggregates to the episode metrics" begin
     mdp = InstrumentedMDP(DuckietownMDP(FJ84C_QCFG; action_space=:discrete))
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
     if !isfile(qpath)
         @test_skip "tabular checkpoint unavailable"
@@ -108,7 +108,7 @@ end
         @test !isempty(fp.experiment_fingerprint)
 
         # the original artefact was not overwritten
-        original = joinpath(pkgdir(DuckietownDecisionModels), "artifacts",
+        original = joinpath(pkgdir(Duckietown), "artifacts",
             "fj8", "six_solver_episodes.csv")
         @test isfile(original)
         @test load_rollout_artifact(original).provenance.rows == 120

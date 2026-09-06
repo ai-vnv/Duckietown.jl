@@ -17,18 +17,18 @@
 # Usage (WSL, ddm-ref active, Julia 1.11.3):
 #   julia --project=/tmp/fj5rdev tools/parity/run_fj6_rollout.jl
 
-using DuckietownDecisionModels
+using Duckietown
 using PythonCall            # enables the in-process oracle (lane B/C)
 using JSON3
 using Random
 using Printf
 
-const OUT = joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj6")
+const OUT = joinpath(pkgdir(Duckietown), "artifacts", "fj6")
 mkpath(OUT)
 
-const QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
-const SACCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const SACCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
 wrap_angle(a) = (while a > pi; a -= 2pi; end; while a < -pi; a += 2pi; end; a)

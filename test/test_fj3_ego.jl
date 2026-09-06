@@ -14,11 +14,11 @@
 # The tick trace is recorded from patched reference `DynamicModel.integrate`
 # calls, i.e. exactly what the reference env executed.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 
-const FIXTURES_EGO = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES_EGO = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj3_ego.json")
 
 fixtures_ego = JSON3.read(FIXTURES_EGO)

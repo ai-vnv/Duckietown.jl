@@ -18,14 +18,14 @@
 # conditioning-aware comparator for acos-derived angles; documented libm
 # deviations only).
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 using Random
 
-const FIXTURES_TR = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES_TR = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj37_transition.json")
-const DUCKDUCK_POLICIES = joinpath(pkgdir(DuckietownDecisionModels),
+const DUCKDUCK_POLICIES = joinpath(pkgdir(Duckietown),
     "..", "duckduck", "policies")
 
 fixtures_tr = JSON3.read(FIXTURES_TR)

@@ -5,14 +5,14 @@
 # prove nothing. A fresh process runs 5 000 `gen` calls and reports which
 # Python-related modules ended up loaded.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 
 @testset "FJ8.0 gen runs without any Python (fresh process)" begin
-    script = joinpath(pkgdir(DuckietownDecisionModels), "tools",
+    script = joinpath(pkgdir(Duckietown), "tools",
         "native_gen_check.jl")
     @test isfile(script)
-    project = pkgdir(DuckietownDecisionModels)
+    project = pkgdir(Duckietown)
     out = try
         read(`$(Base.julia_cmd()) --project=$project --startup-file=no $script`,
             String)

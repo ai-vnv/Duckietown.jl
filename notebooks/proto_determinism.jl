@@ -10,7 +10,7 @@
 #
 # That claim is load-bearing, so it gets checked rather than quoted.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, Random, Printf
 
 mdp = DuckietownMDP(scenario_config(:stop_and_duck); action_space = :discrete)

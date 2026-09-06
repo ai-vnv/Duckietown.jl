@@ -5,7 +5,7 @@
 # Usage: python tools/parity/gen_fj3_ego_fixtures.py
 import json, math, sys, os
 out_path = sys.argv[1] if len(sys.argv) > 1 else (
-    "/home/pannntastic/aivnv/DuckietownDecisionModels.jl/test/fixtures/fj3_ego.json")
+    "/home/pannntastic/aivnv/Duckietown.jl/test/fixtures/fj3_ego.json")
 os.environ.setdefault("PYGLET_HEADLESS", "1")
 import numpy as np
 import geometry as geo

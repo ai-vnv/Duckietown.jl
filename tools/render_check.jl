@@ -5,13 +5,13 @@
 #
 #     tools/run_render_check.sh
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 using CairoMakie
 CairoMakie.activate!(type="png")
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const OUT = joinpath(ROOT, "artifacts", "fj9")
 mkpath(OUT)
 
@@ -41,7 +41,7 @@ qpath = joinpath(ROOT, "..", "duckduck", "policies", "q_learning", "policy.npy")
 pol = isfile(qpath) ? QTablePolicy(qpath; solver=:q_learning) : nothing
 states = ground_track(mdp, s, pol, 80)
 
-ext = Base.get_extension(DuckietownDecisionModels, :DuckietownMakieExt)
+ext = Base.get_extension(Duckietown, :DuckietownMakieExt)
 println("EXT_LOADED=", ext !== nothing)
 println("RENDER_WORLD_METHODS=", length(methods(render_world)))
 
@@ -266,6 +266,6 @@ python_like = filter(m -> m in ("PythonCall", "CondaPkg", "PyCall"), loaded)
 println("PYTHON_MODULES=", isempty(python_like) ? "none" : join(python_like, ","))
 println("MCTS_LOADED=", any(==("MCTS"), loaded))
 println("RESERVED_STILL_RESERVED=",
-    !isdefined(DuckietownDecisionModels, :render_observation) &&
-    !isdefined(DuckietownDecisionModels, :render_belief))
+    !isdefined(Duckietown, :render_observation) &&
+    !isdefined(Duckietown, :render_belief))
 println("RENDER_CHECK_OK=true")

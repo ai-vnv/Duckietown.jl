@@ -15,7 +15,7 @@
 # which meant it had only ever been runnable by its author. FJ9.9a missed it
 # because that check used a clean *depot* with the reference still on disk.
 
-const REFERENCE_ROOT = normpath(joinpath(pkgdir(DuckietownDecisionModels),
+const REFERENCE_ROOT = normpath(joinpath(pkgdir(Duckietown),
     "..", "duckduck"))
 const REFERENCE_POLICIES = joinpath(REFERENCE_ROOT, "policies")
 

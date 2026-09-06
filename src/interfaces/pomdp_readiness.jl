@@ -2,7 +2,7 @@
 #
 # The question this gate answers is exactly one:
 #
-#     Can DuckietownDecisionModels.jl support a future partially observable
+#     Can Duckietown.jl support a future partially observable
 #     formulation WITHOUT modifying or contaminating the validated MDP core?
 #
 # Nothing here implements an observation model, a belief representation or a

@@ -24,7 +24,7 @@ begin
     using JSON3
     using FFMPEG
     using Base64
-    using DuckietownDecisionModels
+    using Duckietown
     using POMDPs, POMDPTools, DORASolvers
     using Random, Printf
 end
@@ -36,7 +36,7 @@ md"""
 [DORASolvers.jl](https://github.com/ai-vnv/DORASolvers.jl) is an **online
 stochastic-shortest-path (SSP) solver**: it operates on a finite tabular SSP
 whose transition structure is *known* and whose traversal costs are *learned
-online*. [DuckietownDecisionModels.jl](https://github.com/ai-vnv/Duckietown.jl)
+online*. [Duckietown.jl](https://github.com/ai-vnv/Duckietown.jl)
 is a **continuous** driving MDP.
 
 This notebook builds the bridge between them **step by step — every cell
@@ -50,7 +50,7 @@ by tile.
 md"""
 ## Step 0 · Packages
 
-The `notebooks/` project carries the model (`DuckietownDecisionModels`,
+The `notebooks/` project carries the model (`Duckietown`,
 dev-ed at `".."`), the solver (`DORASolvers`, pinned to a public commit), and
 the playback utilities.
 """

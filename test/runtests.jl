@@ -1,4 +1,4 @@
-using DuckietownDecisionModels
+using Duckietown
 using Test
 
 # FJ9.9b — the structured reporter. Every include below registers its
@@ -7,9 +7,9 @@ using Test
 include("reporter.jl")
 include("reference_guard.jl")
 
-const SUITE = Test.DefaultTestSet("DuckietownDecisionModels"; verbose=true)
+const SUITE = Test.DefaultTestSet("Duckietown"; verbose=true)
 const REPORT_PATH = get(ENV, "DDM_TEST_REPORT",
-    joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj9",
+    joinpath(pkgdir(Duckietown), "artifacts", "fj9",
         "test_report.json"))
 Test.push_testset(SUITE)
 

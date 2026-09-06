@@ -1,8 +1,8 @@
-using DuckietownDecisionModels
+using Duckietown
 using Test
 
 const DUCKDUCK_POLICIES = joinpath(
-    dirname(pkgdir(DuckietownDecisionModels)), "duckduck", "policies")
+    dirname(pkgdir(Duckietown)), "duckduck", "policies")
 
 function config_path(algorithm::String)
     path = joinpath(DUCKDUCK_POLICIES, algorithm, "training_config.yaml")

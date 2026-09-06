@@ -57,7 +57,7 @@ AbstractBackend
 `PythonCallReferenceBackend` exists in the main package as a stub that raises
 an instructive error; the real method arrives with the
 `DuckietownPythonCallExt` **package extension**, so PythonCall stays a
-**weak dependency**. Verified: after `using DuckietownDecisionModels` the
+**weak dependency**. Verified: after `using Duckietown` the
 PythonCall module is *not* loaded, and the full native path
 (`DuckietownMDP`, `initialstate`, `gen`) works with no Python installed.
 

@@ -10,7 +10,7 @@
 # and cannot tell "one tile from home" from "just started". So the MDP state
 # is (world state, ring progress) and the key carries the progress.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf, Statistics, Serialization
 

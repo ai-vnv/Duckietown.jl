@@ -86,7 +86,7 @@ mktempdir() do tmp
         Pkg.activate("$(escape_string(tmp))")
         Pkg.develop(path="$(escape_string(root))"; io=devnull)
         Pkg.precompile(; io=devnull)
-        using DuckietownDecisionModels
+        using Duckietown
         c = scenario_config(:stop_and_duck_safe)
         @assert c.reward.duck_unsafe == -5.0
         println("FRESH_ENV_OK")

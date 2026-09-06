@@ -21,7 +21,7 @@ begin
     import Pkg
     Pkg.activate(@__DIR__)
     using PlutoUI
-    using DuckietownDecisionModels
+    using Duckietown
     using POMDPs, POMDPTools, MCTS, DORASolvers
     using Random, Printf
 end

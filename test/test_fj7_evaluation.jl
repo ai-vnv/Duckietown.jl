@@ -6,23 +6,23 @@
 # environment. The tests therefore check harness properties (determinism,
 # bookkeeping consistency, policy-independence) rather than performance.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 
-const FJ76_CFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ76_CFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
-const FJ76_SAC_CFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ76_SAC_CFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
 """Fixed action, used to exercise the harness without any learned policy."""
-struct ConstantMacroPolicy <: DuckietownDecisionModels.AbstractPolicy
+struct ConstantMacroPolicy <: Duckietown.AbstractPolicy
     a::MacroAction
 end
 POMDPs.action(p::ConstantMacroPolicy, ::DuckietownMDP, ::DuckieWorldState) = p.a
 
-struct ConstantContinuousPolicy <: DuckietownDecisionModels.AbstractPolicy
+struct ConstantContinuousPolicy <: Duckietown.AbstractPolicy
     a::DuckieAction
 end
 POMDPs.action(p::ConstantContinuousPolicy, ::DuckietownMDP, ::DuckieWorldState) = p.a
@@ -118,7 +118,7 @@ end
 # The real reference policies. Tabular checkpoints are always present; the
 # actor checkpoints need the ddm-torch oracle only to export their weights.
 @testset "FJ7.6 reference policies through the shared harness" begin
-    root = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck")
+    root = joinpath(pkgdir(Duckietown), "..", "duckduck")
     mdp = DuckietownMDP(FJ76_CFG; action_space=:discrete)
     mdps = Dict{String,Any}()
     pols = Dict{String,Any}()

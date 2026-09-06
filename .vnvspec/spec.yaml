@@ -1,4 +1,4 @@
-# Verification & validation specification for DuckietownDecisionModels.jl.
+# Verification & validation specification for Duckietown.jl.
 #
 # Each requirement is one of the claims the package makes publicly, mapped
 # to the gate that established it (docs/src/validation/) and the tests that
@@ -6,7 +6,7 @@
 # requirement below is currently verified by the suite (148k+ assertions;
 # artifacts/fj9/test_report.json is the machine-readable result).
 
-name: duckietown-decision-models
+name: duckietown
 version: "0.1.0"
 description: >
   A native Julia reimplementation of the decision layer of a

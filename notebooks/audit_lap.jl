@@ -3,7 +3,7 @@
 # Accumulators live inside functions: a bare top-level loop makes them fresh
 # locals. That trap has now cost four debugging cycles in this session alone.
 
-using DuckietownDecisionModels, POMDPs, Serialization, Printf
+using Duckietown, POMDPs, Serialization, Printf
 
 const CFG = scenario_config(:stop_and_duck)
 const BASE = DuckietownMDP(CFG; action_space = :discrete)

@@ -5,14 +5,14 @@
 # or the model itself; nothing imports a planning library. If these pass, a
 # real solver's only remaining job is to satisfy the POMDPs.jl interface.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 
-const FJ81_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ81_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
-const FJ81_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ81_CCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
 """A stand-in for an external POMDPs.jl planner: subtypes `POMDPs.Policy` and
@@ -48,7 +48,7 @@ end
 POMDPs.action(p::DiagnosticPlanner, s::DuckieWorldState) =
     POMDPs.action(StandInPlanner(p.mdp, p.rollouts), s)
 
-function DuckietownDecisionModels.plan_action(p::DiagnosticPlanner, m,
+function Duckietown.plan_action(p::DiagnosticPlanner, m,
     s::DuckieWorldState)
     before = model_calls(m)
     t0 = time_ns()
@@ -152,11 +152,11 @@ end
     @test applicable(policy_action, planner, mdp, s)
 
     # this package's own policies keep the three-argument form they define
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
     if isfile(qpath)
         qpol = QTablePolicy(qpath; solver=:q_learning)
-        @test qpol isa DuckietownDecisionModels.AbstractPolicy
+        @test qpol isa Duckietown.AbstractPolicy
         @test !(qpol isa POMDPs.Policy)
         @test policy_action(qpol, imdp, s) == action(qpol, imdp, s)
     end
@@ -197,7 +197,7 @@ end
     @test d3.model_calls == 28
 
     # a learned policy reports no `extra` and that is not a defect
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
     if isfile(qpath)
         qpol = QTablePolicy(qpath; solver=:q_learning)
@@ -290,7 +290,7 @@ end
     @test !d.consumes_rng
 
     # Driving competently reaches the states that matter.
-    qpath = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    qpath = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "policy.npy")
     if isfile(qpath)
         qpol = QTablePolicy(qpath; solver=:q_learning)
@@ -322,7 +322,7 @@ end
     # the formulation must not acquire solver-specific vocabulary. If a future
     # change adds MCTS/DPW concepts to src/, this fails and the code belongs in
     # an extension instead.
-    srcdir = joinpath(pkgdir(DuckietownDecisionModels), "src")
+    srcdir = joinpath(pkgdir(Duckietown), "src")
     offenders = String[]
     for (root, _, files) in walkdir(srcdir), f in files
         endswith(f, ".jl") || continue

@@ -24,13 +24,13 @@ using Pkg
 Pkg.add(url = "https://github.com/ai-vnv/Duckietown.jl")
 ```
 
-`using DuckietownDecisionModels` loads no Python, no plotting library and no
+`using Duckietown` loads no Python, no plotting library and no
 solver; the map is embedded in the package.
 
 ## Quickstart
 
 ```julia
-using DuckietownDecisionModels, POMDPs, Random
+using Duckietown, POMDPs, Random
 
 mdp = DuckietownMDP(scenario_config(:stop_and_duck_safe); action_space = :discrete)
 s   = rand(MersenneTwister(1001), initialstate(mdp))

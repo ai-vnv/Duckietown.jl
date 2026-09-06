@@ -1,4 +1,4 @@
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using Random: MersenneTwister
 

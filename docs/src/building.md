@@ -92,7 +92,7 @@ is enforced in code, not by convention:
   (`test/test_configs.jl`), which pins each scenario to exactly its
   documented deltas.
 - **The core must load with nothing but Julia.** `using
-  DuckietownDecisionModels` may not require Python, a solver, or a plotting
+  Duckietown` may not require Python, a solver, or a plotting
   library; solver and plotting code lives in package extensions (`ext/`,
   see section 6). Enforced by `test/test_fj8_solver_independence.jl` and the
   source-import audit in `src/interfaces/reproducibility.jl`, which bans

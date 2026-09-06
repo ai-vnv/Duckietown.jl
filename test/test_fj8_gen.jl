@@ -12,14 +12,14 @@
 # its node budget. No performance threshold is asserted here: the cost is
 # reported so the planner gates can choose a budget from measurement.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 
-const FJ8_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ8_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
-const FJ8_CCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ8_CCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "sac", "training_config.yaml")
 
 fj8_mdp() = DuckietownMDP(FJ8_QCFG; action_space=:discrete)

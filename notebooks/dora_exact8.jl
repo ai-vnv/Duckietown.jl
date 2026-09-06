@@ -10,7 +10,7 @@
 # macro action of 8 decisions. Nothing is sampled and no kernel is estimated,
 # which is what DORA's premise requires.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf, Statistics
 

@@ -13,12 +13,12 @@
 #   bit-reproducible), so SAT *outcomes* (valid_pose / collisions) are
 #   compared, not the normals themselves.
 
-using DuckietownDecisionModels
+using Duckietown
 using Test
 using JSON3
 using Random
 
-const FIXTURES3 = joinpath(pkgdir(DuckietownDecisionModels),
+const FIXTURES3 = joinpath(pkgdir(Duckietown),
     "test", "fixtures", "fj3_map.json")
 
 fixtures = JSON3.read(FIXTURES3)

@@ -15,12 +15,12 @@
 #
 #     tools/run_lap_analysis.sh
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 using MCTS
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const DUCK = joinpath(ROOT, "..", "duckduck")
 const DT_DECISION = 6 * EGO_DT          # frame_skip x physics dt = 0.2 s
 

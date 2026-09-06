@@ -7,16 +7,16 @@
 # the pairing, the denominators, the statistics, the two-block separation and
 # the protocol guard — exercised end to end on a small configuration.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
 using YAML
 
-const FJ84B_QCFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ84B_QCFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
 
-struct FixedActionPolicy <: DuckietownDecisionModels.AbstractPolicy
+struct FixedActionPolicy <: Duckietown.AbstractPolicy
     a::MacroAction
 end
 POMDPs.action(p::FixedActionPolicy, ::AnyMDPLike, ::DuckieWorldState) = p.a
@@ -29,7 +29,7 @@ function small_run(name, family, mdp, policy; seeds=1:4, horizon=8)
 end
 
 @testset "FJ8.4b the evaluation protocol is frozen on disk" begin
-    root = pkgdir(DuckietownDecisionModels)
+    root = pkgdir(Duckietown)
     path = joinpath(root, "configs", "planning", "evaluation.yaml")
     @test isfile(path)
     proto = YAML.load_file(path)

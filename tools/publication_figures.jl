@@ -11,13 +11,13 @@
 # scope and Julia makes them fresh locals, which has cost this project three
 # debugging cycles (see docs/src/validation/FJ84C_STATUS.md).
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Random
 using CairoMakie
 CairoMakie.activate!(type="png")
 
-const ROOT = pkgdir(DuckietownDecisionModels)
+const ROOT = pkgdir(Duckietown)
 const OUT = joinpath(ROOT, "artifacts", "fj9", "publication")
 mkpath(OUT)
 const DUCK = joinpath(ROOT, "..", "duckduck")

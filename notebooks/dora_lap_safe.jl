@@ -20,7 +20,7 @@
 # Everything else — determinism, the macro action, the ring counter, the key —
 # is unchanged, so any behavioural difference is attributable to the reward.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf, Statistics, Serialization
 

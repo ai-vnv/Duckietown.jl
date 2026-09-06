@@ -33,12 +33,12 @@ cd "$REPO"
   echo "CLEAN_TEST_EXIT=$?"
   echo "--- core loads with no optional backend ---"
   julia --startup-file=no --project=. -e '
-    using DuckietownDecisionModels
+    using Duckietown
     loaded = [string(m.name) for m in keys(Base.loaded_modules)]
     for p in ("PythonCall","CondaPkg","PyCall","MCTS","Makie","CairoMakie")
         println("LOADED_", p, "=", any(==(p), loaded))
     end
-    cfg = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+    cfg = joinpath(pkgdir(Duckietown), "..", "duckduck",
         "policies", "q_learning", "training_config.yaml")
     if isfile(cfg)
         println("CLEAN_CORE_FINGERPRINT=",

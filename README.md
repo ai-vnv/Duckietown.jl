@@ -25,14 +25,14 @@ study. 2× speed; lookalike render, not parity evidence. Duckietown
 environment by the [Duckietown Project](https://www.duckietown.org).*
 
 ```julia
-using DuckietownDecisionModels, POMDPs, Random
+using Duckietown, POMDPs, Random
 
 mdp = DuckietownMDP(scenario_config(:stop_and_duck); action_space = :discrete)
 s   = rand(MersenneTwister(1001), initialstate(mdp))
 sp, r = @gen(:sp, :r)(mdp, s, FAST_STRAIGHT, MersenneTwister(7))
 ```
 
-**No Python is involved.** `using DuckietownDecisionModels` loads no Python, no
+**No Python is involved.** `using Duckietown` loads no Python, no
 plotting library and no solver; the map is embedded in the package.
 
 ---
@@ -60,6 +60,59 @@ Julia 1.10 or newer. Three optional extras, each enabling one extension:
 | `CairoMakie` | figures and animations — renders headless, so notebooks and CI work |
 | `MCTS` | run MCTS / DPW planners against the model |
 | `PythonCall` | the in-process bridge to the Python reference, for parity work |
+
+---
+
+## Usage — from `using Duckietown` to an animation
+
+The whole loop in one place: build the MDP, solve it, drive an episode, draw
+it, animate it. This exact snippet is executed by
+[`tools/readme_usage_example.jl`](tools/readme_usage_example.jl) in a fresh
+project (so it also verifies the install instructions above); the numbers
+quoted below are that run's measured output.
+
+```julia
+using Duckietown, POMDPs, Random
+
+# 1. Build the MDP: a stop sign, and a duck that crosses the road
+mdp = DuckietownMDP(scenario_config(:stop_and_duck); action_space = :discrete)
+s   = rand(MersenneTwister(1001), initialstate(mdp))
+
+# 2. Solve — any POMDPs.jl solver works; MCTS.jl shown here
+using MCTS
+planner = solve(MCTSSolver(n_iterations = 100, depth = 20,
+                           exploration_constant = 5.0,
+                           rng = MersenneTwister(2026)), mdp)
+
+# 3. Drive one episode
+rng, traj, total = MersenneTwister(7), NTuple{2,Float64}[], 0.0
+while !isterminal(mdp, s) && length(traj) < 150
+    a = action(planner, s)                      # plan from the current state
+    global s, r = @gen(:sp, :r)(mdp, s, a, rng) # step the world
+    global total += r
+    push!(traj, (s.ego.pos[1], s.ego.pos[3]))
+end
+
+# 4. Draw the episode: the world at the final state, trajectory overlaid
+using CairoMakie
+save("episode.png", render_world(mdp, s; trajectory = traj,
+    title = "MCTS episode, return $(round(total, digits = 1))"))
+
+# 5. Animate: play back a recorded episode from the committed decision log
+log = load_decision_log(joinpath(pkgdir(Duckietown),
+    "artifacts", "fj8", "enriched", "decisions.csv"))
+seq = animation_sequence(log, "td3", 1001)      # one episode, by solver + seed
+sw  = static_world(mdp, s)
+render_animation(sw, seq, "episode.gif")
+```
+
+Measured outcome of step 3, so expectations are set honestly: at a
+100-iteration budget this episode ends off-road after 34 decisions with
+return −67.6. That is the point of the benchmark — planning budget is the
+variable, and the [budget study](artifacts/fj8/budget_study.md) measures the
+whole curve. The animation in step 5 plays back a recorded TD3 episode from
+the committed FJ8.4c decision log (playback of evidence, validated in FJ9.7 —
+it never re-runs the experiment).
 
 ---
 
@@ -329,10 +382,18 @@ loads them from your own gym-duckietown installation).
 
 ---
 
-## License
+## License & intellectual property
 
-None yet, which means default copyright — all rights reserved. If you want to
-use this, open an issue and ask. (Note: the reimplemented semantics derive
-from software under the [Duckietown software terms](https://duckietown.com/sw-license/),
-which permit research and educational use with attribution and reserve
-commercial use — any future license of this repository has to respect that.)
+- **Source code:** [MIT](LICENSE). Parts of `src/dynamics/` and
+  `src/visualization/` are a documented line-by-line port of
+  [gym-duckietown](https://github.com/duckietown/gym-duckietown) (pinned
+  6.1.34); those portions are released under MIT with the Duckietown
+  Project's written permission.
+- **Assets, maps, meshes, textures:** never bundled in this package. They are
+  loaded at runtime from the user's own gym-duckietown installation (see
+  `DUCKIETOWN_ASSETS`), remain the intellectual property of the
+  [Duckietown Project](https://duckietown.com), and stay subject to the
+  [Duckietown software terms](https://duckietown.com/sw-license/) — including
+  their reservation of commercial use.
+- The two GIFs in `docs/assets/` are renders of Duckietown environments and
+  carry attribution in their captions.

@@ -11,7 +11,7 @@ extension points that the visualisation layer must be built around.
 
 The one question:
 
-> Can `DuckietownDecisionModels.jl` support a future partially observable
+> Can `Duckietown.jl` support a future partially observable
 > formulation **without modifying or contaminating the validated MDP core**?
 
 **Answer: yes.** Everything the latent side needs is already there and needs no

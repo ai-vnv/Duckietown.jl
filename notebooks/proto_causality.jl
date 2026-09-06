@@ -10,7 +10,7 @@
 # principled test of whether the problem is DORA-shaped, and it is what should
 # be run before any transfer experiment.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Statistics, Printf
 

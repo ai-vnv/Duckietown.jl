@@ -2,7 +2,7 @@
 #
 # The milestone is NOT that MCTS scores well. It is:
 #
-#   DuckietownDecisionModels.jl is usable by an external, standard POMDPs.jl
+#   Duckietown.jl is usable by an external, standard POMDPs.jl
 #   online-planning solver without changing the model.
 #
 # So the tests check the integration, not the search quality: the standard
@@ -11,7 +11,7 @@
 # evaluator. A negative control makes sure the integration could actually fail
 # — that the planner is really reading this model and not being rubber-stamped.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using Random
@@ -24,7 +24,7 @@ catch err
     false
 end
 
-const FJ82_CFG = joinpath(pkgdir(DuckietownDecisionModels), "..", "duckduck",
+const FJ82_CFG = joinpath(pkgdir(Duckietown), "..", "duckduck",
     "policies", "q_learning", "training_config.yaml")
 
 fj82_mdp() = DuckietownMDP(FJ82_CFG; action_space=:discrete)
@@ -49,7 +49,7 @@ FJ82_OK && @testset "FJ8.2 the standard POMDPs.jl call sequence works" begin
     @test a in actions(mdp)
 
     # the extension is loaded and is the only thing MCTS added
-    @test Base.get_extension(DuckietownDecisionModels, :DuckietownMCTSExt) !== nothing
+    @test Base.get_extension(Duckietown, :DuckietownMCTSExt) !== nothing
 
     # the planner works on the bare model AND on the instrumented wrapper,
     # because the wrapper is transparent
@@ -233,7 +233,7 @@ FJ82_OK && @testset "FJ8.2 the ecosystem's own requirements check" begin
         # as "the model is missing something".
         @test unspecified[] > 0
 
-        dir = joinpath(pkgdir(DuckietownDecisionModels), "artifacts", "fj8")
+        dir = joinpath(pkgdir(Duckietown), "artifacts", "fj8")
         mkpath(dir)
         path = joinpath(dir, "mcts_requirements.txt")
         open(path, "w") do io

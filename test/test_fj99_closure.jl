@@ -4,12 +4,12 @@
 # that lives in a checklist goes stale the first time someone edits a file; one
 # that runs here fails.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs
 using Test
 using JSON3
 
-const FJ99_ROOT = pkgdir(DuckietownDecisionModels)
+const FJ99_ROOT = pkgdir(Duckietown)
 # the fingerprint is a property of the FORMULATION, so the package's own
 # scenario serves it: this check must run anywhere, not only beside the
 # reference package

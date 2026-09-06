@@ -8,7 +8,7 @@
 #   - what rotate WOULD satisfy the observer's facing test there
 # so the fix is derived from data, not from another guess about conventions.
 
-using DuckietownDecisionModels, LinearAlgebra, Serialization, Printf
+using Duckietown, LinearAlgebra, Serialization, Printf
 
 const CFG = scenario_config(:stop_and_duck_safe)
 const SCFG = DuckietownMDP(CFG; action_space = :discrete).transition.state_cfg

@@ -4,7 +4,7 @@
 # the frames where the duck was crossing. If the weights are zero, the fix is
 # a NEW named scenario, never an edit to a shipped one.
 
-using DuckietownDecisionModels, POMDPs, Serialization, Printf, Random
+using Duckietown, POMDPs, Serialization, Printf, Random
 
 const CFG = scenario_config(:stop_and_duck)
 const BASE = DuckietownMDP(CFG; action_space = :discrete)

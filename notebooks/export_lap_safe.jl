@@ -1,7 +1,7 @@
 # Audit the stop subsystem on the recorded lap and export every physics
 # substep in the reference protocol's encoding for the real renderer.
 
-using DuckietownDecisionModels
+using Duckietown
 using Serialization, JSON3, Printf
 
 const CFG = scenario_config(:stop_and_duck_safe)

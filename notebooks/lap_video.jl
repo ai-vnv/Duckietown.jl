@@ -11,7 +11,7 @@
 # The two directed lane curves per tile are in the map; the centre line is
 # their midpoint and the white edges are offset outwards from each.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, CairoMakie, Serialization, Printf, Random, Statistics
 CairoMakie.activate!(type = "png")
 

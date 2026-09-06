@@ -11,12 +11,12 @@
 #
 # Usage:  julia --project=. tools/parity/run_stop_probe.jl [out.json]
 
-using DuckietownDecisionModels
+using Duckietown
 using JSON3
 using Printf
 
 out_path = length(ARGS) >= 1 ? ARGS[1] :
-    joinpath(pkgdir(DuckietownDecisionModels), "docs", "src", "validation", "fj54_stop_probe.json")
+    joinpath(pkgdir(Duckietown), "docs", "src", "validation", "fj54_stop_probe.json")
 
 reference_backend_available() ||
     error("FJ5.4 probe needs the reference backend (WSL + ddm-ref)")

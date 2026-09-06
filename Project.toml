@@ -1,6 +1,6 @@
-name = "DuckietownDecisionModels"
+name = "Duckietown"
 uuid = "b9206cf4-d873-49ff-bdb0-b4cd6bc56877"
-authors = ["Pannntastic"]
+authors = ["Ahmad Alfan Alfian Irfan <alfanalfian622@gmail.com>"]
 version = "0.1.0"
 
 [deps]
@@ -12,13 +12,13 @@ YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
 
 # PythonCall is a WEAK dependency: it powers only the FJ5-R in-process
 # reference backend (`ext/DuckietownPythonCallExt.jl`). It must NEVER appear
-# in [deps] — `using DuckietownDecisionModels` has to work with no Python
+# in [deps] — `using Duckietown` has to work with no Python
 # installed at all. It is additionally listed under [extras] so `Pkg.test()`
 # can exercise the extension.
 #
 # MCTS is a WEAK dependency for the same structural reason, made explicit in
 # FJ8: this package is a MODEL, and a solver must never become part of its
-# identity. `using DuckietownDecisionModels` has to work with no planning
+# identity. `using Duckietown` has to work with no planning
 # library installed, and removing MCTS must change nothing about the model,
 # the reward, the evaluator or the four learned baselines. MCTS.jl is the
 # FIRST external solver integrated, not the solver this package is built for;

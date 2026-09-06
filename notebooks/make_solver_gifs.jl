@@ -20,12 +20,12 @@
 # and TD3 from the weight exports committed in artifacts/fj9/weights.
 # Lookalike renders, never parity evidence.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, MCTS, DORASolvers
 using GLMakie
 using Random, Printf
 
-const DDM = DuckietownDecisionModels
+const DDM = Duckietown
 const SCEN = :stop_and_duck_safe
 const SEED = 1001
 const ZOO_CAP = 40

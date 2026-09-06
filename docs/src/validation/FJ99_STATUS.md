@@ -173,7 +173,7 @@ CLEAN_CORE_FINGERPRINT=8ccb3d672ae7d281
 ```
 
 The core fingerprint from the clean depot is **identical** to the one from the
-development environment, and `using DuckietownDecisionModels` loads no
+development environment, and `using Duckietown` loads no
 optional module in a depot where several are installed.
 
 ### The 192 / 200 delta, explained rather than waved through
@@ -203,7 +203,7 @@ do is re-check parity against a reference stack it does not have.
 
 **Finding worth stating:** a clean `Pkg.test()` pulls a full Python toolchain
 and a 991 MB depot, because `PythonCall` is a test dependency. `using
-DuckietownDecisionModels` remains pure Julia — first-time *testing* is simply
+Duckietown` remains pure Julia — first-time *testing* is simply
 not a lightweight operation.
 
 **Defect found and fixed:** the bootstrap wrote its structured report to the

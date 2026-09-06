@@ -18,7 +18,7 @@
 #     lane followers; this model reads state, not pixels, so the test here
 #     is purely the lane-following torture course.
 
-using DuckietownDecisionModels
+using Duckietown
 using POMDPs, POMDPTools, DORASolvers
 using Random, Printf, Statistics, Serialization, JSON3
 
@@ -28,7 +28,7 @@ using Random, Printf, Statistics, Serialization, JSON3
 # 1.000 at every K (measured before this fix). The experiment raises the
 # budget; nothing shipped changes.
 const CFG = let base = scenario_config(:lane_following)
-    env = DuckietownDecisionModels._with(base.environment, max_steps = 9000)
+    env = Duckietown._with(base.environment, max_steps = 9000)
     DuckietownConfig(base.algorithm, base.stage, base.seed, env, base.state,
         base.continuous_state, base.actions, base.duck_controller,
         base.reward, base.solver, base.lane_teacher, base.transition_model,
