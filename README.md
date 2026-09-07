@@ -11,12 +11,13 @@ A Duckietown lane-following-with-obstacles MDP, written in Julia as a
 It is a native reimplementation of the Python environment in
 [DuckieMDP](https://github.com/PannnTastic/DuckieMDP), validated
 against it decision by decision — including exact NumPy RNG streams, so a
-seeded episode reproduces bit for bit on the platform the evidence was
-produced on: x86-64 under Julia 1.10/1.11, where CI keeps it pinned. On
-platforms that fuse multiply-add (Apple Silicon on any Julia; every
-architecture from Julia 1.12) a few derived read-back chains drift at the
-last bits (measured in CI: at most 80 ULP, 1.8e-14 relative; tolerated and
-documented in the suite) — dynamics, RNG streams and every
+seeded episode reproduces bit for bit on the machine the evidence was
+produced on (x86-64, Julia 1.11.3, unfused multiply-add), and every
+release-grade run re-establishes that. On machines whose codegen fuses
+a*b+c — Apple Silicon, Julia 1.12 everywhere, and whichever CPU a CI
+runner happens to be — a few derived read-back chains drift at the last
+bits (measured across seven CI lanes: at most 80 ULP, 1.8e-14 relative;
+tolerated and documented in the suite) — dynamics, RNG streams and every
 discrete decision remain identical.
 
 ![DORA completing a lap, drawn by the package's native renderer](https://raw.githubusercontent.com/PannnTastic/Duckietown-artifacts/main/docs/assets/native_dora_lap.gif)

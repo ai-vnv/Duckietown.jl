@@ -49,20 +49,19 @@ sc_obs(a, b; n=2) = a == b ||
 ulps32(a::Float32, b::Float32) =
     abs(reinterpret(Int32, a) - reinterpret(Int32, b))
 
-# Comparators for the continuous-extraction testset. The fixtures are the
-# x86-64 / Julia 1.10-1.11 outputs (unfused multiply-add). On platforms
-# that fuse a*b + c - Apple Silicon on every Julia, every architecture from
-# Julia 1.12 - the extraction chains drift by one rounding per operation
-# (CI measured the tick chain at <= 80 ULP ~ 1.8e-14 relative; rtol 1e-12
-# sits two orders above it), and near-zero Float32 encodes flip SIGN, which
-# makes a raw ULP distance meaningless there (CI measured |a - b| ~ 3e-11
-# on encodes normalized to unit scale; atol 1e-6 is one micro-unit).
-# Bitwise 2-ULP parity stays pinned on the fixture platform by the same CI
-# matrix (ubuntu/windows, Julia 1.10/1.11).
-const OBS_FMA_PLATFORM = Sys.ARCH === :aarch64 || VERSION >= v"1.12-"
+# Comparators for the continuous-extraction testset. The fixtures come from
+# the documented evidence machine (x86-64, Julia 1.11.3, unfused
+# multiply-add); on machines whose codegen fuses a*b + c - Apple Silicon,
+# Julia >= 1.12 everywhere, and whichever x86 runner CI happens to land on
+# (measured: the same ubuntu/1.11.9 lane flipped between runs) - the chains
+# drift within the tick-chain envelope (<= 80 ULP ~ 1.8e-14 relative; rtol
+# 1e-12 sits two orders above), and near-zero Float32 encodes flip SIGN,
+# which makes a raw ULP distance meaningless there (measured |a - b| ~
+# 3e-11 on unit-normalized encodes; atol 1e-6 is one micro-unit). Bitwise
+# 2-ULP parity remains a property of the evidence machine, re-established
+# by every release-grade run.
 sc_cont(a, b) = sc_obs(a, b; n=3) ||
-    (OBS_FMA_PLATFORM && a isa Float64 &&
-     isapprox(a, unf_obs(b); rtol=1e-12, atol=1e-9))
+    (a isa Float64 && isapprox(a, unf_obs(b); rtol=1e-12, atol=1e-9))
 enc_close(a::Float32, b::Float32) = ulps32(a, b) <= 1 || abs(a - b) <= 1.0f-6
 
 # EXPECTED NUMERICAL DIFFERENCE (same class as the FJ2 atan2 deviation):
