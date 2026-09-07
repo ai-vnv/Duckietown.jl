@@ -189,12 +189,9 @@ end
     if !isdir(out)
         @test_skip "publication build has not been run"
     else
+        # The caption files and the inventory are TEXT evidence and stay in
+        # the package tree; the semantic checks on them always run.
         for stem in ("figure1", "figure2", "figure3", "figure4")
-            for ext in ("pdf", "svg", "png")
-                p = joinpath(out, "$stem.$ext")
-                @test isfile(p)
-                @test filesize(p) > 5_000
-            end
             cap = joinpath(out, "$stem.caption.txt")
             @test isfile(cap)
             txt = read(cap, String)
@@ -207,6 +204,21 @@ end
         @test !occursin("never reaches a stop sign", f4)
         @test isfile(joinpath(out, "inventory.md"))
 
-        @info "FJ9.8e exports" pdf=filesize(joinpath(out, "figure4.pdf")) svg=filesize(joinpath(out, "figure4.svg"))
+        # The binary exports (pdf/svg/png) moved to the media companion
+        # repository at the v0.1.0 diet — a registered version should not
+        # ship 5 MB of figures. Rebuild locally with tools/run_publication.sh
+        # and these checks run again.
+        if isfile(joinpath(out, "figure1.png"))
+            for stem in ("figure1", "figure2", "figure3", "figure4")
+                for ext in ("pdf", "svg", "png")
+                    p = joinpath(out, "$stem.$ext")
+                    @test isfile(p)
+                    @test filesize(p) > 5_000
+                end
+            end
+            @info "FJ9.8e exports" pdf=filesize(joinpath(out, "figure4.pdf")) svg=filesize(joinpath(out, "figure4.svg"))
+        else
+            @test_skip "figure exports live in PannnTastic/Duckietown-artifacts; run tools/run_publication.sh to rebuild them here"
+        end
     end
 end

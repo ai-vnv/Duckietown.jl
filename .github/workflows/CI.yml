@@ -78,12 +78,20 @@ jobs:
       - name: Notebook is in sync with the script it is generated from
         run: julia --color=yes --project=. tools/make_notebook.jl --check
 
-  # The full suite. Parity against the live Python reference needs the
-  # ddm-ref interpreter, which CI does not have; those test sets skip
-  # themselves, exactly as FJ9.9a measured on a clean depot.
+  # The full suite, on every platform we claim to support. Parity against
+  # the live Python reference needs the ddm-ref interpreter, which CI does
+  # not have; those test sets skip themselves, exactly as FJ9.9a measured on
+  # a clean depot. Registry review ran the suite on Apple Silicon and found
+  # the FJ3.2/FJ3.6 ULP tolerances one bit too tight there — a full-suite
+  # matrix is what makes that class of finding ours instead of a reviewer's.
   test:
-    name: full suite (ubuntu, julia 1.11)
-    runs-on: ubuntu-latest
+    name: full suite (${{ matrix.os }}, julia ${{ matrix.version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        version: ['1.11', '1.12']
     steps:
       - uses: actions/checkout@v4
 
@@ -97,14 +105,16 @@ jobs:
 
       - uses: julia-actions/setup-julia@v2
         with:
-          version: '1.11'
+          version: ${{ matrix.version }}
       - uses: julia-actions/cache@v2
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
         with:
-          coverage: true
+          coverage: ${{ matrix.os == 'ubuntu-latest' && matrix.version == '1.11' }}
       - uses: julia-actions/julia-processcoverage@v1
+        if: matrix.os == 'ubuntu-latest' && matrix.version == '1.11'
       - uses: codecov/codecov-action@v4
+        if: matrix.os == 'ubuntu-latest' && matrix.version == '1.11'
         with:
           files: lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -129,5 +139,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-report
+          name: test-report-${{ matrix.os }}-julia${{ matrix.version }}
           path: artifacts/fj9/test_report.json

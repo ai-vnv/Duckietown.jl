@@ -8,6 +8,8 @@ MCTS.jl already works with `DuckietownMDP` without this extension:
 
 ```julia
 using Duckietown, MCTS
+# unexported internals this extension reads (export prune, registry review)
+using Duckietown: root_children
 mdp     = DuckietownMDP("…/training_config.yaml")
 planner = solve(MCTSSolver(n_iterations = 200, depth = 20), mdp)
 a       = action(planner, s)
@@ -29,6 +31,7 @@ termination or discount.
 module DuckietownMCTSExt
 
 using Duckietown
+using Duckietown: root_children
 using POMDPs
 using MCTS
 

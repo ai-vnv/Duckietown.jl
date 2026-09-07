@@ -49,6 +49,14 @@ sc_obs(a, b; n=2) = a == b ||
 ulps32(a::Float32, b::Float32) =
     abs(reinterpret(Int32, a) - reinterpret(Int32, b))
 
+# Comparator for the continuous-extraction testset only. Its Float64 chains
+# (duck-relative kinematics, curvature-ahead, continuous-state fields) hold
+# 2 ULP against the glibc fixtures on x86-64 Linux/Windows; Apple Silicon
+# libm adds exactly one bit - registry review measured 3 (never 4) across
+# 479 failing rows on Julia 1.11 and 1.12. The lane-frame testset above
+# holds 2 ULP on all three platforms and keeps the tighter default.
+sc_cont(a, b) = sc_obs(a, b; n=3)
+
 # EXPECTED NUMERICAL DIFFERENCE (same class as the FJ2 atan2 deviation):
 # `angle_rad = acos(dotDir)` where `dotDir = dot(get_dir_vec(angle), tangent)`
 # goes through libm sin/cos, which differ by <= 1 ULP between glibc (fixture,
@@ -164,30 +172,30 @@ end
 
         drel = duck_relative_state(world, raw.v, ctrl)
         @test drel.present == Bool(out.duck_rel.present)
-        @test sc_obs(drel.longitudinal, out.duck_rel.longitudinal)
-        @test sc_obs(drel.lateral, out.duck_rel.lateral)
-        @test sc_obs(drel.v_longitudinal_relative, out.duck_rel.v_long)
-        @test sc_obs(drel.v_lateral_relative, out.duck_rel.v_lat)
+        @test sc_cont(drel.longitudinal, out.duck_rel.longitudinal)
+        @test sc_cont(drel.lateral, out.duck_rel.lateral)
+        @test sc_cont(drel.v_longitudinal_relative, out.duck_rel.v_long)
+        @test sc_cont(drel.v_lateral_relative, out.duck_rel.v_lat)
         @test drel.active == Bool(out.duck_rel.active)
         @test drel.crossing_available == Bool(out.duck_rel.crossing_available)
 
         kappa = signed_curvature_ahead(world, s_cfg, ccfg)
-        @test sc_obs(kappa, out.kappa)
+        @test sc_cont(kappa, out.kappa)
 
         cont = get_continuous_state(world, raw, s_cfg, ccfg;
             controller_cfg=ctrl,
             stop_hold_progress=unf_obs(row.in.stop_hold_progress))
-        @test sc_obs(cont.kappa, out.cont.kappa)
+        @test sc_cont(cont.kappa, out.cont.kappa)
         @test cont.stop_present == Bool(out.cont.stop_present)
         @test cont.duck_present == Bool(out.cont.duck_present)
-        @test sc_obs(cont.duck_longitudinal, out.cont.duck_longitudinal)
-        @test sc_obs(cont.duck_lateral, out.cont.duck_lateral)
-        @test sc_obs(cont.duck_v_longitudinal_relative, out.cont.duck_v_long)
-        @test sc_obs(cont.duck_v_lateral_relative, out.cont.duck_v_lat)
+        @test sc_cont(cont.duck_longitudinal, out.cont.duck_longitudinal)
+        @test sc_cont(cont.duck_lateral, out.cont.duck_lateral)
+        @test sc_cont(cont.duck_v_longitudinal_relative, out.cont.duck_v_long)
+        @test sc_cont(cont.duck_v_lateral_relative, out.cont.duck_v_lat)
         @test cont.duck_active == Bool(out.cont.duck_active)
         @test cont.duck_crossing_available ==
             Bool(out.cont.duck_crossing_available)
-        @test sc_obs(cont.stop_hold_progress, out.cont.stop_hold_progress)
+        @test sc_cont(cont.stop_hold_progress, out.cont.stop_hold_progress)
 
         encoded = encode_continuous_state(cont, ccfg)
         for k in 1:15

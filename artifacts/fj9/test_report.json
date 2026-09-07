@@ -3,8 +3,8 @@
     "julia_version": "1.11.3",
     "failures": 0,
     "testsets": 235,
-    "assertions": 149240,
-    "broken": 0,
+    "assertions": 149214,
+    "broken": 2,
     "schema": "fj99.reporter.1",
     "testsets_detail": [
         {
@@ -1325,9 +1325,9 @@
         },
         {
             "name": "FJ9.8e the exported artefacts exist in vector and raster form",
-            "passes": 39,
+            "passes": 15,
             "errors": 0,
-            "broken": 0,
+            "broken": 1,
             "fails": 0
         },
         {
@@ -1605,9 +1605,9 @@
         },
         {
             "name": "FJ9.9c the artifact ledger distinguishes kinds of evidence",
-            "passes": 10,
+            "passes": 8,
             "errors": 0,
-            "broken": 0,
+            "broken": 1,
             "fails": 0
         },
         {

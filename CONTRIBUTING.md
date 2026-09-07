@@ -15,7 +15,7 @@ julia --project=. -e 'using Pkg; Pkg.test()'
 
 That works with nothing else installed, and it is the expected way to
 contribute: one clone, no second repository. It runs 134 test sets and
-79 383 assertions — including the full fixture-based parity layers, whose
+79 357 assertions — including the full fixture-based parity layers, whose
 fixtures are committed — and skips the 21 files that compare against the
 Python reference, each by name, never silently.
 
@@ -30,7 +30,7 @@ parent/
 ```
 
 which is not published in [PannnTastic/DuckieMDP](https://github.com/PannnTastic/DuckieMDP)
-yet. With it, the suite runs 235 test sets and 149 240 assertions. All these
+yet. With it, the suite runs 235 test sets and 149 214 assertions. All these
 counts should hold; if one moves, say so in the pull request and explain why.
 
 ## Rules that matter

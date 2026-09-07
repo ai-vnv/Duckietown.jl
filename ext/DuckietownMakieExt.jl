@@ -23,6 +23,8 @@ exist yet, and a test asserts they stay unimplemented.
 module DuckietownMakieExt
 
 using Duckietown
+# unexported internals this extension reads (export prune, registry review)
+using Duckietown: ABSENT, is_frozen, root_children, wrap_text
 using Makie
 
 const DDM = Duckietown

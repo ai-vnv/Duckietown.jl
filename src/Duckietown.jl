@@ -15,7 +15,7 @@ Three-level state hierarchy (canonical):
 - [`ContinuousState`](@ref): 15-component privileged projection used by
   SAC/TD3 observation encodings.
 
-Gate status: FJ1 (skeleton, typed config hierarchy, YAML loaders, data model,
+Gate status: FJ1 (skeleton, typed config hierarchy, YAML loaders, data model
 interface boundaries) — implemented. Dynamics, reward computation, transitions
 and solvers land in later gates (FJ2+).
 """
@@ -92,33 +92,33 @@ include("visualization/diagnostics.jl")
 # `DecisionLog`, which is resolved when the method is defined, not when called.
 include("visualization/animation.jl")
 include("visualization/paper_figure.jl")
-# FJ9.9: reproducibility closure — artefact ledger, documentation audit,
+# FJ9.9: reproducibility closure — artefact ledger, documentation audit
 # core-formulation fingerprint, source-import lint, known limitations.
 include("interfaces/reproducibility.jl")
 
-export AbstractBackend, AbstractPolicy, act
+export AbstractBackend, AbstractPolicy
 export ActionConfig, ActionSpec, MacroAction, FAST_LEFT, FAST_STRAIGHT, FAST_RIGHT,
     SLOW_LEFT, SLOW_STRAIGHT, SLOW_RIGHT, BRAKE, DuckieAction
 export build_action_table, build_continuous_state
 export classify_tile, compute_reward, ContinuousState, ContinuousStateConfig
 export continuous_observation_space, curve_signed_curvature, D_BINS
 export DuckControllerConfig, DuckietownConfig, DuckRelativeState, EnvironmentConfig
-export DuckThreat, NONE, SIDE_FAR, SIDE_NEAR, CROSSING_FAR, CROSSING_NEAR
-export DuckieEgoState, DuckieState, DuckieWorldState, branch
-export digitize, discretize, ego_relative_curve
+export DuckThreat, SIDE_FAR, SIDE_NEAR, CROSSING_FAR, CROSSING_NEAR
+export DuckieEgoState, DuckieState, DuckieWorldState
+export discretize, ego_relative_curve
 export encode_continuous_state, EventFlags, EvaluationConfig
 export gate_duck_visibility, LaneTeacherConfig
 export QLearningConfig, SarsaConfig, SacConfig, Td3Config
 export RawState, RoadMap, RewardBreakdown, RewardConfig
-export StateConfig, StopMemory, StopSignState, StopTracker, hold_progress, reset_tracker
-export terminal_lane_fallback, TileSpec, TileType, STRAIGHT, CURVE_LEFT, CURVE_RIGHT
-export TrainingConfig, TransitionModelConfig, update!
+export StateConfig, StopMemory, StopSignState, StopTracker, reset_tracker
+export terminal_lane_fallback, TileSpec, TileType, CURVE_LEFT, CURVE_RIGHT
+export TrainingConfig, TransitionModelConfig
 export vw_to_wheels, action_to_wheels, bezier_point, bezier_tangent, curve_matrix
 export bezier_closest, closest_curve_point, get_lane_pos2, LanePosition, NotInLane
 export get_dir_vec, get_right_vec, heading_vec
-export generate_corners, generate_norm, agent_boundbox, intersects, intersects_single_obj
-export _valid_pose, _collision, _inconvenient_spawn, tile_corners
-export _get_tile, _drivable_pos, get_agent_corners, calculate_safety_radius
+export generate_corners, generate_norm, agent_boundbox
+export tile_corners
+export get_agent_corners, calculate_safety_radius
 export MapObjectData, interpret_object_desc, small_loop_map, parse_map_tiles
 export sample_spawn_pose, get_grid_coords
 export DB18Parameters, db18_nominal, db18_model, DelayedCommand, get_commands_at
@@ -131,12 +131,11 @@ export next_stop_candidate, distance_to_next_stop, classify_duck
 export get_raw_state, signed_curvature_ahead, duck_relative_state
 export get_continuous_state
 export DuckieTransitionModel, TransitionResult, simulate_decision
-export NumpyMT19937, random_sample, mt_next_uint32!, mt_state
+export NumpyMT19937, mt_next_uint32!, mt_state
 export NumpySeedSequence, seedseq_generate_state
 export NumpyPCG64, pcg64_next_uint64, pcg64_next_uint32, np_random_double,
     np_uniform, np_integers, np_standard_normal, np_normal
-export TerminationReason, DUCK_COLLISION, OTHER_COLLISION, TIMEOUT, OFFROAD,
-    GOAL, IN_PROGRESS
+export TerminationReason, DUCK_COLLISION, OTHER_COLLISION
 export termination_reason, is_terminated, is_truncated
 export DuckietownMDP, DuckieActionSpace, DuckieInitialStateDistribution
 export ALL_MACRO_ACTIONS, spawn_accepted, build_world
@@ -147,12 +146,12 @@ export AbstractReferenceBackend, ProcessReferenceBackend,
 export ReferenceBackend, reference_backend_available, ref_call, ref_reset!,
     ref_get_state, ref_set_state!, ref_step!, ref_probe_stop,
     ref_to_world, world_to_ref
-export QTablePolicy, QDecision, decide, read_npy, all_state_indices,
+export QTablePolicy, QDecision, read_npy, all_state_indices,
     greedy_action_table, tie_statistics, TIE_ATOL
-export SACActorPolicy, TD3ActorPolicy, LinearLayer, forward
+export SACActorPolicy, TD3ActorPolicy, LinearLayer
 export TorchPolicyReferenceBackend, torch_policy_available, torch_call,
     torch_policy_init!, torch_policy_infer, torch_policy_infer_batch
-export ReadinessStatus, READY, NEEDS_REFACTOR, NOT_READY, ReadinessItem,
+export ReadinessStatus, ReadinessItem,
     pomdp_readiness, readiness_table, readiness_counts,
     ObservabilityClass, SENSOR_ESTIMABLE, TEMPORALLY_DERIVED,
     MAP_PRIVILEGED, SIMULATOR_PRIVILEGED, AGENT_MEMORY,
@@ -174,14 +173,14 @@ export BudgetPoint, budget_study, budget_table, compute_matched_budget,
     operating_point_table, planning_seed_config
 export WorldMismatch, world_differences, worlds_identical,
     shared_mutable_arrays, shared_by_design, rng_frozen
-export GenBenchmark, measure, benchmark_gen, gen_scaling, gen_stage_profile,
+export GenBenchmark, benchmark_gen, gen_scaling, gen_stage_profile,
     benchmark_table, per_call_us, bytes_per_call, allocs_per_call,
     calls_per_second, planning_budget_estimate
 export RolloutRecord, rollout_native, rollout_reference, DriftReport,
     compare_rollouts, drift_summary, event_timing, event_timing_diff,
     rollout_table, three_lane_table, libm_hypothesis_check
 export FieldDiff, StepParityReport, compare_worlds, compare_step,
-    matched_state_sweep, parity_summary, worst, exact, parity_accepted,
+    matched_state_sweep, parity_summary, parity_accepted,
     nonzero_fields, LIBM_1ULP_FIELDS, LIBM_DERIVED_FIELDS, LIBM_MAX_ULPS,
     LIBM_MAX_ABSDIFF, bitwise_only_fields, SIGNED_ZERO_FIELDS
 export OBSERVATION_NAMES, Q_SHAPE, STATE_SHAPE, TRACKING_ERROR_BINS, V_BINS
@@ -198,19 +197,18 @@ export ArtifactStatus, REBUILT, PERSISTED_SOURCE, PROVISIONED_FROZEN_INPUT,
     ArtifactRecord, artifact_ledger, STALE_CLAIMS, DocIssue,
     documentation_audit, core_fingerprint, SOURCE_IMPORT_BAN,
     source_import_audit, KNOWN_LIMITATIONS
-export FigureRole, MAIN_FIGURE, SUPPLEMENTARY, DIAGNOSTIC_ONLY,
+export FigureRole, DIAGNOSTIC_ONLY,
     PublicationArtifact, publication_inventory, inventory_table,
-    PanelSpec, PublicationComposite, panel_ids, PUBLICATION_LAYOUT_VERSION,
-    grid_layout, wrap_text,
+    PanelSpec, PublicationComposite, PUBLICATION_LAYOUT_VERSION,
     CaptionRule, CAPTION_RULES, caption_rule, check_caption,
     provenance_block, figure_model, figure_policy, figure_search,
     figure_episode
 export AnimationFrame, AnimationSequence, animation_sequence,
     ANIMATION_TIMELINE_LABEL, ANIMATION_LAYOUT_VERSION, ANIMATION_ABSENT,
     animation_absent_lines, trajectory_through, events_through,
-    series_through, model_time, MODEL_TIME_LABEL, frame_caption,
-    animation_provenance, EpisodeSelection, select_episode, paired_frames,
-    frame_index, is_frozen, StaticWorld, static_world, FrameScene, frame_scene
+    series_through, MODEL_TIME_LABEL, frame_caption,
+    animation_provenance, EpisodeSelection, paired_frames,
+    frame_index, StaticWorld, static_world, FrameScene, frame_scene
 export TilePatch, WorldScene, world_scene, tile_patches, lane_centrelines,
     stop_line_segment, trajectory_points, projection_rows,
     PROJECTION_PANEL_TITLE, ProjectionCategory, LANE_GEOMETRY, EGO_MOTION,
@@ -219,24 +217,23 @@ export TilePatch, WorldScene, world_scene, tile_patches, lane_centrelines,
 export capture_search, search_statistics, visible_nodes, search_summary
 export state_fingerprint, snapshot_fingerprint, save_snapshot,
     load_snapshot
-export SearchNode, SearchSnapshot, root_children, search_max_depth,
+export SearchNode, SearchSnapshot, search_max_depth,
     check_snapshot
-export SearchDataStatus, PERSISTED, AGGREGATE_ONLY, ABSENT, SearchDataItem,
+export SearchDataStatus, SearchDataItem,
     search_artifact_audit, search_audit_table, search_visualisation_supported
-export FieldAvailability, LOGGED, DERIVED_IDENTITY, FIELD_ABSENT,
+export FieldAvailability, DERIVED_IDENTITY, FIELD_ABSENT,
     availability_label, DecisionFieldItem, DECISION_QUANTITY_CONTRACT,
     decision_log_audit, decision_audit_table
 export DecisionLog, DECISION_LOG_REQUIRED, load_decision_log,
     episode_diagnostics, episode_lengths, progress_bins
-export SeriesCategory, NAVIGATION, MOTION_COMMAND, STOP_SUBSYS, DUCK_SUBSYS,
-    REWARD, COMPUTE
-export SeriesKind, INSTANTANEOUS, CUMULATIVE, FLAG
+export SeriesCategory, MOTION_COMMAND, STOP_SUBSYS, DUCK_SUBSYS
+export SeriesKind
 export AxisMode, ABSOLUTE_DECISION, NORMALIZED_PROGRESS
 export DiagnosticSeries, EpisodeDiagnostics, DIAGNOSTIC_SERIES_SPEC,
-    DIAGNOSTIC_EVENT_COLUMNS, series_named, series_in, n_missing,
+    DIAGNOSTIC_EVENT_COLUMNS, series_named,
     diagnostics_fingerprint, diagnostics_provenance
 export EpisodeOutcome, ENV_TERMINATED, HORIZON_REACHED, EpisodeRecord,
-    ROLLOUT_ARTIFACT_SCHEMA, outcome, ArtifactProvenance, RolloutAggregate,
+    ROLLOUT_ARTIFACT_SCHEMA, ArtifactProvenance, RolloutAggregate,
     RolloutComparison, load_rollout_artifact, artifact_fingerprint,
     comparison_at_seed, median_return_seed, paired_metric,
     stop_compliance_of, solver_summary, comparison_table, provenance_lines

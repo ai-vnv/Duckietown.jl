@@ -6,6 +6,7 @@ using Test
 # terminal parsers stay, and must agree with it.
 include("reporter.jl")
 include("reference_guard.jl")
+include("internal_names.jl")
 
 const SUITE = Test.DefaultTestSet("Duckietown"; verbose=true)
 const REPORT_PATH = get(ENV, "DDM_TEST_REPORT",

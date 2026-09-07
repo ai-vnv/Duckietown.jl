@@ -24,6 +24,7 @@ for f in "$@"; do
     cd(\"test\")
     include(\"reporter.jl\")
     include(\"reference_guard.jl\")
+    include(\"internal_names.jl\")
     @testset \"probe\" begin
         include(\"$f.jl\")
     end" 2>&1 | tail -25
