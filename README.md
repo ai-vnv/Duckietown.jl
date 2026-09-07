@@ -8,6 +8,10 @@
 A Duckietown lane-following-with-obstacles MDP, written in Julia as a
 [POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl) problem.
 
+> Duckietown.jl is an independent community project based on the
+> [Duckietown](https://www.duckietown.org) simulation environment. It is not
+> an official Duckietown product and is not maintained by Duckietown.
+
 It is a native reimplementation of the Python environment in
 [DuckieMDP](https://github.com/PannnTastic/DuckieMDP), validated
 against it decision by decision — including exact NumPy RNG streams, so a
@@ -173,8 +177,12 @@ loads them from your own gym-duckietown installation).
 - **Source code:** [MIT](LICENSE). Parts of `src/dynamics/` and
   `src/visualization/` are a documented line-by-line port of
   [gym-duckietown](https://github.com/duckietown/gym-duckietown) (pinned
-  6.1.34); those portions are released under MIT with the Duckietown
-  Project's written permission.
+  6.1.34) — the lane Bezier control-point templates and map-interpretation
+  logic, the camera constants, the DB18 motor-model semantics, and the
+  reward structure. Those portions are released under MIT with the
+  Duckietown Project's written permission, which also covers the use of the
+  Duckietown.jl name for this project; the [NOTICE](NOTICE) file carries the
+  full attribution and the limits of both permissions.
 - **Assets, maps, meshes, textures:** never bundled in this package. They are
   loaded at runtime from the user's own gym-duckietown installation (see
   `DUCKIETOWN_ASSETS`), remain the intellectual property of the

@@ -1,0 +1,25 @@
+Duckietown.jl is an independent community project based on the Duckietown
+simulation environment. It is not an official Duckietown product and is not
+maintained by Duckietown.
+
+Portions of this implementation are based on or derived from gym-duckietown
+(https://github.com/duckietown/gym-duckietown), originally developed by the
+Duckietown project (https://www.duckietown.org):
+
+  - the lane Bezier control-point templates and the associated
+    map-interpretation logic;
+  - the camera constants;
+  - the DB18 motor-model semantics; and
+  - the reward structure, as reimplemented in Julia.
+
+These portions are distributed under the MIT License with the Duckietown
+Project's written permission (September 2026). That permission is specific
+to the Duckietown.jl project and to the material described above; it is not
+a general relicensing of gym-duckietown or other Duckietown software.
+
+Duckietown is a trademarked name. Permission to use it covers this project
+only and does not constitute a general license to use Duckietown trademarks,
+logos, or branding. Duckietown textures, meshes, logos, and other media
+assets are not redistributed with this package; the optional native renderer
+loads compatible assets from the user's own installation, subject to the
+license terms applicable to those assets.

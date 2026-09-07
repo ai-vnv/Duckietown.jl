@@ -1,5 +1,10 @@
 # Duckietown.jl
 
+!!! note "Independent community project"
+    Duckietown.jl is an independent community project based on the
+    [Duckietown](https://www.duckietown.org) simulation environment. It is
+    not an official Duckietown product and is not maintained by Duckietown.
+
 A Duckietown lane-following-with-obstacles MDP, written in Julia as a
 [POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl) problem — a native
 reimplementation of the decision layer of a
