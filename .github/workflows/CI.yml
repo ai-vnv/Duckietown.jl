@@ -92,6 +92,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         version: ['1.11', '1.12']
+        include:
+          # the oldest supported Julia gets one full-suite lane too — the
+          # FJ2/FJ3 fixtures were originally validated on 1.10
+          - os: ubuntu-latest
+            version: '1.10'
     steps:
       - uses: actions/checkout@v4
 

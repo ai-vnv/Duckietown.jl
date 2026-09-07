@@ -5,10 +5,12 @@ A Duckietown lane-following-with-obstacles MDP, written in Julia as a
 reimplementation of the decision layer of a
 [gym-duckietown](https://github.com/duckietown/gym-duckietown)-based
 environment, validated against it decision by decision, including exact
-NumPy RNG streams, so a seeded episode reproduces bit for bit on x86-64,
-where the parity evidence was produced (Apple Silicon libm shifts a few
-derived read-backs by one ULP - measured, tolerated and documented in the
-suite; discrete decisions remain identical).
+NumPy RNG streams, so a seeded episode reproduces bit for bit on the platform
+the evidence was produced on: x86-64 under Julia 1.10/1.11, where CI keeps
+it pinned (fma-fusing platforms - Apple Silicon, and Julia 1.12 on every
+architecture - drift at the last bits of a few derived read-backs: measured
+in CI at most 80 ULP, tolerated and documented in the suite; discrete
+decisions remain identical).
 
 ```@raw html
 <img src="https://raw.githubusercontent.com/PannnTastic/Duckietown-artifacts/main/docs/assets/native_dora_lap.gif"
