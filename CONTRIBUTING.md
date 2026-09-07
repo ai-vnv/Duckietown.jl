@@ -31,7 +31,10 @@ parent/
 
 which is not published in [PannnTastic/DuckieMDP](https://github.com/PannnTastic/DuckieMDP)
 yet. With it, the suite runs 235 test sets and 149 214 assertions. All these
-counts should hold; if one moves, say so in the pull request and explain why.
+counts should hold; if one moves, say so in the pull request and explain
+why. (One announced exception: on Julia 1.10 the suite skips
+ — its planner workload has twice crashed the
+1.10 runtime GC — so the single-clone counts there are lower.)
 
 ## Rules that matter
 
